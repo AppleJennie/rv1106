@@ -1,0 +1,43 @@
+#!/bin/sh
+# /etc/init.d/S99hand_capture - 开机自启动脚本
+
+PIDFILE="/var/run/hand_capture_right.pid"
+
+start() {
+    echo "Starting hand_capture_right..."
+    # 等待系统完全启动（网络、SD 卡挂载）
+    sleep 20
+    start-stop-daemon -S -m -p "$PIDFILE" -b -x /usr/bin/hand_capture_start.sh
+    echo "OK"
+}
+
+stop() {
+    echo "Stopping hand_capture_right..."
+    start-stop-daemon -K -p "$PIDFILE" 2>/dev/null
+    killall hand_capture_right 2>/dev/null
+    rm -f "$PIDFILE"
+    echo "OK"
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

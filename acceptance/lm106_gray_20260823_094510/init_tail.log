@@ -1,0 +1,57 @@
+[2024-01-01 00:26:28.722] [INFO] landmark_106 model input num: 1, output num: 1
+[2024-01-01 00:26:28.723] [INFO] landmark_106 input: name=data dims=[1,192,192,3] n_elems=110592 size=110592 fmt=NHWC type=INT8 qnt=AFFINE zp=-128 scale=1.000000
+[2024-01-01 00:26:28.724] [INFO] landmark_106 output: name=fc1 dims=[1,212] n_elems=212 size=212 fmt=UNDEFINED type=INT8 qnt=AFFINE zp=-15 scale=0.003859
+[2024-01-01 00:26:28.725] [INFO] landmark_106 模型初始化成功
+[2024-01-01 00:26:28.725] [INFO] DMS RKNN 模型加载成功，进入真实推理模式
+[2024-01-01 00:26:28.725] [INFO] DMS 推理模块初始化完成
+[2024-01-01 00:26:28.726] [INFO] DMS 推理模块初始化成功
+[2024-01-01 00:26:28.828] [INFO] DMS stream server started: http://0.0.0.0:8090/
+[2024-01-01 00:26:29.123] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:29.353] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:29.582] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:29.893] [INFO] [DMS PERF] camera_fps=3.2 raw_stream_fps=3.2 debug_stream_fps=0.0 ai_fps=0.6 retinaface_avg_ms=30.7 retinaface_max_ms=32.1 rf_jpeg_decode_ms=73.5 rf_preprocess_ms=101.2 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=206.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=16 ai_frames=3 ai_drop_latest=11
+[2024-01-01 00:26:29.985] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:30.214] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:30.444] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:30.672] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:30.901] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:31.302] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:31.572] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:31.801] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:32.032] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:32.295] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:32.632] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:32.859] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:33.088] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:33.318] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:33.692] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:34.012] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:34.243] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:34.472] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:34.701] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:35.005] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:35.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.8 retinaface_avg_ms=30.9 retinaface_max_ms=33.2 rf_jpeg_decode_ms=109.4 rf_preprocess_ms=117.8 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=259.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=94 ai_frames=23 ai_drop_latest=69
+[2024-01-01 00:26:35.299] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:35.525] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:35.754] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:35.983] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:36.300] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:36.626] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:36.852] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:37.081] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:37.311] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:37.699] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:37.926] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:38.154] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:38.405] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:38.634] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:39.110] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:39.339] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:39.569] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:39.799] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:40.027] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:40.359] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=110.6 rf_preprocess_ms=120.5 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=262.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=173 ai_frames=42 ai_drop_latest=129
+[2024-01-01 00:26:40.432] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:40.659] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:40.888] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:26:41.118] [INFO] FACE_DETECT_OK no_face

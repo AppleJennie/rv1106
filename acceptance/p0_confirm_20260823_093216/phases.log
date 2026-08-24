@@ -1,0 +1,3 @@
+==== PHASE bg_window 20s: 纯背景：确保画面里没有人脸，转向窗户/窗帘/强光 ====
+==== PHASE front_face 25s: 正脸：人脸居中看镜头，保持不动 ====
+DONE acceptance/p0_confirm_20260823_093216

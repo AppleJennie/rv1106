@@ -1,0 +1,120 @@
+[2024-01-01 00:00:51.540] [INFO] DMS 推理模块初始化成功
+[2024-01-01 00:00:51.540] [INFO] 上传模块初始化成功
+[2024-01-01 00:00:51.540] [INFO] 初始化蜂鸣器 GPIO59...
+[2024-01-01 00:00:51.642] [INFO] 蜂鸣器初始化完成
+[2024-01-01 00:00:51.643] [INFO] DMS stream server started: http://0.0.0.0:8090/
+[2024-01-01 00:00:51.644] [INFO] 蜂鸣器 SD 卡容量监控线程启动，剩余空间阈值=4096 MB，最多报警10次
+[2024-01-01 00:00:51.654] [INFO] 状态切换: BOOT -> READY
+[2024-01-01 00:00:51.654] [INFO] LED状态: 系统灯=绿色常亮, 状态灯=熄灭
+[2024-01-01 00:00:51.655] [INFO] 系统进入待机状态，等待按键触发
+[2024-01-01 00:00:51.655] [INFO] DMS_AUTO_START enabled
+[2024-01-01 00:00:51.655] [INFO] DMS_AUTO_START: 自动开始采集
+[2024-01-01 00:00:51.655] [INFO] 录制按键点按: 开始采集
+[2024-01-01 00:00:51.675] [INFO] DMS 新会话开始: /mnt/sdcard/dms/sessions/20240101_000051
+[2024-01-01 00:00:51.676] [INFO] DMS session started
+[2024-01-01 00:00:51.676] [INFO] 状态切换: READY -> RECORDING
+[2024-01-01 00:00:51.677] [INFO] LED状态: 系统灯=绿色闪烁, 状态灯=熄灭
+[2024-01-01 00:00:51.677] [INFO] 采集线程启动
+[2024-01-01 00:00:51.677] [INFO] CAPTURE CONFIG: width=1280 height=720 fps=15 interval=66666 us
+[2024-01-01 00:00:51.677] [INFO] DMS AI 线程启动
+[2024-01-01 00:00:51.680] [INFO] [CAM] fps=1, ok=1, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=94737/94737 bytes
+[2024-01-01 00:00:51.685] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:51.916] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:52.139] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:52.365] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:52.679] [INFO] [CAP] fps=16, frame_id=16, cam_fail=0, push_fail=0
+[2024-01-01 00:00:52.680] [INFO] [DMS PERF] camera_fps=3.2 raw_stream_fps=3.2 debug_stream_fps=0.0 ai_fps=0.6 retinaface_avg_ms=30.2 retinaface_max_ms=30.8 rf_jpeg_decode_ms=73.1 rf_preprocess_ms=119.1 rf_rknn_ms=30.2 rf_post_ms=1.3 rf_total_ms=223.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=16 ai_frames=3 ai_drop_latest=11
+[2024-01-01 00:00:52.698] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:52.745] [INFO] [CAM] fps=16, ok=17, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=98068/96513 bytes
+[2024-01-01 00:00:52.746] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:52.939] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:53.207] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:53.438] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:53.668] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:53.745] [INFO] [CAM] fps=15, ok=32, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=95469/96686 bytes
+[2024-01-01 00:00:53.746] [INFO] [CAP] fps=16, frame_id=32, cam_fail=0, push_fail=0
+[2024-01-01 00:00:53.813] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:54.077] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:54.327] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:54.559] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:54.745] [INFO] [CAM] fps=15, ok=47, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=92135/94115 bytes
+[2024-01-01 00:00:54.746] [INFO] [CAP] fps=15, frame_id=47, cam_fail=0, push_fail=0
+[2024-01-01 00:00:54.792] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:54.879] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:55.117] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:55.476] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:55.705] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:55.745] [INFO] [CAM] fps=15, ok=62, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90895/92293 bytes
+[2024-01-01 00:00:55.746] [INFO] [CAP] fps=15, frame_id=62, cam_fail=0, push_fail=0
+[2024-01-01 00:00:55.935] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:55.946] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:56.192] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:56.488] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:56.746] [INFO] [CAM] fps=15, ok=77, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90861/91374 bytes
+[2024-01-01 00:00:56.747] [INFO] [CAP] fps=15, frame_id=77, cam_fail=0, push_fail=0
+[2024-01-01 00:00:56.797] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:57.013] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:57.027] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:57.335] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:57.565] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:57.745] [INFO] [CAM] fps=15, ok=92, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90772/90992 bytes
+[2024-01-01 00:00:57.812] [INFO] [CAP] fps=16, frame_id=93, cam_fail=0, push_fail=0
+[2024-01-01 00:00:57.813] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.6 retinaface_max_ms=33.1 rf_jpeg_decode_ms=112.2 rf_preprocess_ms=123.3 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=266.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=93 ai_frames=22 ai_drop_latest=69
+[2024-01-01 00:00:57.966] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:58.079] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:58.196] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:58.592] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:58.745] [INFO] [CAM] fps=15, ok=107, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90678/90826 bytes
+[2024-01-01 00:00:58.813] [INFO] [CAP] fps=15, frame_id=108, cam_fail=0, push_fail=0
+[2024-01-01 00:00:58.834] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:59.079] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:00:59.221] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:59.450] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:59.682] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:00:59.746] [INFO] [CAM] fps=15, ok=122, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90852/90819 bytes
+[2024-01-01 00:00:59.879] [INFO] [CAP] fps=16, frame_id=124, cam_fail=0, push_fail=0
+[2024-01-01 00:00:59.925] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:00.146] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:00.155] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:00.557] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:00.745] [INFO] [CAM] fps=15, ok=137, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90756/90814 bytes
+[2024-01-01 00:01:00.844] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:00.879] [INFO] [CAP] fps=15, frame_id=139, cam_fail=0, push_fail=0
+[2024-01-01 00:01:01.099] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:01.212] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:01.340] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:01.619] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:01.745] [INFO] [CAM] fps=15, ok=152, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90780/90783 bytes
+[2024-01-01 00:01:01.946] [INFO] [CAP] fps=16, frame_id=155, cam_fail=0, push_fail=0
+[2024-01-01 00:01:01.949] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:02.176] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:02.212] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:02.406] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:02.636] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:02.745] [INFO] [CAM] fps=15, ok=167, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90811/90783 bytes
+[2024-01-01 00:01:02.928] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:03.012] [INFO] [CAP] fps=16, frame_id=171, cam_fail=0, push_fail=0
+[2024-01-01 00:01:03.013] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.8 rf_jpeg_decode_ms=110.4 rf_preprocess_ms=129.8 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=272.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=171 ai_frames=41 ai_drop_latest=128
+[2024-01-01 00:01:03.212] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:03.235] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:03.464] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:03.694] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:03.745] [INFO] [CAM] fps=15, ok=182, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90820/90797 bytes
+[2024-01-01 00:01:03.923] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:04.012] [INFO] [CAP] fps=15, frame_id=186, cam_fail=0, push_fail=0
+[2024-01-01 00:01:04.213] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:04.229] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:04.526] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:04.745] [INFO] [CAM] fps=15, ok=197, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90767/90805 bytes
+[2024-01-01 00:01:04.756] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:04.984] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:05.079] [INFO] [CAP] fps=16, frame_id=202, cam_fail=0, push_fail=0
+[2024-01-01 00:01:05.216] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:05.279] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:05.533] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:05.745] [INFO] [CAM] fps=15, ok=212, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=90750/90779 bytes
+[2024-01-01 00:01:05.817] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:06.043] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:01:06.079] [INFO] [CAP] fps=15, frame_id=217, cam_fail=0, push_fail=0
+[2024-01-01 00:01:06.279] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:01:06.453] [INFO] FACE_DETECT_OK no_face

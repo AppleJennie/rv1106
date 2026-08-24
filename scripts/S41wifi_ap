@@ -1,0 +1,136 @@
+#!/bin/sh
+# /etc/init.d/S41wifi_ap
+# Hand Capture Right - 板子开热点模式（AP）
+# 板子作为 AP：IP = 192.168.4.1
+# 接收服务器（PC/笔记本）连上来后固定分配 192.168.4.17
+# 该 IP 与 include/common.h 里的 UPLOAD_SERVER_IP 保持一致
+
+AP_SSID="HandCaptureRight"
+# 部署前请修改为真实热点密码（勿将真实密码提交到公开仓库）
+AP_PASS="CHANGE_ME_WIFI_PSK"
+AP_IP="192.168.4.1"
+AP_NETMASK="255.255.255.0"
+AP_CHANNEL="6"
+AP_IFACE="wlan0"
+
+HOSTAPD_CONF="/etc/hostapd.conf"
+UDHCPD_CONF="/etc/udhcpd.conf"
+PIDFILE_HOSTAPD="/var/run/hostapd.pid"
+PIDFILE_UDHCPD="/var/run/udhcpd.pid"
+
+# 接收服务器 MAC 地址，改成你 PC/笔记本 WiFi 的真实 MAC
+# 如果不填，可在 PC 上手动把 WiFi IP 设为 192.168.4.17/24，网关 192.168.4.1
+SERVER_MAC="00:11:22:33:44:55"
+
+start() {
+    echo "Starting WiFi AP: $AP_SSID"
+
+    # 尝试加载 cfg80211，部分固件已内置
+    modprobe cfg80211 2>/dev/null
+    sleep 1
+
+    # 确保无线接口存在
+    if ! ifconfig "$AP_IFACE" >/dev/null 2>&1; then
+        echo "ERROR: $AP_IFACE not found"
+        exit 1
+    fi
+
+    # 先停掉可能残留的 station 模式进程
+    killall wpa_supplicant 2>/dev/null
+    killall udhcpc 2>/dev/null
+    ifconfig "$AP_IFACE" down
+    sleep 1
+
+    # 配置 AP 静态 IP
+    ifconfig "$AP_IFACE" "$AP_IP" netmask "$AP_NETMASK" up
+    if [ $? -ne 0 ]; then
+        echo "ERROR: failed to config $AP_IFACE"
+        exit 1
+    fi
+
+    # 生成 hostapd 配置
+    cat > "$HOSTAPD_CONF" <<EOF
+interface=$AP_IFACE
+driver=nl80211
+ssid=$AP_SSID
+hw_mode=g
+channel=$AP_CHANNEL
+ieee80211n=1
+wpa=2
+wpa_passphrase=$AP_PASS
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+ignore_broadcast_ssid=0
+EOF
+
+    # 生成 udhcpd 配置
+    cat > "$UDHCPD_CONF" <<EOF
+start 192.168.4.10
+end 192.168.4.50
+interface $AP_IFACE
+opt router $AP_IP
+opt subnet $AP_NETMASK
+opt dns $AP_IP
+opt lease 86400
+
+# 接收服务器固定 IP，和程序里的 UPLOAD_SERVER_IP 保持一致
+static_lease $SERVER_MAC 192.168.4.17
+EOF
+
+    # udhcpd 需要 lease 文件存在
+    mkdir -p /var/lib/misc
+    touch /var/lib/misc/udhcpd.leases
+
+    # 启动 hostapd
+    hostapd -B "$HOSTAPD_CONF" -P "$PIDFILE_HOSTAPD"
+    if [ $? -ne 0 ]; then
+        echo "ERROR: hostapd failed to start"
+        ifconfig "$AP_IFACE" down
+        exit 1
+    fi
+    sleep 1
+
+    # 启动 DHCP 服务器
+    udhcpd "$UDHCPD_CONF"
+    if [ $? -ne 0 ]; then
+        echo "ERROR: udhcpd failed to start"
+        kill $(cat "$PIDFILE_HOSTAPD" 2>/dev/null) 2>/dev/null
+        killall hostapd 2>/dev/null
+        ifconfig "$AP_IFACE" down
+        exit 1
+    fi
+
+    echo "WiFi AP started: SSID=$AP_SSID, IP=$AP_IP, SERVER_IP=192.168.4.17"
+}
+
+stop() {
+    echo "Stopping WiFi AP"
+    kill $(cat "$PIDFILE_UDHCPD" 2>/dev/null) 2>/dev/null
+    killall udhcpd 2>/dev/null
+    kill $(cat "$PIDFILE_HOSTAPD" 2>/dev/null) 2>/dev/null
+    killall hostapd 2>/dev/null
+    ifconfig "$AP_IFACE" down 2>/dev/null
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

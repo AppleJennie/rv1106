@@ -1,0 +1,5 @@
+==== PHASE front 25s: 正脸居中，保持不动，看镜头 ====
+==== PHASE move_lr 25s: 人脸缓慢左右移动，再回中 ====
+==== PHASE move_nf 25s: 人脸缓慢走近/走远 ====
+==== PHASE window 25s: 镜头转向窗户/窗帘/强光背景，检查误检 ====
+DONE acceptance/p0_face_20260823_092917

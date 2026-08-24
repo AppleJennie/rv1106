@@ -1,0 +1,33 @@
+# ===== 构建产物（可重新编译）=====
+build/
+build_verify_off/
+build_verify_on/
+*.o
+*.d
+
+# ===== 编译出的可执行文件 =====
+beep_warn/beep_warn
+tests/test_dms_mcu_protocol
+tests/test_dms_risk_manager
+mcu/tests/test_dms_protocol_stress
+
+# ===== 大体积第三方 SDK / 环境（可重新下载安装，不进仓库）=====
+# opencv-mobile SDK（60MB，opencv-mobile 官方 release 可下载）
+opencv-mobile-4.10.0-luckfox-pico/
+# Python 虚拟环境与 rknn-toolkit2（pip 可重装）
+tools/.venv/
+tools/rknn-toolkit2/
+tools/pip.whl
+tools/distutils.deb
+tools/distutils_extract/
+tools/rknn_toolkit2-*.whl
+
+# ===== 密钥与本地配置（只传 .example 模板）=====
+.env
+*.pem
+*.key
+
+# ===== 系统/编辑器 =====
+.DS_Store
+__pycache__/
+*.pyc

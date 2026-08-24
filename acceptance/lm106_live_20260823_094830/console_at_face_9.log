@@ -1,0 +1,120 @@
+[2024-01-01 00:30:00.290] [INFO] [CAP] fps=16, frame_id=3172, cam_fail=0, push_fail=0
+[2024-01-01 00:30:00.356] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:30:00.424] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,306,346,288
+[2024-01-01 00:30:00.432] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.6 post_ms=0.0 total_ms=6.9
+[2024-01-01 00:30:00.710] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,306,346,288
+[2024-01-01 00:30:00.719] [INFO] LANDMARK_106_OK found=1 preprocess_ms=3.4 rknn_ms=4.9 post_ms=0.0 total_ms=8.4
+[2024-01-01 00:30:01.082] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,306,346,288
+[2024-01-01 00:30:01.090] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.7 rknn_ms=5.2 post_ms=0.0 total_ms=7.9
+[2024-01-01 00:30:01.289] [INFO] [CAM] fps=15, ok=3187, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=61915/61294 bytes
+[2024-01-01 00:30:01.356] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:30:01.357] [INFO] [CAP] fps=16, frame_id=3188, cam_fail=0, push_fail=0
+[2024-01-01 00:30:01.601] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,306,346,288
+[2024-01-01 00:30:01.608] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.4 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:01.836] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,306,346,288
+[2024-01-01 00:30:01.843] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.5 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:02.185] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=498,306,346,288
+[2024-01-01 00:30:02.192] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=4.6 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:02.289] [INFO] [CAM] fps=15, ok=3202, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=67392/63427 bytes
+[2024-01-01 00:30:02.423] [INFO] DMS status=FACE face=1 score=2.68
+[2024-01-01 00:30:02.424] [INFO] [CAP] fps=16, frame_id=3204, cam_fail=0, push_fail=0
+[2024-01-01 00:30:02.440] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,306,346,288
+[2024-01-01 00:30:02.447] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.4 rknn_ms=4.4 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:02.680] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=370,249,346,288
+[2024-01-01 00:30:02.689] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.3 post_ms=2.0 total_ms=8.7
+[2024-01-01 00:30:02.961] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=370,249,346,288
+[2024-01-01 00:30:02.970] [INFO] LANDMARK_106_OK found=1 preprocess_ms=4.2 rknn_ms=4.5 post_ms=0.0 total_ms=8.7
+[2024-01-01 00:30:03.199] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=370,249,346,288
+[2024-01-01 00:30:03.206] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=4.4 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:03.289] [INFO] [CAM] fps=15, ok=3217, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=67551/65824 bytes
+[2024-01-01 00:30:03.489] [INFO] DMS status=FACE face=1 score=1.71
+[2024-01-01 00:30:03.490] [INFO] [CAP] fps=16, frame_id=3220, cam_fail=0, push_fail=0
+[2024-01-01 00:30:03.490] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.2 ai_fps=3.4 retinaface_avg_ms=31.2 retinaface_max_ms=33.6 rf_jpeg_decode_ms=113.7 rf_preprocess_ms=119.0 rf_rknn_ms=31.2 rf_post_ms=1.0 rf_total_ms=264.8 vis_jpeg_decode_ms=94.2 vis_draw_ms=0.5 vis_encode_ms=136.7 vis_total_ms=231.4 camera_frames=3220 ai_frames=779 ai_drop_latest=2439
+[2024-01-01 00:30:03.612] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=464,265,254,313
+[2024-01-01 00:30:03.619] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.4 rknn_ms=4.4 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:03.849] [INFO] FACE_DETECT_OK face=1 score=1.949 bbox=370,270,346,286
+[2024-01-01 00:30:03.857] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.4 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:04.091] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=370,270,346,286
+[2024-01-01 00:30:04.098] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=5.1 post_ms=0.0 total_ms=7.4
+[2024-01-01 00:30:04.291] [INFO] [CAM] fps=15, ok=3232, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=74159/68582 bytes
+[2024-01-01 00:30:04.349] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=406,270,346,286
+[2024-01-01 00:30:04.357] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=5.3 post_ms=0.0 total_ms=7.6
+[2024-01-01 00:30:04.489] [INFO] DMS status=FACE face=1 score=2.19
+[2024-01-01 00:30:04.490] [INFO] [CAP] fps=15, frame_id=3235, cam_fail=0, push_fail=0
+[2024-01-01 00:30:05.039] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=370,234,346,288
+[2024-01-01 00:30:05.046] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.5 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:05.273] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,270,346,286
+[2024-01-01 00:30:05.280] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.3 post_ms=0.0 total_ms=6.6
+[2024-01-01 00:30:05.356] [INFO] [CAM] fps=16, ok=3248, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=63803/69683 bytes
+[2024-01-01 00:30:05.490] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:30:05.490] [INFO] [CAP] fps=15, frame_id=3250, cam_fail=0, push_fail=0
+[2024-01-01 00:30:05.607] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=462,270,346,286
+[2024-01-01 00:30:05.614] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=4.4 post_ms=0.0 total_ms=6.6
+[2024-01-01 00:30:05.882] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,270,346,286
+[2024-01-01 00:30:05.890] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=5.4 post_ms=0.0 total_ms=7.7
+[2024-01-01 00:30:06.275] [INFO] FACE_DETECT_OK face=1 score=1.949 bbox=370,234,346,288
+[2024-01-01 00:30:06.282] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.4 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:06.356] [INFO] [CAM] fps=15, ok=3263, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=60740/69048 bytes
+[2024-01-01 00:30:06.490] [INFO] DMS status=FACE face=1 score=1.95
+[2024-01-01 00:30:06.511] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=370,270,346,286
+[2024-01-01 00:30:06.519] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.3 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:06.556] [INFO] [CAP] fps=16, frame_id=3266, cam_fail=0, push_fail=0
+[2024-01-01 00:30:06.747] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,270,346,286
+[2024-01-01 00:30:06.756] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=6.3 post_ms=0.0 total_ms=8.6
+[2024-01-01 00:30:06.988] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,270,346,286
+[2024-01-01 00:30:06.995] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.6 rknn_ms=4.6 post_ms=0.0 total_ms=7.1
+[2024-01-01 00:30:07.291] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,270,346,286
+[2024-01-01 00:30:07.299] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.5 rknn_ms=4.7 post_ms=0.0 total_ms=7.2
+[2024-01-01 00:30:07.356] [INFO] [CAM] fps=15, ok=3278, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=66286/71245 bytes
+[2024-01-01 00:30:07.556] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:30:07.556] [INFO] [CAP] fps=15, frame_id=3281, cam_fail=0, push_fail=0
+[2024-01-01 00:30:07.894] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,342,346,286
+[2024-01-01 00:30:07.903] [INFO] LANDMARK_106_OK found=1 preprocess_ms=4.2 rknn_ms=4.4 post_ms=0.0 total_ms=8.6
+[2024-01-01 00:30:08.132] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,342,346,286
+[2024-01-01 00:30:08.140] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.3 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:08.368] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=534,306,346,288
+[2024-01-01 00:30:08.378] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=6.4 post_ms=0.0 total_ms=8.7
+[2024-01-01 00:30:08.423] [INFO] [CAM] fps=16, ok=3294, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=57875/67246 bytes
+[2024-01-01 00:30:08.623] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:30:08.623] [INFO] [CAP] fps=16, frame_id=3297, cam_fail=0, push_fail=0
+[2024-01-01 00:30:08.624] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.4 ai_fps=3.1 retinaface_avg_ms=31.4 retinaface_max_ms=39.1 rf_jpeg_decode_ms=104.9 rf_preprocess_ms=117.3 rf_rknn_ms=31.4 rf_post_ms=1.0 rf_total_ms=254.6 vis_jpeg_decode_ms=172.0 vis_draw_ms=0.4 vis_encode_ms=194.5 vis_total_ms=366.9 camera_frames=3297 ai_frames=795 ai_drop_latest=2500
+[2024-01-01 00:30:08.779] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=534,342,346,286
+[2024-01-01 00:30:08.786] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=4.6 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:09.301] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=534,162,346,286
+[2024-01-01 00:30:09.312] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.9 rknn_ms=4.4 post_ms=0.0 total_ms=7.3
+[2024-01-01 00:30:09.423] [INFO] [CAM] fps=15, ok=3309, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=72213/67576 bytes
+[2024-01-01 00:30:09.547] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=534,126,346,286
+[2024-01-01 00:30:09.556] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=5.9 post_ms=0.0 total_ms=8.2
+[2024-01-01 00:30:09.623] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:30:09.623] [INFO] [CAP] fps=15, frame_id=3312, cam_fail=0, push_fail=0
+[2024-01-01 00:30:09.788] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=534,126,346,286
+[2024-01-01 00:30:09.795] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.5 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:10.240] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=534,126,346,286
+[2024-01-01 00:30:10.248] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.5 rknn_ms=4.4 post_ms=0.0 total_ms=6.9
+[2024-01-01 00:30:10.422] [INFO] [CAM] fps=15, ok=3324, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=68232/74091 bytes
+[2024-01-01 00:30:10.689] [INFO] DMS status=FACE face=1 score=2.68
+[2024-01-01 00:30:10.690] [INFO] [CAP] fps=16, frame_id=3328, cam_fail=0, push_fail=0
+[2024-01-01 00:30:10.872] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=560,190,256,212
+[2024-01-01 00:30:10.879] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.5 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:11.109] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=534,162,346,286
+[2024-01-01 00:30:11.116] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.4 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:11.423] [INFO] [CAM] fps=15, ok=3339, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=78989/75793 bytes
+[2024-01-01 00:30:11.524] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=528,198,256,212
+[2024-01-01 00:30:11.532] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.4 rknn_ms=4.5 post_ms=0.0 total_ms=7.0
+[2024-01-01 00:30:11.690] [INFO] DMS status=FACE face=1 score=2.44
+[2024-01-01 00:30:11.691] [INFO] [CAP] fps=15, frame_id=3343, cam_fail=0, push_fail=0
+[2024-01-01 00:30:11.783] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=560,190,256,212
+[2024-01-01 00:30:11.791] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=5.3 post_ms=0.0 total_ms=7.6
+[2024-01-01 00:30:12.053] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=534,126,346,286
+[2024-01-01 00:30:12.061] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.4 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:12.291] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=528,198,256,212
+[2024-01-01 00:30:12.299] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.5 rknn_ms=4.5 post_ms=0.0 total_ms=7.0
+[2024-01-01 00:30:12.422] [INFO] [CAM] fps=15, ok=3354, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=82561/79880 bytes
+[2024-01-01 00:30:12.609] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=534,162,346,286
+[2024-01-01 00:30:12.616] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.2 rknn_ms=4.6 post_ms=0.0 total_ms=6.8
+[2024-01-01 00:30:12.756] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:30:12.757] [INFO] [CAP] fps=16, frame_id=3359, cam_fail=0, push_fail=0
+[2024-01-01 00:30:12.903] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=534,162,346,286
+[2024-01-01 00:30:12.911] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.3 rknn_ms=4.3 post_ms=0.0 total_ms=6.7
+[2024-01-01 00:30:13.154] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,126,346,286
+[2024-01-01 00:30:13.165] [INFO] LANDMARK_106_OK found=1 preprocess_ms=2.8 rknn_ms=5.7 post_ms=0.0 total_ms=8.5

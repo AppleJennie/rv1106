@@ -1,0 +1,10 @@
+[2024-01-01 00:12:05.339] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.1 retinaface_max_ms=36.4 rf_jpeg_decode_ms=118.3 rf_preprocess_ms=115.9 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=266.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10106 ai_frames=2272 ai_drop_latest=7832
+[2024-01-01 00:12:07.405] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:11.606] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:12:16.739] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:12:18.805] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:12:20.805] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:20.806] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.4 rf_jpeg_decode_ms=109.4 rf_preprocess_ms=127.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=268.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10338 ai_frames=2327 ai_drop_latest=8009
+[2024-01-01 00:12:22.939] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:25.005] [INFO] DMS status=FACE face=1 score=2.68
+[2024-01-01 00:12:27.072] [INFO] DMS status=FACE face=1 score=3.41

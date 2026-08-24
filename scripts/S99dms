@@ -1,0 +1,47 @@
+#!/bin/sh
+# /etc/init.d/S99dms - DMS 产品开机自启动脚本
+#
+# 基于原 S99hand_capture 结构，适配 DMS 产品模式。
+# 当前仅生成脚本，不自动覆盖板端现有 S99。
+# 等视频 V2 Agent 工作完成后统一部署。
+
+PIDFILE="/var/run/dms.pid"
+
+start() {
+    echo "Starting DMS..."
+    # 等待系统完全启动（网络、SD 卡挂载、摄像头就绪）
+    sleep 20
+    start-stop-daemon -S -m -p "$PIDFILE" -b -x /usr/bin/dms_start.sh
+    echo "OK"
+}
+
+stop() {
+    echo "Stopping DMS..."
+    start-stop-daemon -K -p "$PIDFILE" 2>/dev/null
+    killall hand_capture_right 2>/dev/null
+    rm -f "$PIDFILE"
+    echo "OK"
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

@@ -1,0 +1,2670 @@
+========== ./CMakeLists.txt ==========
+cmake_minimum_required(VERSION 3.5)
+project(opencv-mobile-test)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
+
+set(CMAKE_C_COMPILER "/home/jennie/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc")
+set(CMAKE_CXX_COMPILER "/home/jennie/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-g++")
+
+# RKMPI SDK 路径（根据实际环境修改）
+set(RKMPI_DIR "/home/jennie/hhh/luckfox-pico/media/rockit/out")
+set(MPP_DIR    "/home/jennie/hhh/luckfox-pico/media/out")
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${RKMPI_DIR}/include
+    ${MPP_DIR}/include
+)
+
+add_executable(opencv-mobile-test
+    src/app/main.c
+    src/app/state_machine.c
+    src/sys/sys_logger.c
+    src/sys/sys_storage.c
+    src/sys/sys_time.c
+    src/hal/hal_gpio.cpp
+    src/hal/hal_led.c
+    src/hal/hal_encoder.c
+    src/hal/hal_camera_rkmpi.c
+    src/net/net_transfer.c
+)
+
+target_link_libraries(opencv-mobile-test
+    ${RKMPI_DIR}/lib/librockit.so
+    ${MPP_DIR}/lib/librockchip_mpp.so
+    ${MPP_DIR}/lib/librga.so
+    pthread
+)
+
+========== ./include/common.h ==========
+#ifndef COMMON_H
+#define COMMON_H
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <signal.h>
+#include <pthread.h>
+#include <time.h>
+#include <errno.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define I2C_DEVICE        "/dev/i2c-3"
+#define TCA9548A_ADDR     0x70
+#define MT6701_ADDR       0x06
+
+#define TCA_CHANNEL_1     0x01
+#define TCA_CHANNEL_2     0x02
+#define TCA_CHANNEL_3     0x04
+
+#define MAX_PATH_LEN      512
+#define MAX_NAME_LEN      128
+
+#define CAMERA_WIDTH      640
+#define CAMERA_HEIGHT     480
+#define CAMERA_FPS        30
+#define CAMERA_DEVICE     "/dev/video0"
+
+#define ENC_COUNT         3
+
+#define RECORD_BTN_GPIO   0
+#define UPLOAD_BTN_GPIO   1
+
+#define LED_COUNT         2
+#define LED_IDX_SYSTEM    0
+#define LED_IDX_STATUS    1
+
+#define CAPTURE_INTERVAL_US   (1000000 / CAMERA_FPS)
+
+/* 建议至少缓存 3 秒数据，SD 卡偶发卡顿时不容易丢帧 */
+#define RING_BUFFER_SIZE      90
+
+/* 你的实际路径如果是 /mnt/sd/right，就改这里 */
+#define SDCARD_BASE_PATH      "/mnt/sdcard/right"
+
+#define UPLOAD_SERVER_IP      "192.168.4.17"
+#define UPLOAD_SERVER_PORT    9000
+
+#define SAFE_FREE(p)                  \
+    do {                              \
+        if ((p) != NULL) {            \
+            free(p);                  \
+            (p) = NULL;               \
+        }                             \
+    } while (0)
+
+// ==================== LED 颜色 ====================
+typedef enum {
+    LED_COLOR_OFF = 0,
+    LED_COLOR_RED,
+    LED_COLOR_GREEN,
+    LED_COLOR_BLUE,
+    LED_COLOR_YELLOW
+} led_color_e;
+
+// ==================== 系统状态 ====================
+typedef enum {
+    STATE_BOOT = 0,        // 上电初始化
+    STATE_READY,           // 待机，可开始采集
+    STATE_RECORDING,       // 采集中
+    STATE_UPLOADING,       // 上传中
+    STATE_UPLOAD_FAIL,     // 上传失败
+    STATE_ERROR            // 硬件/系统错误
+} system_state_e;
+
+// ==================== 帧数据 ====================
+typedef struct {
+    uint64_t timestamp_us;
+    float enc_angle[ENC_COUNT];
+    uint8_t *img_data;
+    int img_size;
+    int frame_id;
+} frame_data_t;
+
+// ==================== 全局运行标志 ====================
+extern volatile int g_run_flag;
+extern volatile system_state_e g_system_state;
+
+// ==================== 安全释放指针 ====================
+static inline void safe_free_ptr(void **pp)
+{
+    if (pp && *pp) {
+        free(*pp);
+        *pp = NULL;
+    }
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/hal_camera.h ==========
+#ifndef HAL_CAMERA_H
+#define HAL_CAMERA_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+bool camera_init(void);
+bool camera_grab_jpeg(uint8_t **jpeg_buf, int *jpeg_size);
+void camera_deinit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/hal_encoder.h ==========
+#ifndef HAL_ENCODER_H
+#define HAL_ENCODER_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// 初始化 I2C 总线、TCA9548A 和 MT6701，并进行预热
+bool encoder_init(void);
+
+// 读取单个编码器角度（ch: 0~2），返回 0~360.0°，失败返回 -1.0
+float encoder_read(uint8_t ch);
+
+// 一次性读取所有 3 个编码器角度
+bool encoder_read_all(float *angle_buf);
+
+// 反初始化编码器
+void encoder_deinit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/hal_gpio.h ==========
+#ifndef HAL_GPIO_H
+#define HAL_GPIO_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// 初始化 GPIO
+bool gpio_init(void);
+
+// 读取录制按键状态（GPIO1），true=按下
+bool gpio_record_is_pressed(void);
+
+// 读取上传按键状态（GPIO2），true=按下
+bool gpio_upload_is_pressed(void);
+
+// 反初始化 GPIO
+void gpio_deinit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/hal_led.h ==========
+#ifndef HAL_LED_H
+#define HAL_LED_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef enum {
+    LED_MODE_OFF = 0,
+    LED_MODE_ON,
+    LED_MODE_BLINK
+} led_mode_e;
+
+bool led_init(void);
+void led_deinit(void);
+
+// blink_period_ms 仅在 BLINK 模式有效
+void led_set_mode(int led_idx, led_mode_e mode, led_color_e color, int blink_period_ms);
+
+// 主循环里定时调用
+void led_tick(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+========== ./include/net_transfer.h ==========
+#ifndef NET_TRANSFER_H
+#define NET_TRANSFER_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+bool upload_init(void);
+
+/* 开始上传，内部应该周期性检查 cancel_flag */
+bool upload_all_sessions(const char *base_path, volatile int *cancel_flag);
+
+/* 请求取消上传 */
+void upload_request_cancel(void);
+
+/* 上传模块释放 */
+void upload_deinit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/state_machine.h ==========
+#ifndef STATE_MACHINE_H
+#define STATE_MACHINE_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+bool state_machine_init(void);
+void state_machine_run(void);
+void state_machine_deinit(void);
+
+bool state_machine_set_state(system_state_e new_state);
+system_state_e state_machine_get_state(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+========== ./include/sys_logger.h ==========
+#ifndef SYS_LOGGER_H
+#define SYS_LOGGER_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef enum {
+    LOG_LEVEL_DEBUG = 0,
+    LOG_LEVEL_INFO,
+    LOG_LEVEL_WARN,
+    LOG_LEVEL_ERROR
+} log_level_e;
+
+bool logger_init(void);
+void logger_set_level(log_level_e level);
+
+void log_debug(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
+void log_info(const char *fmt, ...)  __attribute__((format(printf, 1, 2)));
+void log_warn(const char *fmt, ...)  __attribute__((format(printf, 1, 2)));
+void log_error(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
+
+void logger_deinit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/sys_storage.h ==========
+#ifndef SYS_STORAGE_H
+#define SYS_STORAGE_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct {
+    frame_data_t buffer[RING_BUFFER_SIZE];
+    int head;
+    int tail;
+    int count;
+    int dropped_count;
+    pthread_mutex_t mutex;
+    pthread_cond_t not_empty;
+    pthread_cond_t not_full;
+} ring_buffer_t;
+
+bool storage_init(void);
+bool storage_start_session(void);
+void storage_stop_session(void);
+bool storage_push_frame(const frame_data_t *frame);
+void storage_deinit(void);
+
+bool storage_check_sdcard(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./include/sys_time.h ==========
+#ifndef SYS_TIME_H
+#define SYS_TIME_H
+
+#include "common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// 获取微秒级时间戳
+uint64_t time_get_timestamp_us(void);
+
+// 获取毫秒级时间戳
+uint64_t time_get_timestamp_ms(void);
+
+// 生成时间戳文件夹名（格式：YYYY-MM-DD_HH-MM-SS）
+void time_get_folder_name(char *buf, int buf_len);
+
+// 从机同步主控时间（右手主控可忽略，但保留接口）
+bool time_sync_with_master(const char *master_ip, int port);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+========== ./src/app/main.c ==========
+#include "common.h"
+#include "sys_logger.h"
+#include "state_machine.h"
+
+static volatile sig_atomic_t g_exit_signal = 0;
+
+static void signal_handler(int sig)
+{
+    g_exit_signal = sig;
+    g_run_flag = 0;
+}
+
+int main(int argc, char *argv[])
+{
+    (void)argc;
+    (void)argv;
+
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
+    logger_init();
+    logger_set_level(LOG_LEVEL_INFO);
+
+    log_info("==================================");
+    log_info(" Industrial Data Collector Start");
+    log_info("==================================");
+
+    if (!state_machine_init()) {
+        log_error("state_machine_init 失败");
+        return -1;
+    }
+
+    state_machine_run();
+
+    if (g_exit_signal != 0) {
+        log_warn("收到退出信号: %d", g_exit_signal);
+    }
+
+    state_machine_deinit();
+
+    log_info("程序退出");
+    logger_deinit();
+    return 0;
+}
+
+========== ./src/app/state_machine.c ==========
+#include "state_machine.h"
+#include "common.h"
+#include "sys_logger.h"
+#include "sys_storage.h"
+#include "hal_gpio.h"
+#include "hal_led.h"
+#include "hal_camera.h"
+#include "hal_encoder.h"
+#include "net_transfer.h"
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+
+#define FRAMES_PER_SECOND 30
+
+volatile int g_run_flag = 1;
+volatile system_state_e g_system_state = STATE_BOOT;
+
+static pthread_t g_capture_thread;
+static volatile bool g_capture_running = false;
+static int g_frame_id = 0;
+
+static pthread_t g_upload_thread;
+static volatile bool g_upload_running = false;
+static volatile int g_upload_cancel = 0;
+static volatile int g_upload_done = 0;
+static volatile int g_upload_result = 0;
+
+// ---------- 工具函数声明 ----------
+static void apply_led_by_state(system_state_e st);
+static uint64_t get_time_us(void);
+static const char* state_to_string(system_state_e st);
+static void* capture_thread_func(void *arg);
+static bool do_upload_mock(void);
+static void* upload_thread_func(void *arg);
+
+// ---------- 状态字符串 ----------
+static const char* state_to_string(system_state_e st)
+{
+    switch (st) {
+        case STATE_BOOT:        return "BOOT";
+        case STATE_READY:       return "READY";
+        case STATE_RECORDING:   return "RECORDING";
+        case STATE_UPLOADING:   return "UPLOADING";
+        case STATE_UPLOAD_FAIL: return "UPLOAD_FAIL";
+        case STATE_ERROR:       return "ERROR";
+        default:                return "UNKNOWN";
+    }
+}
+
+static uint64_t get_time_us(void)
+{
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
+    return (uint64_t)ts.tv_sec * 1000000ULL + ts.tv_nsec / 1000ULL;
+}
+
+static void apply_led_by_state(system_state_e st)
+{
+    switch (st) {
+        case STATE_BOOT:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_ON, LED_COLOR_GREEN, 0);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_OFF, LED_COLOR_OFF, 0);
+            log_info("LED状态: 系统灯=绿色常亮, 状态灯=熄灭");
+            break;
+
+        case STATE_READY:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_ON, LED_COLOR_GREEN, 0);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_OFF, LED_COLOR_OFF, 0);
+            log_info("LED状态: 系统灯=绿色常亮, 状态灯=熄灭");
+            break;
+
+        case STATE_RECORDING:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_BLINK, LED_COLOR_GREEN, 500);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_OFF, LED_COLOR_OFF, 0);
+            log_info("LED状态: 系统灯=绿色闪烁, 状态灯=熄灭");
+            break;
+
+        case STATE_UPLOADING:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_ON, LED_COLOR_GREEN, 0);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_BLINK, LED_COLOR_BLUE, 300);
+            log_info("LED状态: 系统灯=绿色常亮, 状态灯=蓝色闪烁");
+            break;
+
+        case STATE_UPLOAD_FAIL:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_ON, LED_COLOR_GREEN, 0);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_ON, LED_COLOR_RED, 0);
+            log_info("LED状态: 系统灯=绿色常亮, 状态灯=红色常亮");
+            break;
+
+        case STATE_ERROR:
+        default:
+            led_set_mode(LED_IDX_SYSTEM, LED_MODE_ON, LED_COLOR_RED, 0);
+            led_set_mode(LED_IDX_STATUS, LED_MODE_ON, LED_COLOR_RED, 0);
+            log_info("LED状态: 系统灯=红色常亮, 状态灯=红色常亮");
+            break;
+    }
+}
+
+bool state_machine_set_state(system_state_e new_state)
+{
+    system_state_e old_state = g_system_state;
+    g_system_state = new_state;
+    log_info("状态切换: %s -> %s", state_to_string(old_state), state_to_string(new_state));
+    apply_led_by_state(new_state);
+    return true;
+}
+
+system_state_e state_machine_get_state(void)
+{
+    return g_system_state;
+}
+
+static void* capture_thread_func(void *arg)
+{
+    (void)arg;
+
+    log_info("采集线程启动");
+
+    uint64_t next_tick = get_time_us();
+
+    while (g_capture_running && g_run_flag) {
+        frame_data_t frame;
+        memset(&frame, 0, sizeof(frame));
+
+        frame.timestamp_us = get_time_us();
+        frame.frame_id = ++g_frame_id;
+
+        if (!encoder_read_all(frame.enc_angle)) {
+            log_warn("本帧编码器读取失败，继续采集");
+        }
+
+        if (!camera_grab_jpeg(&frame.img_data, &frame.img_size)) {
+            log_warn("本帧图像抓取失败");
+            usleep(5000);
+            continue;
+        }
+
+        if (!storage_push_frame(&frame)) {
+            log_warn("帧推入存储队列失败，frame_id=%d", frame.frame_id);
+        }
+
+        SAFE_FREE(frame.img_data);
+
+        if ((frame.frame_id % CAMERA_FPS) == 0) {
+            log_info("采集中: 已采集 %d 帧", frame.frame_id);
+        }
+
+        next_tick += CAPTURE_INTERVAL_US;
+
+        uint64_t now = get_time_us();
+        if (next_tick > now) {
+            usleep((useconds_t)(next_tick - now));
+        } else {
+            next_tick = now;
+            log_warn("采集处理超时，无法维持 %d FPS", CAMERA_FPS);
+        }
+    }
+
+    log_info("采集线程退出，本次共采集 %d 帧", g_frame_id);
+    return NULL;
+}
+
+static bool do_upload_mock(void)
+{
+    log_info("开始上传: 上传 %s 下的 code 和 photo 数据", SDCARD_BASE_PATH);
+    return upload_all_sessions(SDCARD_BASE_PATH, &g_upload_cancel);
+}
+
+static void* upload_thread_func(void *arg)
+{
+    (void)arg;
+
+    g_upload_done = 0;
+    g_upload_result = 0;
+    g_upload_cancel = 0;
+    g_upload_running = true;
+
+    bool ok = do_upload_mock();
+
+    if (g_upload_cancel) {
+        log_warn("上传被用户取消");
+        g_upload_result = 0;
+    } else if (ok) {
+        log_info("上传成功");
+        g_upload_result = 1;
+    } else {
+        log_error("上传失败");
+        g_upload_result = 0;
+    }
+
+    g_upload_done = 1;
+    g_upload_running = false;
+
+    return NULL;
+}
+
+bool state_machine_init(void)
+{
+    bool ok_gpio = false;
+    bool ok_led = false;
+    bool ok_camera = false;
+    bool ok_encoder = false;
+    bool ok_storage = false;
+    bool ok_upload = false;
+
+    log_info("状态机初始化开始");
+
+    if (!gpio_init()) {
+        log_error("GPIO 初始化失败");
+        goto fail;
+    }
+    log_info("GPIO 初始化成功");
+    ok_gpio = true;
+
+    if (!led_init()) {
+        log_error("LED 初始化失败");
+        goto fail;
+    }
+    log_info("LED 初始化成功");
+    ok_led = true;
+
+    state_machine_set_state(STATE_BOOT);
+
+    if (!camera_init()) {
+        log_error("摄像头初始化失败");
+        goto fail;
+    }
+    log_info("摄像头初始化成功");
+    ok_camera = true;
+
+    if (!encoder_init()) {
+        log_error("编码器初始化失败");
+        goto fail;
+    }
+    log_info("编码器初始化成功");
+    ok_encoder = true;
+
+    if (!storage_init()) {
+        log_error("存储系统初始化失败");
+        goto fail;
+    }
+    log_info("存储系统初始化成功");
+    ok_storage = true;
+
+    if (!upload_init()) {
+        log_error("上传模块初始化失败");
+        goto fail;
+    }
+    log_info("上传模块初始化成功");
+    ok_upload = true;
+
+    state_machine_set_state(STATE_READY);
+    log_info("系统进入待机状态，等待按键触发");
+    return true;
+
+fail:
+    state_machine_set_state(STATE_ERROR);
+
+    if (ok_upload) upload_deinit();
+    if (ok_storage) storage_deinit();
+    if (ok_encoder) encoder_deinit();
+    if (ok_camera) camera_deinit();
+    if (ok_led) led_deinit();
+    if (ok_gpio) gpio_deinit();
+
+    return false;
+}
+
+void state_machine_run(void)
+{
+    bool last_record_level = false;
+    bool last_upload_level = false;
+
+    uint64_t upload_debounce_ts = 0;
+
+    while (g_run_flag) {
+        led_tick();
+
+        bool record_high = gpio_record_is_pressed();
+        bool upload_high = gpio_upload_is_pressed();
+        uint64_t now = get_time_us();
+
+        // ========= 录制逻辑：高电平开始，低电平/悬空停止 =========
+        if (record_high && !last_record_level) {
+                if (g_system_state == STATE_READY || g_system_state == STATE_UPLOAD_FAIL) {
+                log_info("录制控制输入变高: 开始采集");
+                g_frame_id = 0;
+
+                if (!storage_start_session()) {
+                    log_error("存储会话启动失败");
+                    state_machine_set_state(STATE_ERROR);
+                } else {
+                    g_capture_running = true;
+                    if (pthread_create(&g_capture_thread, NULL, capture_thread_func, NULL) != 0) {
+                        log_error("创建采集线程失败");
+                        g_capture_running = false;
+                        storage_stop_session();
+                        state_machine_set_state(STATE_ERROR);
+                    } else {
+                        state_machine_set_state(STATE_RECORDING);
+                    }
+                }
+            }
+        }
+
+        if (!record_high && last_record_level) {
+            if (g_system_state == STATE_RECORDING) {
+                log_info("录制控制输入变低/断开: 停止采集");
+                g_capture_running = false;
+                pthread_join(g_capture_thread, NULL);
+                storage_stop_session();
+                state_machine_set_state(STATE_READY);
+            }
+        }
+
+        // ========= 上传逻辑 =========
+        if (upload_high && !last_upload_level) {
+            if (now - upload_debounce_ts > 300000) {
+                upload_debounce_ts = now;
+
+                if (g_system_state == STATE_READY || g_system_state == STATE_UPLOAD_FAIL) {
+                    log_info("上传控制输入变高: 开始上传");
+
+                    g_upload_cancel = 0;
+                    g_upload_done = 0;
+                    g_upload_result = 0;
+
+                    if (pthread_create(&g_upload_thread, NULL, upload_thread_func, NULL) != 0) {
+                        log_error("创建上传线程失败");
+                        state_machine_set_state(STATE_UPLOAD_FAIL);
+                    } else {
+                        state_machine_set_state(STATE_UPLOADING);
+                    }
+                }
+                else if (g_system_state == STATE_UPLOADING) {
+                    log_warn("上传控制输入变高: 请求取消上传");
+                    g_upload_cancel = 1;
+                    upload_request_cancel();
+                }
+                else {
+                    log_warn("当前状态 %s 下，上传输入无效", state_to_string(g_system_state));
+                }
+            }
+        }
+
+        /* 检查上传线程是否结束 */
+        if (g_system_state == STATE_UPLOADING && g_upload_done) {
+            pthread_join(g_upload_thread, NULL);
+            g_upload_done = 0;
+
+            if (g_upload_cancel) {
+                log_warn("上传已取消，返回待机状态");
+                state_machine_set_state(STATE_READY);
+            } else if (g_upload_result) {
+                log_info("上传完成，返回待机状态");
+                state_machine_set_state(STATE_READY);
+            } else {
+                log_error("上传失败，进入失败状态");
+                state_machine_set_state(STATE_UPLOAD_FAIL);
+            }
+        }
+
+        last_record_level = record_high;
+        last_upload_level = upload_high;
+
+        usleep(10000);
+    }
+}
+
+void state_machine_deinit(void)
+{
+    if (g_capture_running) {
+        g_capture_running = false;
+        pthread_join(g_capture_thread, NULL);
+    }
+
+    if (g_upload_running) {
+        log_warn("程序退出: 正在取消上传线程");
+        g_upload_cancel = 1;
+        upload_request_cancel();
+        pthread_join(g_upload_thread, NULL);
+    }
+
+    storage_deinit();
+
+    camera_deinit();
+    encoder_deinit();
+    led_deinit();
+    gpio_deinit();
+    upload_deinit();
+
+    log_info("状态机已退出");
+}
+
+========== ./src/hal/hal_camera_rkmpi.c ==========
+#include "hal_camera.h"
+#include "sys_logger.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "rk_mpi_sys.h"
+#include "rk_mpi_vi.h"
+#include "rk_mpi_venc.h"
+#include "rk_mpi_mb.h"
+#include "rk_comm_vi.h"
+#include "rk_comm_venc.h"
+#include "rk_comm_video.h"
+#include "rk_common.h"
+
+#define RK_VI_DEV_ID        0
+#define RK_VI_CHN_ID        0
+#define RK_VENC_CHN_ID      0
+#define RK_GETSTREAM_TIMEOUT_MS  100
+
+static bool initialized = false;
+
+/* ==================== VI dev 初始化（参考 SDK 示例） ==================== */
+static int vi_dev_init(void)
+{
+    int ret;
+    int devId = RK_VI_DEV_ID;
+    int pipeId = devId;
+
+    VI_DEV_ATTR_S stDevAttr;
+    VI_DEV_BIND_PIPE_S stBindPipe;
+    memset(&stDevAttr, 0, sizeof(stDevAttr));
+    memset(&stBindPipe, 0, sizeof(stBindPipe));
+
+    ret = RK_MPI_VI_GetDevAttr(devId, &stDevAttr);
+    if (ret == RK_ERR_VI_NOT_CONFIG) {
+        ret = RK_MPI_VI_SetDevAttr(devId, &stDevAttr);
+        if (ret != RK_SUCCESS) {
+            log_error("RK_MPI_VI_SetDevAttr 失败: %#x", ret);
+            return -1;
+        }
+    }
+
+    ret = RK_MPI_VI_GetDevIsEnable(devId);
+    if (ret != RK_SUCCESS) {
+        ret = RK_MPI_VI_EnableDev(devId);
+        if (ret != RK_SUCCESS) {
+            log_error("RK_MPI_VI_EnableDev 失败: %#x", ret);
+            return -1;
+        }
+
+        stBindPipe.u32Num = 1;
+        stBindPipe.PipeId[0] = pipeId;
+        ret = RK_MPI_VI_SetDevBindPipe(devId, &stBindPipe);
+        if (ret != RK_SUCCESS) {
+            log_error("RK_MPI_VI_SetDevBindPipe 失败: %#x", ret);
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
+/* ==================== VI chn 初始化（参考 SDK 示例） ==================== */
+static int vi_chn_init(int chnId, int width, int height)
+{
+    int ret;
+    int buf_cnt = 2;
+
+    VI_CHN_ATTR_S vi_chn_attr;
+    memset(&vi_chn_attr, 0, sizeof(vi_chn_attr));
+
+    vi_chn_attr.stIspOpt.u32BufCount = buf_cnt;
+    vi_chn_attr.stIspOpt.enMemoryType = VI_V4L2_MEMORY_TYPE_DMABUF;
+    vi_chn_attr.stSize.u32Width = width;
+    vi_chn_attr.stSize.u32Height = height;
+    vi_chn_attr.enPixelFormat = RK_FMT_YUV420SP;
+    vi_chn_attr.enCompressMode = COMPRESS_MODE_NONE;
+    vi_chn_attr.u32Depth = 0;
+
+    ret = RK_MPI_VI_SetChnAttr(RK_VI_DEV_ID, chnId, &vi_chn_attr);
+    ret |= RK_MPI_VI_EnableChn(RK_VI_DEV_ID, chnId);
+    if (ret != RK_SUCCESS) {
+        log_error("RK_MPI_VI_SetChnAttr/EnableChn 失败: %#x", ret);
+        return -1;
+    }
+
+    return 0;
+}
+
+/* ==================== VENC JPEG 初始化 ==================== */
+static int venc_jpeg_init(int chnId, int width, int height)
+{
+    VENC_CHN_ATTR_S stAttr;
+    VENC_RECV_PIC_PARAM_S stRecvParam;
+    memset(&stAttr, 0, sizeof(stAttr));
+
+    stAttr.stVencAttr.enType = RK_VIDEO_ID_JPEG;
+    stAttr.stVencAttr.enPixelFormat = RK_FMT_YUV420SP;
+    stAttr.stVencAttr.u32PicWidth = width;
+    stAttr.stVencAttr.u32PicHeight = height;
+    stAttr.stVencAttr.u32VirWidth = width;
+    stAttr.stVencAttr.u32VirHeight = height;
+    stAttr.stVencAttr.u32StreamBufCnt = 2;
+    stAttr.stVencAttr.u32BufSize = width * height * 3 / 2;
+    stAttr.stVencAttr.enMirror = MIRROR_NONE;
+
+    stAttr.stVencAttr.stAttrJpege.bSupportDCF = RK_FALSE;
+    stAttr.stVencAttr.stAttrJpege.stMPFCfg.u8LargeThumbNailNum = 0;
+    stAttr.stVencAttr.stAttrJpege.enReceiveMode = VENC_PIC_RECEIVE_SINGLE;
+
+    int ret = RK_MPI_VENC_CreateChn(chnId, &stAttr);
+    if (ret != RK_SUCCESS) {
+        log_error("RK_MPI_VENC_CreateChn 失败: %#x", ret);
+        return -1;
+    }
+
+    /* 设置 JPEG 质量，范围 [1, 99]，默认 85 */
+    VENC_JPEG_PARAM_S stJpegParam;
+    memset(&stJpegParam, 0, sizeof(stJpegParam));
+    stJpegParam.u32Qfactor = 85;
+    RK_MPI_VENC_SetJpegParam(chnId, &stJpegParam);
+
+    /* JPEG SINGLE 模式下，先 StartRecvFrame(1) 让 VENC 准备好第一帧 */
+    memset(&stRecvParam, 0, sizeof(stRecvParam));
+    stRecvParam.s32RecvPicNum = 1;
+    ret = RK_MPI_VENC_StartRecvFrame(chnId, &stRecvParam);
+    if (ret != RK_SUCCESS) {
+        log_error("RK_MPI_VENC_StartRecvFrame 失败: %#x", ret);
+        return -1;
+    }
+
+    return 0;
+}
+
+/* ==================== 对外接口：初始化 ==================== */
+bool camera_init(void)
+{
+    int ret;
+
+    if (initialized) {
+        return true;
+    }
+
+    log_info("初始化 RKMPI 摄像头链路 (VI -> VENC JPEG)");
+
+    /* 释放系统默认摄像头占用 */
+    system("killall rkipc rkisp mpp_service > /dev/null 2>&1");
+    sleep(1);
+    system("killall -9 rkipc rkisp mpp_service > /dev/null 2>&1");
+    sleep(1);
+
+    ret = RK_MPI_SYS_Init();
+    if (ret != RK_SUCCESS) {
+        log_error("RK_MPI_SYS_Init 失败: %#x", ret);
+        return false;
+    }
+
+    if (vi_dev_init() != 0) {
+        goto fail_sys;
+    }
+
+    if (vi_chn_init(RK_VI_CHN_ID, CAMERA_WIDTH, CAMERA_HEIGHT) != 0) {
+        goto fail_sys;
+    }
+
+    if (venc_jpeg_init(RK_VENC_CHN_ID, CAMERA_WIDTH, CAMERA_HEIGHT) != 0) {
+        goto fail_vi;
+    }
+
+    MPP_CHN_S stSrcChn, stDestChn;
+    memset(&stSrcChn, 0, sizeof(stSrcChn));
+    memset(&stDestChn, 0, sizeof(stDestChn));
+
+    stSrcChn.enModId = RK_ID_VI;
+    stSrcChn.s32DevId = RK_VI_DEV_ID;
+    stSrcChn.s32ChnId = RK_VI_CHN_ID;
+
+    stDestChn.enModId = RK_ID_VENC;
+    stDestChn.s32DevId = 0;
+    stDestChn.s32ChnId = RK_VENC_CHN_ID;
+
+    ret = RK_MPI_SYS_Bind(&stSrcChn, &stDestChn);
+    if (ret != RK_SUCCESS) {
+        log_error("RK_MPI_SYS_Bind VI->VENC 失败: %#x", ret);
+        goto fail_venc;
+    }
+
+    /* 预热：丢弃前几帧，让 ISP 稳定 */
+    log_info("RKMPI 预热中...");
+
+    VENC_PACK_S pack;
+    VENC_STREAM_S stream;
+    memset(&pack, 0, sizeof(pack));
+    memset(&stream, 0, sizeof(stream));
+    stream.pstPack = &pack;
+
+    for (int i = 0; i < 10; i++) {
+        ret = RK_MPI_VENC_GetStream(RK_VENC_CHN_ID, &stream, 1000);
+        if (ret == RK_SUCCESS) {
+            RK_MPI_VENC_ReleaseStream(RK_VENC_CHN_ID, &stream);
+        }
+        usleep(10000);
+    }
+
+    /* 预热后再触发一帧，确保 camera_grab_jpeg 第一次调用能立即取到 */
+    VENC_RECV_PIC_PARAM_S stRecvParam;
+    memset(&stRecvParam, 0, sizeof(stRecvParam));
+    stRecvParam.s32RecvPicNum = 1;
+    RK_MPI_VENC_StartRecvFrame(RK_VENC_CHN_ID, &stRecvParam);
+
+    initialized = true;
+    log_info("RKMPI 摄像头初始化完成: %dx%d JPEG", CAMERA_WIDTH, CAMERA_HEIGHT);
+    return true;
+
+fail_venc:
+    RK_MPI_VENC_DestroyChn(RK_VENC_CHN_ID);
+fail_vi:
+    RK_MPI_VI_DisableChn(RK_VI_DEV_ID, RK_VI_CHN_ID);
+fail_sys:
+    RK_MPI_SYS_Exit();
+    initialized = false;
+    return false;
+}
+
+/* ==================== 对外接口：抓取 JPEG ==================== */
+bool camera_grab_jpeg(uint8_t **jpeg_buf, int *jpeg_size)
+{
+    if (!jpeg_buf || !jpeg_size) {
+        return false;
+    }
+
+    *jpeg_buf = NULL;
+    *jpeg_size = 0;
+
+    if (!initialized) {
+        log_error("RKMPI 摄像头未初始化");
+        return false;
+    }
+
+    /* SINGLE 模式下每帧都需要先触发编码 */
+    VENC_RECV_PIC_PARAM_S stRecvParam;
+    memset(&stRecvParam, 0, sizeof(stRecvParam));
+    stRecvParam.s32RecvPicNum = 1;
+
+    int ret = RK_MPI_VENC_StartRecvFrame(RK_VENC_CHN_ID, &stRecvParam);
+    if (ret != RK_SUCCESS) {
+        log_warn("RK_MPI_VENC_StartRecvFrame 失败: %#x", ret);
+        /* 继续尝试 GetStream，可能上一帧还在缓冲 */
+    }
+
+    VENC_PACK_S pack;
+    VENC_STREAM_S stream;
+    memset(&pack, 0, sizeof(pack));
+    memset(&stream, 0, sizeof(stream));
+    stream.pstPack = &pack;
+
+    ret = RK_MPI_VENC_GetStream(RK_VENC_CHN_ID, &stream, RK_GETSTREAM_TIMEOUT_MS);
+    if (ret != RK_SUCCESS) {
+        log_warn("RK_MPI_VENC_GetStream 失败: %#x", ret);
+        return false;
+    }
+
+    void *vir_addr = RK_MPI_MB_Handle2VirAddr(stream.pstPack->pMbBlk);
+    RK_U32 len = stream.pstPack->u32Len;
+
+    if (!vir_addr || len == 0) {
+        log_error("VENC 返回空 JPEG 数据");
+        RK_MPI_VENC_ReleaseStream(RK_VENC_CHN_ID, &stream);
+        return false;
+    }
+
+    uint8_t *buf = (uint8_t *)malloc(len);
+    if (!buf) {
+        log_error("JPEG malloc 失败, size=%u", len);
+        RK_MPI_VENC_ReleaseStream(RK_VENC_CHN_ID, &stream);
+        return false;
+    }
+
+    memcpy(buf, vir_addr, len);
+
+    *jpeg_buf = buf;
+    *jpeg_size = (int)len;
+
+    RK_MPI_VENC_ReleaseStream(RK_VENC_CHN_ID, &stream);
+    return true;
+}
+
+/* ==================== 对外接口：反初始化 ==================== */
+void camera_deinit(void)
+{
+    if (!initialized) {
+        return;
+    }
+
+    log_info("关闭 RKMPI 摄像头");
+
+    MPP_CHN_S stSrcChn, stDestChn;
+    memset(&stSrcChn, 0, sizeof(stSrcChn));
+    memset(&stDestChn, 0, sizeof(stDestChn));
+    stSrcChn.enModId = RK_ID_VI;
+    stSrcChn.s32DevId = RK_VI_DEV_ID;
+    stSrcChn.s32ChnId = RK_VI_CHN_ID;
+    stDestChn.enModId = RK_ID_VENC;
+    stDestChn.s32DevId = 0;
+    stDestChn.s32ChnId = RK_VENC_CHN_ID;
+
+    RK_MPI_SYS_UnBind(&stSrcChn, &stDestChn);
+    RK_MPI_VENC_StopRecvFrame(RK_VENC_CHN_ID);
+    RK_MPI_VENC_DestroyChn(RK_VENC_CHN_ID);
+    RK_MPI_VI_DisableChn(RK_VI_DEV_ID, RK_VI_CHN_ID);
+    RK_MPI_VI_DisableDev(RK_VI_DEV_ID);
+    RK_MPI_SYS_Exit();
+
+    initialized = false;
+    log_info("RKMPI 摄像头已关闭");
+}
+
+========== ./src/hal/hal_encoder.c ==========
+#include "common.h"   
+#include "hal_encoder.h"
+#include "sys_logger.h"
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <stdio.h>
+
+// ==================== 已经从 common.h 读取宏，无需重复定义 ====================
+
+// 通道映射（已修正：使用 common.h 里的宏名）
+static const int tca_ch_map[ENC_COUNT] = {TCA_CHANNEL_1, TCA_CHANNEL_2, TCA_CHANNEL_3};
+// 编码器名称
+static const char* enc_name[ENC_COUNT] = {"编码器1", "编码器2", "编码器3"};
+static int i2c_fd = -1;
+
+// ==================== I2C 总线初始化 ====================
+static int i2c_init_bus(void)
+{
+    i2c_fd = open(I2C_DEVICE, O_RDWR);
+    if (i2c_fd < 0) {
+        log_error("I2C 总线打开失败");
+        return -1;
+    }
+    ioctl(i2c_fd, I2C_TENBIT, 0);
+    return 0;
+}
+
+static bool wait_device_ready(const char *dev, int timeout_ms)
+{
+    int waited = 0;
+    struct stat st;
+
+    while (waited < timeout_ms) {
+        if (stat(dev, &st) == 0) {
+            return true;
+        }
+
+        usleep(100000);
+        waited += 100;
+    }
+
+    return false;
+}
+
+// ==================== 选择 TCA9548A 通道 ====================
+static int tca_select_channel(int ch)
+{
+    if (i2c_fd < 0) return -1;
+    if (ioctl(i2c_fd, I2C_SLAVE, TCA9548A_ADDR) < 0) return -1;
+    if (write(i2c_fd, &ch, 1) != 1) return -1;
+    usleep(200);
+    return 0;
+}
+
+// ==================== 读取 MT6701 角度 ====================
+static float mt6701_read_angle(void)
+{
+    unsigned char buf[2];
+    if (ioctl(i2c_fd, I2C_SLAVE, MT6701_ADDR) < 0) return -1.0f;
+    
+    buf[0] = 0x03;
+    if (write(i2c_fd, buf, 1) != 1 || read(i2c_fd, buf, 1) != 1) return -1.0f;
+    unsigned char bh = buf[0];
+    
+    buf[0] = 0x04;
+    if (write(i2c_fd, buf, 1) != 1 || read(i2c_fd, buf, 1) != 1) return -1.0f;
+    unsigned char bl = buf[0];
+    
+    unsigned short raw = ((unsigned short)bh << 6) | (bl & 0x3F);
+    return (float)raw * 360.0f / 16384.0f;
+}
+
+// ==================== 对外接口：编码器初始化 ====================
+bool encoder_init(void)
+{
+    log_info("初始化 I2C & 编码器...");
+
+    if (!wait_device_ready(I2C_DEVICE, 10000)) {
+        log_error("I2C 设备 10 秒内未就绪: %s", I2C_DEVICE);
+        return false;
+    }
+
+    if (i2c_init_bus() != 0) {
+        return false;
+    }
+
+    log_info("编码器预热中...");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < ENC_COUNT; j++) {
+            tca_select_channel(tca_ch_map[j]);
+            mt6701_read_angle();
+            usleep(500);
+        }
+    }
+
+    for (int i = 0; i < ENC_COUNT; i++) {
+        tca_select_channel(tca_ch_map[i]);
+        float ang = mt6701_read_angle();
+        if (ang >= 0) {
+            log_info("%s：正常 %.1f°", enc_name[i], ang);
+        } else {
+            log_warn("%s：读取失败", enc_name[i]);
+        }
+    }
+
+    log_info("编码器初始化完成");
+    return true;
+}
+
+// ==================== 对外接口：读取单个编码器 ====================
+float encoder_read(uint8_t ch)
+{
+    if (ch >= ENC_COUNT) return -1.0f;
+
+    for (int retry = 0; retry < 3; retry++) {
+        if (tca_select_channel(tca_ch_map[ch]) == 0) {
+            float angle = mt6701_read_angle();
+            if (angle >= 0.0f && angle <= 360.0f) {
+                return angle;
+            }
+        }
+        usleep(1000);
+    }
+
+    log_warn("%s 读取失败", enc_name[ch]);
+    return -1.0f;
+}
+
+// ==================== 对外接口：读取所有编码器 ====================
+bool encoder_read_all(float *angle_buf)
+{
+    if (!angle_buf) return false;
+    bool all_ok = true;
+    for (int i = 0; i < ENC_COUNT; i++) {
+        angle_buf[i] = encoder_read(i);
+        if (angle_buf[i] < 0) {
+            all_ok = false;
+        }
+    }
+    return all_ok;
+}
+
+// ==================== 对外接口：反初始化 ====================
+void encoder_deinit(void)
+{
+    if (i2c_fd >= 0) {
+        close(i2c_fd);
+        i2c_fd = -1;
+    }
+    log_info("编码器已关闭");
+}
+========== ./src/hal/hal_led.c ==========
+#include "hal_led.h"
+#include "sys_logger.h"
+
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <linux/spi/spidev.h>
+#include <unistd.h>
+#include <string.h>
+#include <time.h>
+#include <pthread.h>
+
+#define SPI_DEVICE    "/dev/spidev0.0"
+#define SPI_SPEED_HZ  8000000
+#define BIT_0         0xC0
+#define BIT_1         0xFC
+#define BYTES_PER_LED 24
+
+typedef struct {
+    led_mode_e mode;
+    led_color_e color;
+    int blink_period_ms;
+    bool blink_on;
+    uint64_t last_toggle_ms;
+} led_ctrl_t;
+
+static int spi_fd = -1;
+static led_ctrl_t g_leds[LED_COUNT];
+static pthread_mutex_t g_led_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static uint64_t get_ms(void)
+{
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000ULL + ts.tv_nsec / 1000000ULL;
+}
+
+static void byte_to_spi(uint8_t data, uint8_t *out_buf)
+{
+    for (int i = 0; i < 8; i++) {
+        out_buf[i] = (data & 0x80) ? BIT_1 : BIT_0;
+        data <<= 1;
+    }
+}
+
+static void color_to_grb(led_color_e color, uint8_t *g, uint8_t *r, uint8_t *b)
+{
+    *g = 0; *r = 0; *b = 0;
+    switch (color) {
+        case LED_COLOR_RED:    *r = 255; break;
+        case LED_COLOR_GREEN:  *g = 255; break;
+        case LED_COLOR_BLUE:   *b = 255; break;
+        case LED_COLOR_YELLOW: *g = 255; *r = 255; break;
+        default: break;
+    }
+}
+
+static led_color_e get_effective_color(int i)
+{
+    if (g_leds[i].mode == LED_MODE_OFF) {
+        return LED_COLOR_OFF;
+    }
+    if (g_leds[i].mode == LED_MODE_ON) {
+        return g_leds[i].color;
+    }
+    if (g_leds[i].mode == LED_MODE_BLINK) {
+        return g_leds[i].blink_on ? g_leds[i].color : LED_COLOR_OFF;
+    }
+    return LED_COLOR_OFF;
+}
+
+static void ws2812_send_current(void)
+{
+    if (spi_fd < 0) return;
+
+    uint8_t spi_buf[LED_COUNT * BYTES_PER_LED];
+    memset(spi_buf, 0, sizeof(spi_buf));
+
+    for (int i = 0; i < LED_COUNT; i++) {
+        uint8_t g, r, b;
+        color_to_grb(get_effective_color(i), &g, &r, &b);
+
+        uint8_t *p = &spi_buf[i * BYTES_PER_LED];
+        byte_to_spi(g, p + 0);
+        byte_to_spi(r, p + 8);
+        byte_to_spi(b, p + 16);
+    }
+
+    struct spi_ioc_transfer xfer = {
+        .tx_buf = (unsigned long)spi_buf,
+        .len = sizeof(spi_buf),
+        .speed_hz = SPI_SPEED_HZ,
+        .bits_per_word = 8,
+    };
+
+    ioctl(spi_fd, SPI_IOC_MESSAGE(1), &xfer);
+    usleep(100);
+}
+
+bool led_init(void)
+{
+    spi_fd = open(SPI_DEVICE, O_RDWR);
+    if (spi_fd < 0) {
+        log_error("打开 SPI 失败: %s", SPI_DEVICE);
+        return false;
+    }
+
+    uint8_t mode = SPI_MODE_0;
+    uint8_t bits = 8;
+    uint32_t speed = SPI_SPEED_HZ;
+
+    ioctl(spi_fd, SPI_IOC_WR_MODE, &mode);
+    ioctl(spi_fd, SPI_IOC_WR_BITS_PER_WORD, &bits);
+    ioctl(spi_fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed);
+
+    memset(g_leds, 0, sizeof(g_leds));
+    ws2812_send_current();
+
+    log_info("LED 初始化完成");
+    return true;
+}
+
+void led_set_mode(int led_idx, led_mode_e mode, led_color_e color, int blink_period_ms)
+{
+    if (led_idx < 0 || led_idx >= LED_COUNT) return;
+
+    pthread_mutex_lock(&g_led_mutex);
+
+    g_leds[led_idx].mode = mode;
+    g_leds[led_idx].color = color;
+    g_leds[led_idx].blink_period_ms = blink_period_ms;
+    g_leds[led_idx].blink_on = true;
+    g_leds[led_idx].last_toggle_ms = get_ms();
+
+    ws2812_send_current();
+
+    pthread_mutex_unlock(&g_led_mutex);
+}
+
+void led_tick(void)
+{
+    pthread_mutex_lock(&g_led_mutex);
+
+    uint64_t now = get_ms();
+    bool changed = false;
+
+    for (int i = 0; i < LED_COUNT; i++) {
+        if (g_leds[i].mode == LED_MODE_BLINK && g_leds[i].blink_period_ms > 0) {
+            int half_period = g_leds[i].blink_period_ms / 2;
+            if ((int)(now - g_leds[i].last_toggle_ms) >= half_period) {
+                g_leds[i].blink_on = !g_leds[i].blink_on;
+                g_leds[i].last_toggle_ms = now;
+                changed = true;
+            }
+        }
+    }
+
+    if (changed) {
+        ws2812_send_current();
+    }
+
+    pthread_mutex_unlock(&g_led_mutex);
+}
+
+void led_deinit(void)
+{
+    pthread_mutex_lock(&g_led_mutex);
+
+    for (int i = 0; i < LED_COUNT; i++) {
+        g_leds[i].mode = LED_MODE_OFF;
+        g_leds[i].color = LED_COLOR_OFF;
+    }
+    ws2812_send_current();
+
+    pthread_mutex_unlock(&g_led_mutex);
+
+    if (spi_fd >= 0) {
+        close(spi_fd);
+        spi_fd = -1;
+    }
+
+    log_info("LED 已关闭");
+}
+========== ./src/net/net_transfer.c ==========
+#include "net_transfer.h"
+#include "sys_logger.h"
+
+#include <dirent.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+
+#define RECV_BUF_SIZE      1024
+#define SEND_BUF_SIZE      4096
+
+static int g_sock = -1;
+static volatile int *g_cancel_flag = NULL;
+
+static bool path_exists(const char *path)
+{
+    struct stat st;
+    return stat(path, &st) == 0;
+}
+
+static bool connect_server(void)
+{
+    struct sockaddr_in addr;
+    g_sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (g_sock < 0) {
+        log_error("创建上传 socket 失败");
+        return false;
+    }
+
+    struct timeval tv;
+    tv.tv_sec = 5;
+    tv.tv_usec = 0;
+    setsockopt(g_sock, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+    setsockopt(g_sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(UPLOAD_SERVER_PORT);
+    if (inet_pton(AF_INET, UPLOAD_SERVER_IP, &addr.sin_addr) <= 0) {
+        log_error("上传服务器 IP 无效: %s", UPLOAD_SERVER_IP);
+        close(g_sock);
+        g_sock = -1;
+        return false;
+    }
+
+    if (connect(g_sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        log_error("连接上传服务器失败: %s:%d", UPLOAD_SERVER_IP, UPLOAD_SERVER_PORT);
+        close(g_sock);
+        g_sock = -1;
+        return false;
+    }
+
+    log_info("已连接上传服务器: %s:%d", UPLOAD_SERVER_IP, UPLOAD_SERVER_PORT);
+    return true;
+}
+
+static void close_server(void)
+{
+    if (g_sock >= 0) {
+        close(g_sock);
+        g_sock = -1;
+    }
+}
+
+static bool send_all(int fd, const void *buf, size_t len)
+{
+    const char *p = (const char*)buf;
+
+    while (len > 0) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            log_warn("send_all: 检测到取消请求");
+            return false;
+        }
+
+        ssize_t n = send(fd, p, len, MSG_NOSIGNAL);
+
+        if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                usleep(10000);
+                continue;
+            }
+
+            log_error("send 失败 errno=%d", errno);
+            return false;
+        }
+
+        if (n == 0) {
+            log_error("send 返回 0，连接可能已断开");
+            return false;
+        }
+
+        p += n;
+        len -= (size_t)n;
+    }
+
+    return true;
+}
+
+static bool recv_ok(int fd)
+{
+    if (g_cancel_flag && *g_cancel_flag) {
+        return false;
+    }
+
+    char buf[RECV_BUF_SIZE];
+    memset(buf, 0, sizeof(buf));
+
+    while (1) {
+        ssize_t n = recv(fd, buf, sizeof(buf) - 1, 0);
+
+        if (n < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                log_error("等待服务端 OK 超时");
+                return false;
+            }
+
+            log_error("recv 失败 errno=%d", errno);
+            return false;
+        }
+
+        if (n == 0) {
+            log_error("服务端关闭连接");
+            return false;
+        }
+
+        return (strncmp(buf, "OK", 2) == 0);
+    }
+}
+
+static bool send_file(const char *full_path, const char *relative_path)
+{
+    if (g_cancel_flag && *g_cancel_flag) {
+        return false;
+    }
+
+    struct stat st;
+    if (stat(full_path, &st) != 0) {
+        log_error("获取文件信息失败: %s", full_path);
+        return false;
+    }
+
+    FILE *fp = fopen(full_path, "rb");
+    if (!fp) {
+        log_error("打开文件失败: %s", full_path);
+        return false;
+    }
+
+    char header[1024];
+    int header_len = snprintf(header, sizeof(header), "FILE %s %lld\n",
+                              relative_path, (long long)st.st_size);
+    if (header_len <= 0 || header_len >= (int)sizeof(header)) {
+        fclose(fp);
+        return false;
+    }
+
+    if (!send_all(g_sock, header, (size_t)header_len)) {
+        log_error("发送文件头失败: %s", relative_path);
+        fclose(fp);
+        return false;
+    }
+
+    char buf[SEND_BUF_SIZE];
+    size_t nread;
+    while ((nread = fread(buf, 1, sizeof(buf), fp)) > 0) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            log_warn("send_file: 检测到取消请求");
+            fclose(fp);
+            return false;
+        }
+        if (!send_all(g_sock, buf, nread)) {
+            log_error("发送文件内容失败: %s", relative_path);
+            fclose(fp);
+            return false;
+        }
+    }
+
+    fclose(fp);
+
+    if (!recv_ok(g_sock)) {
+        log_error("服务端未确认文件: %s", relative_path);
+        return false;
+    }
+
+    log_info("上传成功: %s", relative_path);
+    return true;
+}
+
+static int cmp_str(const void *a, const void *b)
+{
+    const char * const *sa = (const char * const *)a;
+    const char * const *sb = (const char * const *)b;
+    return strcmp(*sa, *sb);
+}
+
+static bool should_upload_group(const char *base_path, const char *group_name)
+{
+    char ready_path[MAX_PATH_LEN];
+    char uploaded_path[MAX_PATH_LEN];
+
+    snprintf(ready_path, sizeof(ready_path), "%s/code/%s.ready", base_path, group_name);
+    snprintf(uploaded_path, sizeof(uploaded_path), "%s/code/%s.uploaded", base_path, group_name);
+
+    if (!path_exists(ready_path)) {
+        return false;
+    }
+
+    if (path_exists(uploaded_path)) {
+        return false;
+    }
+
+    return true;
+}
+
+static bool mark_group_uploaded(const char *base_path, const char *group_name)
+{
+    char uploaded_path[MAX_PATH_LEN];
+    snprintf(uploaded_path, sizeof(uploaded_path), "%s/code/%s.uploaded", base_path, group_name);
+
+    FILE *fp = fopen(uploaded_path, "w");
+    if (!fp) {
+        log_error("写 uploaded 标记失败: %s", uploaded_path);
+        return false;
+    }
+
+    fprintf(fp, "uploaded\n");
+    fclose(fp);
+    return true;
+}
+
+static bool upload_one_group(const char *base_path, const char *group_name)
+{
+    if (g_cancel_flag && *g_cancel_flag) {
+        return false;
+    }
+
+    if (!should_upload_group(base_path, group_name)) {
+        log_info("跳过未就绪或已上传组: %s", group_name);
+        return true;
+    }
+
+    char csv_path[MAX_PATH_LEN];
+    char photo_dir[MAX_PATH_LEN];
+
+    snprintf(csv_path, sizeof(csv_path), "%s/code/%s.csv", base_path, group_name);
+    snprintf(photo_dir, sizeof(photo_dir), "%s/photo/%s", base_path, group_name);
+
+    if (!path_exists(csv_path)) {
+        log_warn("组缺少 CSV，跳过: %s", group_name);
+        return true;
+    }
+
+    // 1. 先传 csv
+    const char *rel_csv = strstr(csv_path, "/right/");
+    if (rel_csv) rel_csv += 1; else rel_csv = csv_path;
+
+    log_info("开始上传组: %s", group_name);
+
+    if (!send_file(csv_path, rel_csv)) {
+        log_error("上传组 CSV 失败: %s", group_name);
+        return false;
+    }
+
+    // 2. 再传 photo 目录下 jpg
+    DIR *dir = opendir(photo_dir);
+    if (!dir) {
+        log_error("打开照片目录失败: %s", photo_dir);
+        return false;
+    }
+
+    // 先收集文件名并排序，保证 1.jpg -> 30.jpg 顺序
+    char *names[256];
+    int count = 0;
+
+    struct dirent *ent;
+    while ((ent = readdir(dir)) != NULL) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            closedir(dir);
+            for (int j = 0; j < count; j++) free(names[j]);
+            return false;
+        }
+
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue;
+        if (strcmp(ent->d_name, ".done") == 0) continue;
+
+        const char *dot = strrchr(ent->d_name, '.');
+        if (!dot || strcmp(dot, ".jpg") != 0) continue;
+
+        if (count < 256) {
+            names[count] = strdup(ent->d_name);
+            if (names[count]) count++;
+        }
+    }
+    closedir(dir);
+
+    qsort(names, count, sizeof(char*), cmp_str);
+
+    for (int i = 0; i < count; i++) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            for (int j = 0; j < count; j++) free(names[j]);
+            return false;
+        }
+
+        char img_path[MAX_PATH_LEN];
+        snprintf(img_path, sizeof(img_path), "%s/%s", photo_dir, names[i]);
+
+        const char *rel_img = strstr(img_path, "/right/");
+        if (rel_img) rel_img += 1; else rel_img = img_path;
+
+        if (!send_file(img_path, rel_img)) {
+            for (int j = 0; j < count; j++) free(names[j]);
+            log_error("上传组图片失败: %s/%s", group_name, names[i]);
+            return false;
+        }
+    }
+
+    for (int i = 0; i < count; i++) free(names[i]);
+
+    // 3. 全部成功后打标
+    if (!mark_group_uploaded(base_path, group_name)) {
+        log_warn("uploaded 标记写入失败: %s", group_name);
+    }
+
+    log_info("组上传完成并已标记: %s", group_name);
+    return true;
+}
+
+void upload_request_cancel(void)
+{
+    if (g_cancel_flag) {
+        *g_cancel_flag = 1;
+    }
+    close_server();
+}
+
+bool upload_all_sessions(const char *base_path, volatile int *cancel_flag)
+{
+    g_cancel_flag = cancel_flag;
+
+    if (!base_path) return false;
+
+    if (g_cancel_flag && *g_cancel_flag) return false;
+
+    char code_dir[MAX_PATH_LEN];
+    snprintf(code_dir, sizeof(code_dir), "%s/code", base_path);
+
+    DIR *dir = opendir(code_dir);
+    if (!dir) {
+        log_error("无法打开 code 目录: %s", code_dir);
+        return false;
+    }
+
+    if (!connect_server()) {
+        closedir(dir);
+        return false;
+    }
+
+    // 收集所有 ready 组名
+    char *groups[512];
+    int group_count = 0;
+
+    struct dirent *ent;
+    while ((ent = readdir(dir)) != NULL) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            closedir(dir);
+            for (int j = 0; j < group_count; j++) free(groups[j]);
+            g_cancel_flag = NULL;
+            close_server();
+            return false;
+        }
+
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue;
+
+        const char *dot = strrchr(ent->d_name, '.');
+        if (!dot || strcmp(dot, ".ready") != 0) continue;
+
+        size_t len = (size_t)(dot - ent->d_name);
+        if (len == 0 || len >= MAX_NAME_LEN) continue;
+
+        if (group_count < 512) {
+            groups[group_count] = (char*)malloc(len + 1);
+            if (!groups[group_count]) continue;
+            memcpy(groups[group_count], ent->d_name, len);
+            groups[group_count][len] = '\0';
+            group_count++;
+        }
+    }
+    closedir(dir);
+
+    if (group_count == 0) {
+        log_warn("没有发现待上传的 ready 数据组");
+    }
+
+    qsort(groups, group_count, sizeof(char*), cmp_str);
+
+    bool ok = true;
+    for (int i = 0; i < group_count; i++) {
+        if (g_cancel_flag && *g_cancel_flag) {
+            ok = false;
+            break;
+        }
+        if (!upload_one_group(base_path, groups[i])) {
+            ok = false;
+            break;
+        }
+    }
+
+    for (int i = 0; i < group_count; i++) {
+        free(groups[i]);
+    }
+
+    g_cancel_flag = NULL;
+    close_server();
+    return ok;
+}
+
+bool upload_init(void)
+{
+    return true;
+}
+
+void upload_deinit(void)
+{
+    close_server();
+}
+
+========== ./src/sys/sys_logger.c ==========
+#include "sys_logger.h"
+#include <stdarg.h>
+#include <time.h>
+#include <sys/time.h>
+
+static log_level_e g_log_level = LOG_LEVEL_INFO;
+static const char *level_str[] = {"DEBUG", "INFO", "WARN", "ERROR"};
+
+bool logger_init(void)
+{
+    return true;
+}
+
+void logger_set_level(log_level_e level)
+{
+    g_log_level = level;
+}
+
+static void log_print(log_level_e level, const char *fmt, va_list args)
+{
+    if (level < g_log_level) return;
+
+    struct timeval tv;
+    struct tm tm;
+    gettimeofday(&tv, NULL);
+    localtime_r(&tv.tv_sec, &tm);
+
+    fprintf(stdout, "[%04d-%02d-%02d %02d:%02d:%02d.%03ld] [%s] ",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+            tm.tm_hour, tm.tm_min, tm.tm_sec, tv.tv_usec / 1000,
+            level_str[level]);
+
+    vfprintf(stdout, fmt, args);
+    fprintf(stdout, "\n");
+    fflush(stdout);
+}
+
+void log_debug(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    log_print(LOG_LEVEL_DEBUG, fmt, args);
+    va_end(args);
+}
+
+void log_info(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    log_print(LOG_LEVEL_INFO, fmt, args);
+    va_end(args);
+}
+
+void log_warn(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    log_print(LOG_LEVEL_WARN, fmt, args);
+    va_end(args);
+}
+
+void log_error(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    log_print(LOG_LEVEL_ERROR, fmt, args);
+    va_end(args);
+}
+
+void logger_deinit(void)
+{
+    // 无操作
+}
+
+========== ./src/sys/sys_storage.c ==========
+#include "sys_storage.h"
+#include "sys_logger.h"
+#include "sys_time.h"
+
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <errno.h>
+
+typedef struct {
+    frame_data_t frames[CAMERA_FPS];
+    int count;
+    char second_name[MAX_NAME_LEN];
+} second_batch_t;
+
+static ring_buffer_t g_rb;
+static pthread_t g_storage_thread;
+static volatile bool g_storage_running = false;
+static volatile bool g_session_active = false;
+
+static char g_base_path[MAX_PATH_LEN] = SDCARD_BASE_PATH;
+static second_batch_t g_batch;
+static pthread_mutex_t g_batch_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static void frame_free(frame_data_t *f)
+{
+    if (!f) return;
+    SAFE_FREE(f->img_data);
+    f->img_size = 0;
+}
+
+static bool mkdir_recursive(const char *path)
+{
+    if (!path || path[0] == '\0') return false;
+
+    char tmp[MAX_PATH_LEN];
+    snprintf(tmp, sizeof(tmp), "%s", path);
+
+    for (char *p = tmp + 1; *p; p++) {
+        if (*p == '/') {
+            *p = '\0';
+            if (mkdir(tmp, 0777) != 0 && errno != EEXIST) {
+                log_error("创建目录失败: %s, errno=%d", tmp, errno);
+                return false;
+            }
+            *p = '/';
+        }
+    }
+
+    if (mkdir(tmp, 0777) != 0 && errno != EEXIST) {
+        log_error("创建目录失败: %s, errno=%d", tmp, errno);
+        return false;
+    }
+
+    return true;
+}
+
+static bool write_file_atomic(const char *path, const void *data, size_t len)
+{
+    char tmp_path[MAX_PATH_LEN];
+    snprintf(tmp_path, sizeof(tmp_path), "%s.tmp", path);
+
+    int fd = open(tmp_path, O_CREAT | O_TRUNC | O_WRONLY, 0666);
+    if (fd < 0) {
+        log_error("打开临时文件失败: %s, errno=%d", tmp_path, errno);
+        return false;
+    }
+
+    const uint8_t *p = (const uint8_t *)data;
+    size_t left = len;
+
+    while (left > 0) {
+        ssize_t n = write(fd, p, left);
+        if (n < 0) {
+            if (errno == EINTR) continue;
+            log_error("写文件失败: %s, errno=%d", tmp_path, errno);
+            close(fd);
+            unlink(tmp_path);
+            return false;
+        }
+        if (n == 0) {
+            log_error("写文件返回 0: %s", tmp_path);
+            close(fd);
+            unlink(tmp_path);
+            return false;
+        }
+
+        p += n;
+        left -= (size_t)n;
+    }
+
+    fsync(fd);
+    close(fd);
+
+    if (rename(tmp_path, path) != 0) {
+        log_error("rename 失败: %s -> %s, errno=%d", tmp_path, path, errno);
+        unlink(tmp_path);
+        return false;
+    }
+
+    return true;
+}
+
+static bool write_text_atomic(const char *path, const char *text)
+{
+    return write_file_atomic(path, text, strlen(text));
+}
+
+static void timestamp_to_second_name(uint64_t ts_us, char *buf, size_t len)
+{
+    time_t sec = (time_t)(ts_us / 1000000ULL);
+    struct tm tm_now;
+    localtime_r(&sec, &tm_now);
+    strftime(buf, len, "%Y-%m-%d_%H-%M-%S", &tm_now);
+}
+
+static void clear_batch(second_batch_t *batch)
+{
+    if (!batch) return;
+
+    for (int i = 0; i < batch->count; i++) {
+        frame_free(&batch->frames[i]);
+    }
+
+    memset(batch, 0, sizeof(*batch));
+}
+
+static bool flush_batch(second_batch_t *batch)
+{
+    if (!batch || batch->count <= 0) return true;
+
+    char photo_dir[MAX_PATH_LEN];
+    char csv_path[MAX_PATH_LEN];
+    char ready_path[MAX_PATH_LEN];
+
+    snprintf(photo_dir, sizeof(photo_dir), "%s/photo/%s", g_base_path, batch->second_name);
+    snprintf(csv_path, sizeof(csv_path), "%s/code/%s.csv", g_base_path, batch->second_name);
+    snprintf(ready_path, sizeof(ready_path), "%s/code/%s.ready", g_base_path, batch->second_name);
+
+    if (!mkdir_recursive(photo_dir)) {
+        return false;
+    }
+
+    char csv_buf[8192];
+    int offset = 0;
+
+    offset += snprintf(csv_buf + offset, sizeof(csv_buf) - offset,
+                       "index,frame_id,timestamp_us,enc1,enc2,enc3,img_name\n");
+
+    for (int i = 0; i < batch->count; i++) {
+        frame_data_t *f = &batch->frames[i];
+
+        char img_name[64];
+        char img_path[MAX_PATH_LEN];
+
+        snprintf(img_name, sizeof(img_name), "%03d.jpg", i + 1);
+        snprintf(img_path, sizeof(img_path), "%s/%s", photo_dir, img_name);
+
+        if (!f->img_data || f->img_size <= 0) {
+            log_warn("跳过无效图片帧: index=%d", i + 1);
+            continue;
+        }
+
+        if (!write_file_atomic(img_path, f->img_data, (size_t)f->img_size)) {
+            log_error("写图片失败: %s", img_path);
+            return false;
+        }
+
+        int n = snprintf(csv_buf + offset, sizeof(csv_buf) - offset,
+                         "%d,%d,%llu,%.3f,%.3f,%.3f,%s\n",
+                         i + 1,
+                         f->frame_id,
+                         (unsigned long long)f->timestamp_us,
+                         f->enc_angle[0],
+                         f->enc_angle[1],
+                         f->enc_angle[2],
+                         img_name);
+
+        if (n <= 0 || offset + n >= (int)sizeof(csv_buf)) {
+            log_error("CSV 缓冲区不足");
+            return false;
+        }
+
+        offset += n;
+    }
+
+    if (!write_file_atomic(csv_path, csv_buf, (size_t)offset)) {
+        log_error("写 CSV 失败: %s", csv_path);
+        return false;
+    }
+
+    if (!write_text_atomic(ready_path, "ready\n")) {
+        log_error("写 ready 标记失败: %s", ready_path);
+        return false;
+    }
+
+    log_info("一秒数据落盘完成: %s, frames=%d", batch->second_name, batch->count);
+
+    clear_batch(batch);
+    return true;
+}
+
+static bool rb_init(ring_buffer_t *rb)
+{
+    memset(rb, 0, sizeof(*rb));
+    pthread_mutex_init(&rb->mutex, NULL);
+    pthread_cond_init(&rb->not_empty, NULL);
+    pthread_cond_init(&rb->not_full, NULL);
+    return true;
+}
+
+static void rb_destroy(ring_buffer_t *rb)
+{
+    pthread_mutex_lock(&rb->mutex);
+
+    for (int i = 0; i < RING_BUFFER_SIZE; i++) {
+        frame_free(&rb->buffer[i]);
+    }
+
+    pthread_mutex_unlock(&rb->mutex);
+
+    pthread_mutex_destroy(&rb->mutex);
+    pthread_cond_destroy(&rb->not_empty);
+    pthread_cond_destroy(&rb->not_full);
+}
+
+bool storage_push_frame(const frame_data_t *frame)
+{
+    if (!g_session_active) {
+        return false;
+    }
+
+    if (!frame || !frame->img_data || frame->img_size <= 0) {
+        return false;
+    }
+
+    pthread_mutex_lock(&g_rb.mutex);
+
+    if (g_rb.count >= RING_BUFFER_SIZE) {
+        g_rb.dropped_count++;
+
+        frame_data_t *old = &g_rb.buffer[g_rb.tail];
+        frame_free(old);
+        g_rb.tail = (g_rb.tail + 1) % RING_BUFFER_SIZE;
+        g_rb.count--;
+
+        log_warn("存储队列满，丢弃最旧帧，累计丢帧=%d", g_rb.dropped_count);
+    }
+
+    frame_data_t *dst = &g_rb.buffer[g_rb.head];
+    memset(dst, 0, sizeof(*dst));
+
+    dst->timestamp_us = frame->timestamp_us;
+    dst->frame_id = frame->frame_id;
+    dst->img_size = frame->img_size;
+    memcpy(dst->enc_angle, frame->enc_angle, sizeof(dst->enc_angle));
+
+    dst->img_data = malloc((size_t)frame->img_size);
+    if (!dst->img_data) {
+        pthread_mutex_unlock(&g_rb.mutex);
+        log_error("存储队列 malloc 失败");
+        return false;
+    }
+
+    memcpy(dst->img_data, frame->img_data, (size_t)frame->img_size);
+
+    g_rb.head = (g_rb.head + 1) % RING_BUFFER_SIZE;
+    g_rb.count++;
+
+    pthread_cond_signal(&g_rb.not_empty);
+    pthread_mutex_unlock(&g_rb.mutex);
+
+    return true;
+}
+
+static bool rb_pop(frame_data_t *out)
+{
+    pthread_mutex_lock(&g_rb.mutex);
+
+    while (g_rb.count <= 0 && g_storage_running) {
+        pthread_cond_wait(&g_rb.not_empty, &g_rb.mutex);
+    }
+
+    if (g_rb.count <= 0 && !g_storage_running) {
+        pthread_mutex_unlock(&g_rb.mutex);
+        return false;
+    }
+
+    frame_data_t *src = &g_rb.buffer[g_rb.tail];
+    memcpy(out, src, sizeof(*out));
+    src->img_data = NULL;
+    src->img_size = 0;
+
+    g_rb.tail = (g_rb.tail + 1) % RING_BUFFER_SIZE;
+    g_rb.count--;
+
+    pthread_mutex_unlock(&g_rb.mutex);
+    return true;
+}
+
+static void handle_frame_to_batch(const frame_data_t *frame)
+{
+    pthread_mutex_lock(&g_batch_mutex);
+
+    char second_name[MAX_NAME_LEN];
+    timestamp_to_second_name(frame->timestamp_us, second_name, sizeof(second_name));
+
+    if (g_batch.count > 0 && strcmp(g_batch.second_name, second_name) != 0) {
+        if (!flush_batch(&g_batch)) {
+            log_error("flush_batch 失败，丢弃当前批次，避免阻塞后续采集");
+            clear_batch(&g_batch);
+        }
+    }
+
+    if (g_batch.count == 0) {
+        snprintf(g_batch.second_name, sizeof(g_batch.second_name), "%s", second_name);
+    }
+
+    if (g_batch.count >= CAMERA_FPS) {
+        log_warn("当前秒超过 %d 帧，丢弃额外帧", CAMERA_FPS);
+        pthread_mutex_unlock(&g_batch_mutex);
+        return;
+    }
+
+    frame_data_t *dst = &g_batch.frames[g_batch.count];
+    memset(dst, 0, sizeof(*dst));
+
+    dst->timestamp_us = frame->timestamp_us;
+    dst->frame_id = frame->frame_id;
+    dst->img_size = frame->img_size;
+    memcpy(dst->enc_angle, frame->enc_angle, sizeof(dst->enc_angle));
+
+    dst->img_data = malloc((size_t)frame->img_size);
+    if (!dst->img_data) {
+        log_error("batch malloc 失败");
+        pthread_mutex_unlock(&g_batch_mutex);
+        return;
+    }
+
+    memcpy(dst->img_data, frame->img_data, (size_t)frame->img_size);
+    g_batch.count++;
+
+    pthread_mutex_unlock(&g_batch_mutex);
+}
+
+static void *storage_thread_func(void *arg)
+{
+    (void)arg;
+
+    log_info("存储线程启动");
+
+    while (g_storage_running) {
+        frame_data_t frame;
+        memset(&frame, 0, sizeof(frame));
+
+        if (rb_pop(&frame)) {
+            handle_frame_to_batch(&frame);
+            frame_free(&frame);
+        }
+    }
+
+    while (1) {
+        frame_data_t frame;
+        memset(&frame, 0, sizeof(frame));
+
+        if (!rb_pop(&frame)) {
+            break;
+        }
+
+        handle_frame_to_batch(&frame);
+        frame_free(&frame);
+    }
+
+    pthread_mutex_lock(&g_batch_mutex);
+    if (g_batch.count > 0) {
+        if (!flush_batch(&g_batch)) {
+            log_error("存储线程退出前 flush 失败，清空当前批次");
+            clear_batch(&g_batch);
+        }
+    }
+    pthread_mutex_unlock(&g_batch_mutex);
+
+    log_info("存储线程退出");
+    return NULL;
+}
+
+bool storage_check_sdcard(void)
+{
+    struct stat st;
+
+    if (stat(g_base_path, &st) != 0) {
+        log_warn("基础目录不存在，尝试创建: %s", g_base_path);
+        if (!mkdir_recursive(g_base_path)) {
+            return false;
+        }
+    }
+
+    if (stat(g_base_path, &st) != 0 || !S_ISDIR(st.st_mode)) {
+        log_error("SD 卡目录异常: %s", g_base_path);
+        return false;
+    }
+
+    char test_path[MAX_PATH_LEN];
+    snprintf(test_path, sizeof(test_path), "%s/.write_test", g_base_path);
+
+    if (!write_text_atomic(test_path, "test\n")) {
+        log_error("SD 卡写入测试失败: %s", g_base_path);
+        return false;
+    }
+
+    unlink(test_path);
+    return true;
+}
+
+bool storage_init(void)
+{
+    if (!storage_check_sdcard()) {
+        return false;
+    }
+
+    char photo_dir[MAX_PATH_LEN];
+    char code_dir[MAX_PATH_LEN];
+
+    snprintf(photo_dir, sizeof(photo_dir), "%s/photo", g_base_path);
+    snprintf(code_dir, sizeof(code_dir), "%s/code", g_base_path);
+
+    if (!mkdir_recursive(photo_dir)) return false;
+    if (!mkdir_recursive(code_dir)) return false;
+
+    rb_init(&g_rb);
+    clear_batch(&g_batch);
+
+    g_storage_running = true;
+
+    if (pthread_create(&g_storage_thread, NULL, storage_thread_func, NULL) != 0) {
+        g_storage_running = false;
+        rb_destroy(&g_rb);
+        log_error("创建存储线程失败");
+        return false;
+    }
+
+    log_info("存储系统初始化完成: %s", g_base_path);
+    return true;
+}
+
+bool storage_start_session(void)
+{
+    if (!storage_check_sdcard()) {
+        return false;
+    }
+
+    pthread_mutex_lock(&g_batch_mutex);
+    clear_batch(&g_batch);
+    pthread_mutex_unlock(&g_batch_mutex);
+
+    g_session_active = true;
+    log_info("开始新的采集会话");
+    return true;
+}
+
+void storage_stop_session(void)
+{
+    g_session_active = false;
+
+    /* 等待存储线程把队列里的帧全部取完 */
+    while (1) {
+        pthread_mutex_lock(&g_rb.mutex);
+        int left = g_rb.count;
+        pthread_mutex_unlock(&g_rb.mutex);
+
+        if (left == 0) {
+            break;
+        }
+
+        usleep(10000);
+    }
+
+    /* 加锁 flush 最后一批 */
+    pthread_mutex_lock(&g_batch_mutex);
+    if (g_batch.count > 0) {
+        if (!flush_batch(&g_batch)) {
+            log_error("停止采集时 flush 失败，清空当前批次");
+            clear_batch(&g_batch);
+        }
+    }
+    pthread_mutex_unlock(&g_batch_mutex);
+
+    log_info("采集会话停止");
+}
+
+void storage_deinit(void)
+{
+    g_storage_running = false;
+
+    pthread_mutex_lock(&g_rb.mutex);
+    pthread_cond_broadcast(&g_rb.not_empty);
+    pthread_mutex_unlock(&g_rb.mutex);
+
+    pthread_join(g_storage_thread, NULL);
+
+    clear_batch(&g_batch);
+    rb_destroy(&g_rb);
+
+    log_info("存储系统关闭");
+}
+
+========== ./src/sys/sys_time.c ==========
+#include "sys_time.h"
+#include "sys_logger.h"
+#include <time.h>
+#include <sys/time.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+
+uint64_t time_get_timestamp_us(void)
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return (uint64_t)tv.tv_sec * 1000000 + tv.tv_usec;
+}
+
+uint64_t time_get_timestamp_ms(void)
+{
+    return time_get_timestamp_us() / 1000;
+}
+
+void time_get_folder_name(char *buf, int buf_len)
+{
+    time_t now = time(NULL);
+    struct tm tm;
+    localtime_r(&now, &tm);
+    strftime(buf, buf_len, "%Y-%m-%d_%H-%M-%S", &tm);
+}
+
+bool time_sync_with_master(const char *master_ip, int port)
+{
+    // 右手为主控，无需同步其他设备时间，此函数保留供扩展
+    log_debug("右手为主控，跳过时间同步");
+    return true;
+}
+
+
+
+################################################################################
+#                              SDK 基本信息说明
+################################################################################
+
+【项目概述】
+- 项目名称: 右手数据采集终端 (hand_capture_right)
+- 目标平台: Luckfox Pico (RV1106 / RV1103)
+- 主控芯片: Rockchip RV1106, ARM Cortex-A7, 单核
+- 摄像头: MIPI CSI, 通过 RKMPI VI 模块接入
+- 编码器: 3 路 MT6701 磁编码器, I2C 总线+TCA9548A 切换
+- LED: 2 颗 WS2812, SPI 控制
+- 存储: SD 卡 (ext4/fat32), 路径 /mnt/sdcard/right
+- 上传: TCP 客户端, 向 192.168.4.17:9000 传文件
+
+【SDK 路径】
+/home/jennie/hhh/luckfox-pico/
+
+【交叉编译器】
+- 路径: /home/jennie/arm-rockchip830-linux-uclibcgnueabihf/bin/
+- 版本: gcc/g++ 8.3.0
+- 前缀: arm-rockchip830-linux-uclibcgnueabihf-
+- C 标准: C11
+- C++ 标准: C++11
+
+【RKMPI 多媒体框架】
+SDK 基于 Rockchip RKMPI (Media Process Interface) / Rockit Runtime 构建，
+摄像头采集和 JPEG 编码走硬件链路：
+
+    MIPI CSI 摄像头
+          ↓
+    VI (Video Input) 模块
+          ↓
+    VENC (Video Encoder) 模块 — JPEG 硬件编码
+          ↓
+    RK_MPI_VENC_GetStream() 取 JPEG 码流
+
+关键头文件位置:
+  - /home/jennie/hhh/luckfox-pico/media/rockit/out/include/
+    (rk_mpi_sys.h, rk_mpi_vi.h, rk_mpi_venc.h, rk_mpi_mb.h, rk_comm_*.h)
+
+关键库文件位置:
+  - /home/jennie/hhh/luckfox-pico/media/rockit/out/lib/librockit.so
+  - /home/jennie/hhh/luckfox-pico/media/out/lib/librockchip_mpp.so
+  - /home/jennie/hhh/luckfox-pico/media/out/lib/librga.so
+
+关键示例代码:
+  - /home/jennie/hhh/luckfox-pico/media/samples/simple_test/simple_vi_bind_venc_jpeg.c
+    (JPEG 单张采集参考)
+  - /home/jennie/hhh/luckfox-pico/media/samples/simple_test/simple_vi_bind_venc.c
+    (视频流连续采集参考)
+
+【JPEG 编码通道配置】
+- 编码类型: RK_VIDEO_ID_JPEG
+- 接收模式: VENC_PIC_RECEIVE_SINGLE (每帧需手动触发)
+- 像素格式: RK_FMT_YUV420SP
+- 分辨率: 640x480
+- 质量因子 (Qfactor): 85 (范围 1~99)
+- 缓冲: DMABUF, 2 个 ISP buf
+
+【上板运行时依赖】
+1. 内核需加载 rockit/mpp 驱动，/dev/mpi/ 下应有 vvi、venc、vsys 设备节点
+2. 板子 /usr/lib/ 需存在:
+   - librockit.so
+   - librockchip_mpp.so
+   - librga.so
+3. 启动前需关闭系统默认摄像头服务:
+   killall rkipc rkisp mpp_service
+
+【软件架构】
+
+main.c
+  └─ state_machine_run()
+       ├─ capture_thread      (camera_grab_jpeg + encoder_read_all)
+       │    └─ 推入 storage_push_frame()
+       ├─ storage_thread      (ring buffer → 按秒落盘 SD 卡)
+       │    └─ .tmp + rename + fsync → .ready 标记
+       └─ upload_thread       (扫描 .ready → 上传 → .uploaded)
+
+状态机状态: BOOT → READY → RECORDING → UPLOADING → UPLOAD_FAIL → ERROR
+
+【数据落盘格式】
+每秒一组:
+  /mnt/sdcard/right/photo/YYYY-MM-DD_HH-MM-SS/001.jpg ... 030.jpg
+  /mnt/sdcard/right/code/YYYY-MM-DD_HH-MM-SS.csv
+  /mnt/sdcard/right/code/YYYY-MM-DD_HH-MM-SS.ready
+
+上传成功后生成:
+  /mnt/sdcard/right/code/YYYY-MM-DD_HH-MM-SS.uploaded
+
+【文件列表 (共 11 个源码文件 + 1 个 CMake)】
+include/common.h
+include/hal_camera.h
+include/hal_encoder.h
+include/hal_gpio.h
+include/hal_led.h
+include/net_transfer.h
+include/state_machine.h
+include/sys_logger.h
+include/sys_storage.h
+include/sys_time.h
+src/app/main.c
+src/app/state_machine.c
+src/hal/hal_camera_rkmpi.c
+src/hal/hal_encoder.c
+src/hal/hal_led.c
+src/net/net_transfer.c
+src/sys/sys_logger.c
+src/sys/sys_storage.c
+src/sys/sys_time.c
+CMakeLists.txt
+

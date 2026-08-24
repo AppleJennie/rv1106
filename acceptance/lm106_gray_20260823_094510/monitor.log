@@ -1,0 +1,709 @@
+--- 1 ---
+[2024-01-01 00:26:58.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:26:59.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:00.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:01.025] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.6 retinaface_max_ms=32.1 rf_jpeg_decode_ms=120.0 rf_preprocess_ms=114.3 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=483 ai_frames=119 ai_drop_latest=362
+[2024-01-01 00:27:01.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:02.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 2 ---
+[2024-01-01 00:26:59.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:00.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:01.025] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.6 retinaface_max_ms=32.1 rf_jpeg_decode_ms=120.0 rf_preprocess_ms=114.3 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=483 ai_frames=119 ai_drop_latest=362
+[2024-01-01 00:27:01.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:02.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 3 ---
+[2024-01-01 00:27:00.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:01.025] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.6 retinaface_max_ms=32.1 rf_jpeg_decode_ms=120.0 rf_preprocess_ms=114.3 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=483 ai_frames=119 ai_drop_latest=362
+[2024-01-01 00:27:01.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:02.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 4 ---
+[2024-01-01 00:27:01.025] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.6 retinaface_max_ms=32.1 rf_jpeg_decode_ms=120.0 rf_preprocess_ms=114.3 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=483 ai_frames=119 ai_drop_latest=362
+[2024-01-01 00:27:01.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:02.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:06.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=36.6 rf_jpeg_decode_ms=108.2 rf_preprocess_ms=123.8 rf_rknn_ms=31.1 rf_post_ms=1.1 rf_total_ms=264.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=560 ai_frames=138 ai_drop_latest=420
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 5 ---
+[2024-01-01 00:27:02.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:06.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=36.6 rf_jpeg_decode_ms=108.2 rf_preprocess_ms=123.8 rf_rknn_ms=31.1 rf_post_ms=1.1 rf_total_ms=264.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=560 ai_frames=138 ai_drop_latest=420
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 6 ---
+[2024-01-01 00:27:03.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:06.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=36.6 rf_jpeg_decode_ms=108.2 rf_preprocess_ms=123.8 rf_rknn_ms=31.1 rf_post_ms=1.1 rf_total_ms=264.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=560 ai_frames=138 ai_drop_latest=420
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 7 ---
+[2024-01-01 00:27:04.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:06.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=36.6 rf_jpeg_decode_ms=108.2 rf_preprocess_ms=123.8 rf_rknn_ms=31.1 rf_post_ms=1.1 rf_total_ms=264.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=560 ai_frames=138 ai_drop_latest=420
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:09.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 8 ---
+[2024-01-01 00:27:05.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:06.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=36.6 rf_jpeg_decode_ms=108.2 rf_preprocess_ms=123.8 rf_rknn_ms=31.1 rf_post_ms=1.1 rf_total_ms=264.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=560 ai_frames=138 ai_drop_latest=420
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:09.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:10.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 9 ---
+[2024-01-01 00:27:06.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:09.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:10.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:11.292] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.2 rf_jpeg_decode_ms=115.1 rf_preprocess_ms=123.7 rf_rknn_ms=30.7 rf_post_ms=1.0 rf_total_ms=270.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=637 ai_frames=157 ai_drop_latest=478
+[2024-01-01 00:27:11.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 10 ---
+[2024-01-01 00:27:07.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:09.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:10.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:11.292] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.2 rf_jpeg_decode_ms=115.1 rf_preprocess_ms=123.7 rf_rknn_ms=30.7 rf_post_ms=1.0 rf_total_ms=270.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=637 ai_frames=157 ai_drop_latest=478
+[2024-01-01 00:27:11.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:12.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 11 ---
+[2024-01-01 00:27:08.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:09.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:10.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:11.292] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.2 rf_jpeg_decode_ms=115.1 rf_preprocess_ms=123.7 rf_rknn_ms=30.7 rf_post_ms=1.0 rf_total_ms=270.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=637 ai_frames=157 ai_drop_latest=478
+[2024-01-01 00:27:11.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:12.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:13.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 12 ---
+[2024-01-01 00:27:10.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:11.292] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.2 rf_jpeg_decode_ms=115.1 rf_preprocess_ms=123.7 rf_rknn_ms=30.7 rf_post_ms=1.0 rf_total_ms=270.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=637 ai_frames=157 ai_drop_latest=478
+[2024-01-01 00:27:11.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:12.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:13.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:14.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 13 ---
+[2024-01-01 00:27:11.292] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.2 rf_jpeg_decode_ms=115.1 rf_preprocess_ms=123.7 rf_rknn_ms=30.7 rf_post_ms=1.0 rf_total_ms=270.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=637 ai_frames=157 ai_drop_latest=478
+[2024-01-01 00:27:11.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:12.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:13.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:14.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:15.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+--- 14 ---
+[2024-01-01 00:27:12.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:13.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:14.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:15.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+[2024-01-01 00:27:16.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 15 ---
+[2024-01-01 00:27:13.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:14.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:15.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+[2024-01-01 00:27:16.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:17.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 16 ---
+[2024-01-01 00:27:14.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:15.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+[2024-01-01 00:27:16.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:17.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:18.960] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 17 ---
+[2024-01-01 00:27:15.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+[2024-01-01 00:27:16.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:17.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:18.960] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:20.025] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 18 ---
+[2024-01-01 00:27:16.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=33.2 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=127.1 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=272.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=716 ai_frames=176 ai_drop_latest=538
+[2024-01-01 00:27:16.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:17.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:18.960] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:20.025] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 19 ---
+[2024-01-01 00:27:17.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:18.960] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:20.025] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 20 ---
+[2024-01-01 00:27:18.960] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:20.025] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 21 ---
+[2024-01-01 00:27:20.025] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 22 ---
+[2024-01-01 00:27:21.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 23 ---
+[2024-01-01 00:27:21.758] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=35.3 rf_jpeg_decode_ms=117.1 rf_preprocess_ms=121.7 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=270.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=794 ai_frames=195 ai_drop_latest=597
+[2024-01-01 00:27:22.158] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.7 rf_jpeg_decode_ms=121.9 rf_preprocess_ms=121.8 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=275.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=872 ai_frames=214 ai_drop_latest=656
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 24 ---
+[2024-01-01 00:27:23.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.7 rf_jpeg_decode_ms=121.9 rf_preprocess_ms=121.8 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=275.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=872 ai_frames=214 ai_drop_latest=656
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 25 ---
+[2024-01-01 00:27:24.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.7 rf_jpeg_decode_ms=121.9 rf_preprocess_ms=121.8 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=275.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=872 ai_frames=214 ai_drop_latest=656
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 26 ---
+[2024-01-01 00:27:25.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.7 rf_jpeg_decode_ms=121.9 rf_preprocess_ms=121.8 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=275.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=872 ai_frames=214 ai_drop_latest=656
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:30.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 27 ---
+[2024-01-01 00:27:26.425] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:26.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.7 rf_jpeg_decode_ms=121.9 rf_preprocess_ms=121.8 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=275.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=872 ai_frames=214 ai_drop_latest=656
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:30.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:31.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 28 ---
+[2024-01-01 00:27:27.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:30.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:31.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:32.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=123.3 rf_preprocess_ms=122.4 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=277.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=950 ai_frames=232 ai_drop_latest=716
+[2024-01-01 00:27:32.563] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 29 ---
+[2024-01-01 00:27:28.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:30.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:31.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:32.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=123.3 rf_preprocess_ms=122.4 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=277.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=950 ai_frames=232 ai_drop_latest=716
+[2024-01-01 00:27:32.563] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:33.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 30 ---
+[2024-01-01 00:27:29.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:30.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:31.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:32.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=123.3 rf_preprocess_ms=122.4 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=277.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=950 ai_frames=232 ai_drop_latest=716
+[2024-01-01 00:27:32.563] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:33.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:34.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 31 ---
+[2024-01-01 00:27:31.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:32.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=123.3 rf_preprocess_ms=122.4 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=277.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=950 ai_frames=232 ai_drop_latest=716
+[2024-01-01 00:27:32.563] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:33.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:34.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:35.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 32 ---
+[2024-01-01 00:27:32.158] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=123.3 rf_preprocess_ms=122.4 rf_rknn_ms=30.8 rf_post_ms=1.0 rf_total_ms=277.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=950 ai_frames=232 ai_drop_latest=716
+[2024-01-01 00:27:32.563] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:33.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:34.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:35.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:36.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+--- 33 ---
+[2024-01-01 00:27:33.625] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:34.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:35.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:36.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+[2024-01-01 00:27:37.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 34 ---
+[2024-01-01 00:27:34.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:35.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:36.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+[2024-01-01 00:27:37.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:38.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 35 ---
+[2024-01-01 00:27:35.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:36.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+[2024-01-01 00:27:37.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:38.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:39.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 36 ---
+[2024-01-01 00:27:36.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+[2024-01-01 00:27:37.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:38.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:39.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 37 ---
+[2024-01-01 00:27:37.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.0 retinaface_max_ms=33.7 rf_jpeg_decode_ms=117.6 rf_preprocess_ms=119.8 rf_rknn_ms=31.0 rf_post_ms=0.9 rf_total_ms=269.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1028 ai_frames=251 ai_drop_latest=775
+[2024-01-01 00:27:37.825] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:38.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:39.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:42.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.7 rf_preprocess_ms=123.8 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=271.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1108 ai_frames=270 ai_drop_latest=836
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 38 ---
+[2024-01-01 00:27:38.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:39.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:42.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.7 rf_preprocess_ms=123.8 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=271.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1108 ai_frames=270 ai_drop_latest=836
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 39 ---
+[2024-01-01 00:27:39.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:42.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.7 rf_preprocess_ms=123.8 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=271.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1108 ai_frames=270 ai_drop_latest=836
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 40 ---
+[2024-01-01 00:27:40.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:42.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.7 rf_preprocess_ms=123.8 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=271.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1108 ai_frames=270 ai_drop_latest=836
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 41 ---
+[2024-01-01 00:27:41.958] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:42.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.7 rf_preprocess_ms=123.8 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=271.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1108 ai_frames=270 ai_drop_latest=836
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.225] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 42 ---
+[2024-01-01 00:27:43.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.225] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.9 rf_preprocess_ms=118.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1187 ai_frames=289 ai_drop_latest=896
+[2024-01-01 00:27:48.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 43 ---
+[2024-01-01 00:27:44.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.225] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.9 rf_preprocess_ms=118.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1187 ai_frames=289 ai_drop_latest=896
+[2024-01-01 00:27:48.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:49.293] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 44 ---
+[2024-01-01 00:27:45.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.225] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.9 rf_preprocess_ms=118.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1187 ai_frames=289 ai_drop_latest=896
+[2024-01-01 00:27:48.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:49.293] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:50.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 45 ---
+[2024-01-01 00:27:46.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.225] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:47.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.9 rf_preprocess_ms=118.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1187 ai_frames=289 ai_drop_latest=896
+[2024-01-01 00:27:48.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:49.293] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:50.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:51.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 46 ---
+[2024-01-01 00:27:47.958] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=32.3 rf_jpeg_decode_ms=115.9 rf_preprocess_ms=118.3 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=265.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1187 ai_frames=289 ai_drop_latest=896
+[2024-01-01 00:27:48.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:49.293] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:50.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:51.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:52.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+--- 47 ---
+[2024-01-01 00:27:49.293] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:50.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:51.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:52.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+[2024-01-01 00:27:53.489] [INFO] [2024-01-01 00:27:53.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 48 ---
+[2024-01-01 00:27:50.358] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:51.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:52.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+[2024-01-01 00:27:53.489] [INFO] [2024-01-01 00:27:53.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:54.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 49 ---
+[2024-01-01 00:27:51.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:52.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+[2024-01-01 00:27:53.489] [INFO] [2024-01-01 00:27:53.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:54.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:55.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 50 ---
+[2024-01-01 00:27:52.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+[2024-01-01 00:27:53.489] [INFO] [2024-01-01 00:27:53.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:54.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:55.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:56.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 51 ---
+[2024-01-01 00:27:53.092] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=32.4 rf_jpeg_decode_ms=122.9 rf_preprocess_ms=122.2 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1264 ai_frames=308 ai_drop_latest=954
+[2024-01-01 00:27:53.489] [INFO] [2024-01-01 00:27:53.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:54.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:55.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:56.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:57.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+--- 52 ---
+[2024-01-01 00:27:54.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:55.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:56.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:57.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+[2024-01-01 00:27:58.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 53 ---
+[2024-01-01 00:27:55.558] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:56.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:57.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+[2024-01-01 00:27:58.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:59.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 54 ---
+[2024-01-01 00:27:56.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:57.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+[2024-01-01 00:27:58.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:59.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 55 ---
+[2024-01-01 00:27:57.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+[2024-01-01 00:27:58.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:59.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 56 ---
+[2024-01-01 00:27:58.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.9 retinaface_max_ms=32.6 rf_jpeg_decode_ms=127.8 rf_preprocess_ms=116.6 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=276.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1343 ai_frames=327 ai_drop_latest=1014
+[2024-01-01 00:27:58.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:27:59.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:03.625] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.4 retinaface_avg_ms=31.0 retinaface_max_ms=32.6 rf_jpeg_decode_ms=118.2 rf_preprocess_ms=123.6 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=273.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1422 ai_frames=345 ai_drop_latest=1075
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 57 ---
+[2024-01-01 00:27:59.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:03.625] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.4 retinaface_avg_ms=31.0 retinaface_max_ms=32.6 rf_jpeg_decode_ms=118.2 rf_preprocess_ms=123.6 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=273.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1422 ai_frames=345 ai_drop_latest=1075
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 58 ---
+[2024-01-01 00:28:00.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:03.625] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.4 retinaface_avg_ms=31.0 retinaface_max_ms=32.6 rf_jpeg_decode_ms=118.2 rf_preprocess_ms=123.6 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=273.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1422 ai_frames=345 ai_drop_latest=1075
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 59 ---
+[2024-01-01 00:28:01.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:03.625] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.4 retinaface_avg_ms=31.0 retinaface_max_ms=32.6 rf_jpeg_decode_ms=118.2 rf_preprocess_ms=123.6 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=273.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1422 ai_frames=345 ai_drop_latest=1075
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 60 ---
+[2024-01-01 00:28:02.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:03.625] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.4 retinaface_avg_ms=31.0 retinaface_max_ms=32.6 rf_jpeg_decode_ms=118.2 rf_preprocess_ms=123.6 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=273.9 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1422 ai_frames=345 ai_drop_latest=1075
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 61 ---
+[2024-01-01 00:28:03.891] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.891] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.0 retinaface_max_ms=33.5 rf_jpeg_decode_ms=110.5 rf_preprocess_ms=124.8 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=267.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1501 ai_frames=364 ai_drop_latest=1135
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 62 ---
+[2024-01-01 00:28:04.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.891] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.0 retinaface_max_ms=33.5 rf_jpeg_decode_ms=110.5 rf_preprocess_ms=124.8 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=267.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1501 ai_frames=364 ai_drop_latest=1135
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:10.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 63 ---
+[2024-01-01 00:28:05.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.891] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.0 retinaface_max_ms=33.5 rf_jpeg_decode_ms=110.5 rf_preprocess_ms=124.8 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=267.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1501 ai_frames=364 ai_drop_latest=1135
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:10.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:11.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 64 ---
+[2024-01-01 00:28:07.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.891] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.0 retinaface_max_ms=33.5 rf_jpeg_decode_ms=110.5 rf_preprocess_ms=124.8 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=267.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1501 ai_frames=364 ai_drop_latest=1135
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:10.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:11.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:12.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 65 ---
+[2024-01-01 00:28:08.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:08.891] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.0 retinaface_max_ms=33.5 rf_jpeg_decode_ms=110.5 rf_preprocess_ms=124.8 rf_rknn_ms=31.0 rf_post_ms=1.0 rf_total_ms=267.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1501 ai_frames=364 ai_drop_latest=1135
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:10.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:11.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:12.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:13.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 66 ---
+[2024-01-01 00:28:09.098] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:10.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:11.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:12.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:13.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:14.093] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=35.3 rf_jpeg_decode_ms=113.2 rf_preprocess_ms=128.0 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=273.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1579 ai_frames=383 ai_drop_latest=1194
+[2024-01-01 00:28:14.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 67 ---
+[2024-01-01 00:28:11.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:12.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:13.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:14.093] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=35.3 rf_jpeg_decode_ms=113.2 rf_preprocess_ms=128.0 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=273.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1579 ai_frames=383 ai_drop_latest=1194
+[2024-01-01 00:28:14.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:15.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 68 ---
+[2024-01-01 00:28:12.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:13.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:14.093] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=35.3 rf_jpeg_decode_ms=113.2 rf_preprocess_ms=128.0 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=273.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1579 ai_frames=383 ai_drop_latest=1194
+[2024-01-01 00:28:14.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:15.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:16.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 69 ---
+[2024-01-01 00:28:13.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:14.093] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=35.3 rf_jpeg_decode_ms=113.2 rf_preprocess_ms=128.0 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=273.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1579 ai_frames=383 ai_drop_latest=1194
+[2024-01-01 00:28:14.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:15.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:16.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:17.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 70 ---
+[2024-01-01 00:28:14.093] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.1 retinaface_max_ms=35.3 rf_jpeg_decode_ms=113.2 rf_preprocess_ms=128.0 rf_rknn_ms=31.1 rf_post_ms=0.9 rf_total_ms=273.2 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1579 ai_frames=383 ai_drop_latest=1194
+[2024-01-01 00:28:14.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:15.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:16.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:17.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:18.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+--- 71 ---
+[2024-01-01 00:28:15.291] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:16.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:17.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:18.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+[2024-01-01 00:28:19.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 72 ---
+[2024-01-01 00:28:16.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:17.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:18.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+[2024-01-01 00:28:19.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 73 ---
+[2024-01-01 00:28:17.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:18.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+[2024-01-01 00:28:19.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 74 ---
+[2024-01-01 00:28:18.424] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+[2024-01-01 00:28:19.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 75 ---
+[2024-01-01 00:28:19.358] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=30.8 retinaface_max_ms=34.0 rf_jpeg_decode_ms=125.5 rf_preprocess_ms=121.2 rf_rknn_ms=30.8 rf_post_ms=0.9 rf_total_ms=278.5 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1658 ai_frames=402 ai_drop_latest=1254
+[2024-01-01 00:28:19.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:24.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.2 retinaface_max_ms=34.9 rf_jpeg_decode_ms=106.3 rf_preprocess_ms=125.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=264.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1736 ai_frames=421 ai_drop_latest=1313
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 76 ---
+[2024-01-01 00:28:20.491] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:24.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.2 retinaface_max_ms=34.9 rf_jpeg_decode_ms=106.3 rf_preprocess_ms=125.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=264.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1736 ai_frames=421 ai_drop_latest=1313
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 77 ---
+[2024-01-01 00:28:21.557] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:24.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.2 retinaface_max_ms=34.9 rf_jpeg_decode_ms=106.3 rf_preprocess_ms=125.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=264.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1736 ai_frames=421 ai_drop_latest=1313
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 78 ---
+[2024-01-01 00:28:22.624] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:24.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.2 retinaface_max_ms=34.9 rf_jpeg_decode_ms=106.3 rf_preprocess_ms=125.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=264.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1736 ai_frames=421 ai_drop_latest=1313
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 79 ---
+[2024-01-01 00:28:23.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:24.558] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=31.2 retinaface_max_ms=34.9 rf_jpeg_decode_ms=106.3 rf_preprocess_ms=125.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=264.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1736 ai_frames=421 ai_drop_latest=1313
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:28.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 80 ---
+[2024-01-01 00:28:24.691] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:28.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:29.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.9 retinaface_max_ms=33.0 rf_jpeg_decode_ms=114.3 rf_preprocess_ms=117.3 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=263.6 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1813 ai_frames=439 ai_drop_latest=1372
+[2024-01-01 00:28:29.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 81 ---
+[2024-01-01 00:28:25.757] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:28.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:29.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.9 retinaface_max_ms=33.0 rf_jpeg_decode_ms=114.3 rf_preprocess_ms=117.3 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=263.6 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1813 ai_frames=439 ai_drop_latest=1372
+[2024-01-01 00:28:29.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:30.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 82 ---
+[2024-01-01 00:28:26.758] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:28.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:29.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.9 retinaface_max_ms=33.0 rf_jpeg_decode_ms=114.3 rf_preprocess_ms=117.3 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=263.6 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1813 ai_frames=439 ai_drop_latest=1372
+[2024-01-01 00:28:29.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:30.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:31.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 83 ---
+[2024-01-01 00:28:27.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:28.824] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:29.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.9 retinaface_max_ms=33.0 rf_jpeg_decode_ms=114.3 rf_preprocess_ms=117.3 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=263.6 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1813 ai_frames=439 ai_drop_latest=1372
+[2024-01-01 00:28:29.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:30.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:31.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:32.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 84 ---
+[2024-01-01 00:28:29.691] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.9 retinaface_max_ms=33.0 rf_jpeg_decode_ms=114.3 rf_preprocess_ms=117.3 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=263.6 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1813 ai_frames=439 ai_drop_latest=1372
+[2024-01-01 00:28:29.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:30.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:31.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:32.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+--- 85 ---
+[2024-01-01 00:28:30.890] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:31.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:32.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+[2024-01-01 00:28:35.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 86 ---
+[2024-01-01 00:28:31.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:32.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+[2024-01-01 00:28:35.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:36.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 87 ---
+[2024-01-01 00:28:32.957] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+[2024-01-01 00:28:35.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:36.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:37.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 88 ---
+[2024-01-01 00:28:34.024] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+[2024-01-01 00:28:35.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:36.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:37.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:38.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:39.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 89 ---
+[2024-01-01 00:28:34.824] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.7 retinaface_max_ms=32.4 rf_jpeg_decode_ms=109.5 rf_preprocess_ms=121.9 rf_rknn_ms=30.7 rf_post_ms=0.9 rf_total_ms=263.0 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1890 ai_frames=458 ai_drop_latest=1430
+[2024-01-01 00:28:35.091] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:36.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:37.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:38.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:39.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:40.024] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=33.6 rf_jpeg_decode_ms=113.5 rf_preprocess_ms=118.0 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=263.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1968 ai_frames=477 ai_drop_latest=1489
+[2024-01-01 00:28:40.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+--- 90 ---
+[2024-01-01 00:28:36.157] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:37.224] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:38.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:39.290] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:40.024] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=33.6 rf_jpeg_decode_ms=113.5 rf_preprocess_ms=118.0 rf_rknn_ms=30.9 rf_post_ms=0.9 rf_total_ms=263.3 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=1968 ai_frames=477 ai_drop_latest=1489
+[2024-01-01 00:28:40.357] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:28:41.424] [INFO] DMS status=NO_FACE face=0 score=0.00

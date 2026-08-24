@@ -1,0 +1,200 @@
+[2024-01-01 00:12:29.672] [INFO] [CAM] fps=15, ok=10471, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=91060/83210 bytes
+[2024-01-01 00:12:29.819] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,144,346,425
+[2024-01-01 00:12:30.072] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:12:30.073] [INFO] [CAP] fps=15, frame_id=10477, cam_fail=0, push_fail=0
+[2024-01-01 00:12:30.087] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,144,346,425
+[2024-01-01 00:12:30.561] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=562,213,346,286
+[2024-01-01 00:12:30.672] [INFO] [CAM] fps=15, ok=10486, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=81383/81353 bytes
+[2024-01-01 00:12:30.792] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=562,144,346,425
+[2024-01-01 00:12:31.073] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=498,164,346,425
+[2024-01-01 00:12:31.139] [INFO] DMS status=FACE face=1 score=3.65
+[2024-01-01 00:12:31.139] [INFO] [CAP] fps=16, frame_id=10493, cam_fail=0, push_fail=0
+[2024-01-01 00:12:31.140] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.9 retinaface_max_ms=35.4 rf_jpeg_decode_ms=111.4 rf_preprocess_ms=126.4 rf_rknn_ms=30.9 rf_post_ms=1.1 rf_total_ms=269.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10493 ai_frames=2365 ai_drop_latest=8126
+[2024-01-01 00:12:31.305] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,164,346,425
+[2024-01-01 00:12:31.571] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,164,346,425
+[2024-01-01 00:12:31.672] [INFO] [CAM] fps=15, ok=10501, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=81023/81006 bytes
+[2024-01-01 00:12:31.935] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,108,346,425
+[2024-01-01 00:12:32.186] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,144,346,425
+[2024-01-01 00:12:32.205] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:32.206] [INFO] [CAP] fps=16, frame_id=10509, cam_fail=0, push_fail=0
+[2024-01-01 00:12:32.672] [INFO] [CAM] fps=15, ok=10516, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=81446/79111 bytes
+[2024-01-01 00:12:32.732] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=416,144,512,425
+[2024-01-01 00:12:33.139] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,144,346,425
+[2024-01-01 00:12:33.205] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:33.206] [INFO] [CAP] fps=15, frame_id=10524, cam_fail=0, push_fail=0
+[2024-01-01 00:12:33.367] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,144,346,425
+[2024-01-01 00:12:33.594] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=562,164,346,425
+[2024-01-01 00:12:33.738] [INFO] [CAM] fps=16, ok=10532, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=88076/80127 bytes
+[2024-01-01 00:12:33.824] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=562,144,346,425
+[2024-01-01 00:12:34.054] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=562,144,346,425
+[2024-01-01 00:12:34.205] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:34.206] [INFO] [CAP] fps=15, frame_id=10539, cam_fail=0, push_fail=0
+[2024-01-01 00:12:34.455] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=562,144,346,425
+[2024-01-01 00:12:34.686] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=562,144,346,425
+[2024-01-01 00:12:34.738] [INFO] [CAM] fps=15, ok=10547, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=70208/82454 bytes
+[2024-01-01 00:12:34.956] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=562,144,346,425
+[2024-01-01 00:12:35.187] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=562,144,346,425
+[2024-01-01 00:12:35.272] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:35.273] [INFO] [CAP] fps=16, frame_id=10555, cam_fail=0, push_fail=0
+[2024-01-01 00:12:35.478] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=626,144,346,425
+[2024-01-01 00:12:35.738] [INFO] [CAM] fps=15, ok=10562, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=75510/72538 bytes
+[2024-01-01 00:12:35.883] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=544,144,512,425
+[2024-01-01 00:12:36.163] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,20,346,425
+[2024-01-01 00:12:36.272] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:36.273] [INFO] [CAP] fps=15, frame_id=10570, cam_fail=0, push_fail=0
+[2024-01-01 00:12:36.273] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.2 ai_fps=3.3 retinaface_avg_ms=31.0 retinaface_max_ms=36.1 rf_jpeg_decode_ms=132.7 rf_preprocess_ms=117.8 rf_rknn_ms=31.0 rf_post_ms=1.1 rf_total_ms=282.6 vis_jpeg_decode_ms=102.1 vis_draw_ms=0.6 vis_encode_ms=151.1 vis_total_ms=253.7 camera_frames=10570 ai_frames=2382 ai_drop_latest=8186
+[2024-01-01 00:12:36.396] [INFO] FACE_DETECT_OK face=1 score=3.897 bbox=434,128,346,425
+[2024-01-01 00:12:36.627] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,128,346,425
+[2024-01-01 00:12:36.738] [INFO] [CAM] fps=15, ok=10577, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=67162/72675 bytes
+[2024-01-01 00:12:37.052] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,234,346,288
+[2024-01-01 00:12:37.272] [INFO] DMS status=FACE face=1 score=3.65
+[2024-01-01 00:12:37.273] [INFO] [CAP] fps=15, frame_id=10585, cam_fail=0, push_fail=0
+[2024-01-01 00:12:37.291] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=370,270,346,286
+[2024-01-01 00:12:37.523] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,270,346,286
+[2024-01-01 00:12:37.738] [INFO] [CAM] fps=15, ok=10592, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=68796/74337 bytes
+[2024-01-01 00:12:37.758] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=370,270,346,286
+[2024-01-01 00:12:37.992] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,306,346,288
+[2024-01-01 00:12:38.338] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:38.339] [INFO] [CAP] fps=16, frame_id=10601, cam_fail=0, push_fail=0
+[2024-01-01 00:12:38.395] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,306,346,288
+[2024-01-01 00:12:38.628] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,249,346,288
+[2024-01-01 00:12:38.738] [INFO] [CAM] fps=15, ok=10607, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=54435/70337 bytes
+[2024-01-01 00:12:38.861] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=490,342,234,286
+[2024-01-01 00:12:39.092] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=498,378,346,288
+[2024-01-01 00:12:39.339] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:39.339] [INFO] [CAP] fps=15, frame_id=10616, cam_fail=0, push_fail=0
+[2024-01-01 00:12:39.343] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=526,342,234,286
+[2024-01-01 00:12:39.738] [INFO] [CAM] fps=15, ok=10622, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=79093/66943 bytes
+[2024-01-01 00:12:39.748] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=526,378,234,288
+[2024-01-01 00:12:39.975] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=464,319,254,313
+[2024-01-01 00:12:40.206] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=526,342,234,286
+[2024-01-01 00:12:40.405] [INFO] DMS status=FACE face=1 score=2.44
+[2024-01-01 00:12:40.406] [INFO] [CAP] fps=16, frame_id=10632, cam_fail=0, push_fail=0
+[2024-01-01 00:12:40.432] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=464,327,254,313
+[2024-01-01 00:12:40.659] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=490,342,234,286
+[2024-01-01 00:12:40.738] [INFO] [CAM] fps=15, ok=10637, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=77429/69238 bytes
+[2024-01-01 00:12:41.175] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=464,309,254,313
+[2024-01-01 00:12:41.448] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=470,378,346,288
+[2024-01-01 00:12:41.472] [INFO] DMS status=FACE face=1 score=2.92
+[2024-01-01 00:12:41.472] [INFO] [CAP] fps=16, frame_id=10648, cam_fail=0, push_fail=0
+[2024-01-01 00:12:41.473] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.7 retinaface_avg_ms=30.8 retinaface_max_ms=32.4 rf_jpeg_decode_ms=112.8 rf_preprocess_ms=126.8 rf_rknn_ms=30.8 rf_post_ms=1.1 rf_total_ms=271.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10648 ai_frames=2401 ai_drop_latest=8245
+[2024-01-01 00:12:41.681] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=434,342,346,286
+[2024-01-01 00:12:41.738] [INFO] [CAM] fps=15, ok=10652, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=59990/67775 bytes
+[2024-01-01 00:12:41.908] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=434,342,346,286
+[2024-01-01 00:12:42.298] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=526,306,234,288
+[2024-01-01 00:12:42.525] [INFO] FACE_DETECT_OK face=1 score=1.218 bbox=554,306,234,288
+[2024-01-01 00:12:42.538] [INFO] DMS status=FACE face=1 score=1.22
+[2024-01-01 00:12:42.539] [INFO] [CAP] fps=16, frame_id=10664, cam_fail=0, push_fail=0
+[2024-01-01 00:12:42.738] [INFO] [CAM] fps=15, ok=10667, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=60973/64154 bytes
+[2024-01-01 00:12:42.755] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=498,342,346,286
+[2024-01-01 00:12:42.983] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=398,306,346,288
+[2024-01-01 00:12:43.216] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:12:43.605] [INFO] DMS status=NO_FACE face=0 score=0.00
+[2024-01-01 00:12:43.605] [INFO] [CAP] fps=16, frame_id=10680, cam_fail=0, push_fail=0
+[2024-01-01 00:12:43.642] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:12:43.738] [INFO] [CAM] fps=15, ok=10682, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=68399/61532 bytes
+[2024-01-01 00:12:43.869] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=496,306,256,212
+[2024-01-01 00:12:44.097] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:12:44.325] [INFO] FACE_DETECT_OK face=1 score=0.731 bbox=496,252,256,212
+[2024-01-01 00:12:44.553] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=496,298,256,212
+[2024-01-01 00:12:44.605] [INFO] DMS status=FACE face=1 score=2.19
+[2024-01-01 00:12:44.606] [INFO] [CAP] fps=15, frame_id=10695, cam_fail=0, push_fail=0
+[2024-01-01 00:12:44.738] [INFO] [CAM] fps=15, ok=10697, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=76406/62272 bytes
+[2024-01-01 00:12:44.919] [INFO] FACE_DETECT_OK face=1 score=1.949 bbox=496,306,256,212
+[2024-01-01 00:12:45.151] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=496,342,256,212
+[2024-01-01 00:12:45.381] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=496,352,256,212
+[2024-01-01 00:12:45.605] [INFO] DMS status=FACE face=1 score=2.44
+[2024-01-01 00:12:45.606] [INFO] [CAP] fps=15, frame_id=10710, cam_fail=0, push_fail=0
+[2024-01-01 00:12:45.648] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=496,342,256,212
+[2024-01-01 00:12:45.738] [INFO] [CAM] fps=15, ok=10712, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=77277/66825 bytes
+[2024-01-01 00:12:45.876] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=528,334,256,212
+[2024-01-01 00:12:46.388] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=496,324,256,212
+[2024-01-01 00:12:46.605] [INFO] DMS status=FACE face=1 score=2.44
+[2024-01-01 00:12:46.606] [INFO] [CAP] fps=15, frame_id=10725, cam_fail=0, push_fail=0
+[2024-01-01 00:12:46.606] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.5 retinaface_avg_ms=30.7 retinaface_max_ms=34.6 rf_jpeg_decode_ms=110.4 rf_preprocess_ms=130.3 rf_rknn_ms=30.7 rf_post_ms=1.3 rf_total_ms=272.8 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10725 ai_frames=2419 ai_drop_latest=8304
+[2024-01-01 00:12:46.618] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=496,334,256,212
+[2024-01-01 00:12:46.805] [INFO] [CAM] fps=16, ok=10728, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=62809/67182 bytes
+[2024-01-01 00:12:46.845] [INFO] FACE_DETECT_OK face=1 score=2.192 bbox=528,283,256,313
+[2024-01-01 00:12:47.099] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,285,346,286
+[2024-01-01 00:12:47.333] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=498,252,346,425
+[2024-01-01 00:12:47.672] [INFO] DMS status=FACE face=1 score=2.44
+[2024-01-01 00:12:47.672] [INFO] [CAP] fps=16, frame_id=10741, cam_fail=0, push_fail=0
+[2024-01-01 00:12:47.756] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=562,288,346,425
+[2024-01-01 00:12:47.805] [INFO] [CAM] fps=15, ok=10743, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=55615/64107 bytes
+[2024-01-01 00:12:47.989] [INFO] FACE_DETECT_OK no_face
+[2024-01-01 00:12:48.219] [INFO] FACE_DETECT_OK face=1 score=1.218 bbox=544,364,512,354
+[2024-01-01 00:12:48.448] [INFO] FACE_DETECT_OK face=1 score=0.974 bbox=544,364,512,354
+[2024-01-01 00:12:48.672] [INFO] DMS status=FACE face=1 score=0.97
+[2024-01-01 00:12:48.672] [INFO] [CAP] fps=15, frame_id=10756, cam_fail=0, push_fail=0
+[2024-01-01 00:12:48.742] [INFO] FACE_DETECT_OK face=1 score=0.974 bbox=562,243,346,475
+[2024-01-01 00:12:48.805] [INFO] [CAM] fps=15, ok=10758, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=75447/71577 bytes
+[2024-01-01 00:12:49.042] [INFO] FACE_DETECT_OK face=1 score=1.218 bbox=626,279,346,439
+[2024-01-01 00:12:49.272] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=562,308,346,410
+[2024-01-01 00:12:49.500] [INFO] FACE_DETECT_OK face=1 score=1.949 bbox=562,308,346,410
+[2024-01-01 00:12:49.729] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=480,308,510,410
+[2024-01-01 00:12:49.738] [INFO] DMS status=FACE face=1 score=1.71
+[2024-01-01 00:12:49.739] [INFO] [CAP] fps=16, frame_id=10772, cam_fail=0, push_fail=0
+[2024-01-01 00:12:49.806] [INFO] [CAM] fps=15, ok=10773, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=85193/80108 bytes
+[2024-01-01 00:12:50.131] [INFO] FACE_DETECT_OK face=1 score=1.462 bbox=480,364,510,354
+[2024-01-01 00:12:50.363] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=480,364,510,354
+[2024-01-01 00:12:50.593] [INFO] FACE_DETECT_OK face=1 score=1.462 bbox=480,364,510,354
+[2024-01-01 00:12:50.805] [INFO] [CAM] fps=15, ok=10788, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=69872/81268 bytes
+[2024-01-01 00:12:50.806] [INFO] DMS status=FACE face=1 score=1.46
+[2024-01-01 00:12:50.806] [INFO] [CAP] fps=16, frame_id=10788, cam_fail=0, push_fail=0
+[2024-01-01 00:12:50.822] [INFO] FACE_DETECT_OK face=1 score=1.705 bbox=480,364,510,354
+[2024-01-01 00:12:51.051] [INFO] FACE_DETECT_OK face=1 score=1.218 bbox=526,364,346,354
+[2024-01-01 00:12:51.588] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=562,308,346,410
+[2024-01-01 00:12:51.817] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,252,346,425
+[2024-01-01 00:12:51.871] [INFO] [CAM] fps=16, ok=10804, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=71554/78088 bytes
+[2024-01-01 00:12:51.872] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:12:51.873] [INFO] [CAP] fps=16, frame_id=10804, cam_fail=0, push_fail=0
+[2024-01-01 00:12:51.873] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.8 retinaface_avg_ms=30.6 retinaface_max_ms=31.9 rf_jpeg_decode_ms=113.4 rf_preprocess_ms=119.8 rf_rknn_ms=30.6 rf_post_ms=0.9 rf_total_ms=264.7 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10804 ai_frames=2439 ai_drop_latest=8363
+[2024-01-01 00:12:52.108] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,272,346,425
+[2024-01-01 00:12:52.339] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,272,346,425
+[2024-01-01 00:12:52.591] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,272,346,425
+[2024-01-01 00:12:52.871] [INFO] [CAM] fps=15, ok=10819, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=72110/77436 bytes
+[2024-01-01 00:12:52.938] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:52.939] [INFO] [CAP] fps=16, frame_id=10820, cam_fail=0, push_fail=0
+[2024-01-01 00:12:52.939] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,272,346,425
+[2024-01-01 00:12:53.182] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,342,346,286
+[2024-01-01 00:12:53.417] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,342,346,286
+[2024-01-01 00:12:53.650] [INFO] FACE_DETECT_OK face=1 score=2.679 bbox=490,342,234,286
+[2024-01-01 00:12:53.872] [INFO] [CAM] fps=15, ok=10834, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=79901/76046 bytes
+[2024-01-01 00:12:53.939] [INFO] DMS status=FACE face=1 score=2.68
+[2024-01-01 00:12:53.939] [INFO] [CAP] fps=15, frame_id=10835, cam_fail=0, push_fail=0
+[2024-01-01 00:12:53.943] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=496,334,256,212
+[2024-01-01 00:12:54.288] [INFO] FACE_DETECT_OK face=1 score=2.923 bbox=496,316,256,212
+[2024-01-01 00:12:54.516] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=490,306,234,288
+[2024-01-01 00:12:54.749] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,306,346,288
+[2024-01-01 00:12:54.871] [INFO] [CAM] fps=15, ok=10849, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=66286/76882 bytes
+[2024-01-01 00:12:54.983] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,236,346,425
+[2024-01-01 00:12:55.005] [INFO] DMS status=FACE face=1 score=3.65
+[2024-01-01 00:12:55.006] [INFO] [CAP] fps=16, frame_id=10851, cam_fail=0, push_fail=0
+[2024-01-01 00:12:55.353] [INFO] FACE_DETECT_OK face=1 score=3.654 bbox=434,272,346,425
+[2024-01-01 00:12:55.582] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,342,346,286
+[2024-01-01 00:12:55.808] [INFO] FACE_DETECT_OK face=1 score=2.436 bbox=534,252,346,425
+[2024-01-01 00:12:55.871] [INFO] [CAM] fps=15, ok=10864, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=80761/74890 bytes
+[2024-01-01 00:12:56.037] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=534,308,346,410
+[2024-01-01 00:12:56.072] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:56.072] [INFO] [CAP] fps=16, frame_id=10867, cam_fail=0, push_fail=0
+[2024-01-01 00:12:56.303] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=434,308,346,410
+[2024-01-01 00:12:56.800] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,272,346,425
+[2024-01-01 00:12:56.871] [INFO] [CAM] fps=15, ok=10879, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=81056/75948 bytes
+[2024-01-01 00:12:57.028] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,308,346,410
+[2024-01-01 00:12:57.138] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:12:57.139] [INFO] [CAP] fps=16, frame_id=10883, cam_fail=0, push_fail=0
+[2024-01-01 00:12:57.139] [INFO] [DMS PERF] camera_fps=15.0 raw_stream_fps=15.0 debug_stream_fps=0.0 ai_fps=3.6 retinaface_avg_ms=31.2 retinaface_max_ms=37.7 rf_jpeg_decode_ms=119.7 rf_preprocess_ms=120.2 rf_rknn_ms=31.2 rf_post_ms=1.2 rf_total_ms=272.4 vis_jpeg_decode_ms=0.0 vis_draw_ms=0.0 vis_encode_ms=0.0 vis_total_ms=0.0 camera_frames=10883 ai_frames=2458 ai_drop_latest=8423
+[2024-01-01 00:12:57.282] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=534,308,346,410
+[2024-01-01 00:12:57.507] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,272,346,425
+[2024-01-01 00:12:57.735] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,328,346,390
+[2024-01-01 00:12:57.871] [INFO] [CAM] fps=15, ok=10894, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=81989/75792 bytes
+[2024-01-01 00:12:58.122] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,308,346,410
+[2024-01-01 00:12:58.138] [INFO] DMS status=FACE face=1 score=3.17
+[2024-01-01 00:12:58.139] [INFO] [CAP] fps=15, frame_id=10898, cam_fail=0, push_fail=0
+[2024-01-01 00:12:58.352] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,272,346,425
+[2024-01-01 00:12:58.582] [INFO] FACE_DETECT_OK face=1 score=3.167 bbox=498,272,346,425
+[2024-01-01 00:12:58.809] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,252,346,425
+[2024-01-01 00:12:58.871] [INFO] [CAM] fps=15, ok=10909, fail_cur=0, fail_total=0, timeout=0, restart=0, restart_fail=0, jpeg=73594/78266 bytes
+[2024-01-01 00:12:59.082] [INFO] FACE_DETECT_OK face=1 score=3.410 bbox=498,308,346,410
+[2024-01-01 00:12:59.139] [INFO] DMS status=FACE face=1 score=3.41
+[2024-01-01 00:12:59.139] [INFO] [CAP] fps=15, frame_id=10913, cam_fail=0, push_fail=0

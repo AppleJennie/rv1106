@@ -1,0 +1,2 @@
+等待连续5次 face_found=1，最多90秒。请让 status.json 出现 FACE 后保持不动。
+NOT_LOCKED timeout
