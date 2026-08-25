@@ -356,6 +356,14 @@ async def test_refresh_daily_summary(client):
     assert abs(body["avg_comfort_score"] - 70.0) < 1e-6
 
 
+async def test_web_static_mount(client):
+    """web/ 前端原型静态挂载：GET /web/ 返回首页（StaticFiles html=True）。"""
+    async with client as c:
+        r = await c.get("/web/")
+    assert r.status_code == 200
+    assert "公交" in r.text
+
+
 def test_no_banned_words_in_app_source():
     """产品红线：app/ 源码不得出现归责/处罚类措辞。"""
     banned = re.compile(
@@ -370,3 +378,31 @@ def test_no_banned_words_in_app_source():
                 if banned.search(line):
                     offenders.append("%s:%d" % (fname, lineno))
     assert not offenders, "红线措辞出现在: %s" % ", ".join(offenders)
+
+
+async def test_list_endpoints(client):
+    """列表端点（Web 下拉框用）：注册后可读回。"""
+    async with client as c:
+        r = await c.post("/api/v1/drivers", json={"name": "测试司机", "employee_no": "T001"})
+        assert r.status_code == 201
+        driver_id = r.json()["driver_id"]
+        r = await c.post("/api/v1/vehicles", json={"plate_no": "测A00001"})
+        vehicle_id = r.json()["vehicle_id"]
+        r = await c.post("/api/v1/routes", json={"route_name": "测试线路"})
+        route_id = r.json()["route_id"]
+        r = await c.post("/api/v1/shifts", json={
+            "driver_id": driver_id, "vehicle_id": vehicle_id, "route_id": route_id,
+            "shift_start": "06:00", "shift_end": "14:00",
+        })
+        shift_id = r.json()["shift_id"]
+
+        for path, key, want_id in [
+            ("/api/v1/drivers", "driver_id", driver_id),
+            ("/api/v1/vehicles", "vehicle_id", vehicle_id),
+            ("/api/v1/routes", "route_id", route_id),
+            ("/api/v1/shifts", "shift_id", shift_id),
+        ]:
+            r = await c.get(path)
+            assert r.status_code == 200, path
+            ids = [row[key] for row in r.json()["data"]]
+            assert want_id in ids, "%s 未包含新建记录" % path

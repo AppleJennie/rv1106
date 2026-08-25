@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>驾驶员关怀 Driver Care - 公交安全与舒适度平台</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <div id="nav" class="nav"></div>
+  <div class="container">
+    <h1>驾驶员关怀（Driver Care）</h1>
+    <p class="muted small">
+      本页定位是<b>关怀与提醒</b>，帮助司机合理安排休息与排班；单次疲劳事件仅作记录、不作归责；
+      司机相关推断仅为 <b>SUSPECTED（疑似）</b>，均需人工复核。
+    </p>
+
+    <div class="panel">
+      <div class="filters">
+        <span id="driver-picker">
+          <label for="driver-select">选择司机：</label>
+          <select id="driver-select"></select>
+        </span>
+        <span id="driver-manual" style="display:none">
+          <label for="driver-id-input">司机 ID：</label>
+          <input id="driver-id-input" type="number" min="1" placeholder="输入司机 ID" style="width:110px">
+        </span>
+        <button id="load-btn">查询</button>
+      </div>
+      <div id="driver-meta" class="muted small"></div>
+    </div>
+
+    <div class="panel">
+      <h2>关怀建议</h2>
+      <div id="care-box"><span class="muted">请先选择司机</span></div>
+    </div>
+
+    <div class="panel">
+      <h2>疲劳风险趋势（近 7 天 DMS 事件数）</h2>
+      <div id="trend" class="bars"></div>
+    </div>
+
+    <div class="panel">
+      <h2>高风险时段分布（全部 DMS 事件按时段分桶）</h2>
+      <div id="period" class="bars"></div>
+      <div id="period-note" class="muted small"></div>
+    </div>
+
+    <div class="panel">
+      <h2>班次风险（排班风险引擎）</h2>
+      <div class="filters">
+        <label for="shift-id-input">班次 ID：</label>
+        <input id="shift-id-input" type="number" min="1" placeholder="输入班次 ID" style="width:110px">
+        <button id="shift-btn">评估班次</button>
+      </div>
+      <div id="shift-box"><span class="muted">输入班次 ID 后评估排班风险</span></div>
+    </div>
+
+    <p class="footer-note">
+      数据来源：GET /api/v1/drivers/{id}/safety、GET /api/v1/shifts/{id}/risk、GET /api/v1/events?category=dms。
+      关怀引擎阈值为仅工程初始值，需实车标定。
+    </p>
+  </div>
+
+  <script src="api.js"></script>
+  <script>
+    renderNav('driver_care');
+
+    let currentDriverId = null;
+
+    /* 司机下拉：优先尝试 GET /api/v1/drivers 列表；
+     * 当前后端版本未提供该列表端点（405）时，降级为手动输入司机 ID。 */
+    async function initDriverPicker() {
+      const sel = document.getElementById('driver-select');
+      try {
+        const list = await apiGet('/api/v1/drivers');
+        const items = Array.isArray(list) ? list : (list.items || []);
+        if (!items.length) throw new Error('empty');
+        sel.innerHTML = items.map(d =>
+          '<option value="' + d.driver_id + '">' +
+          escapeHtml(d.name || ('司机#' + d.driver_id)) +
+          (d.employee_no ? '（工号 ' + escapeHtml(d.employee_no) + '）' : '') +
+          '</option>').join('');
+        sel.onchange = () => loadDriver(Number(sel.value));
+        currentDriverId = Number(sel.value);
+        loadDriver(currentDriverId);
+      } catch (e) {
+        document.getElementById('driver-picker').style.display = 'none';
+        document.getElementById('driver-manual').style.display = '';
+        document.getElementById('driver-meta').textContent =
+          '提示：当前后端未提供司机列表端点，请手动输入司机 ID（可先通过注册接口或时间线页获取）。';
+      }
+    }
+
+    async function loadDriver(driverId) {
+      currentDriverId = driverId;
+      const careBox = document.getElementById('care-box');
+      careBox.innerHTML = '<span class="loading">加载中…</span>';
+      document.getElementById('trend').innerHTML = '';
+      document.getElementById('period').innerHTML = '';
+      try {
+        const [safety, events] = await Promise.all([
+          apiGet('/api/v1/drivers/' + driverId + '/safety'),
+          apiGet('/api/v1/events', { category: 'dms', page_size: 200 }),
+        ]);
+        renderCare(safety);
+        renderTrendAndPeriod(events.items.filter(ev => ev.driver_id === driverId));
+      } catch (e) {
+        showError(careBox, e);
+      }
+    }
+
+    function renderCare(safety) {
+      const p = safety.driver_safety_profile || {};
+      const care = safety.care || {};
+      const level = care.care_level || 'NORMAL';
+      const cls = level === 'NORMAL' ? 'NORMAL' : (level === 'REST_RECOMMENDED' ? 'ATTENTION' : 'HIGH');
+      let html = '<p>关怀等级：<span class="badge ' + cls + '">' +
+        escapeHtml(CARE_CN[level] || level) + '（' + escapeHtml(level) + '）</span></p>' +
+        '<p>' + escapeHtml(care.message || '') + '</p>';
+      if (care.reasons && care.reasons.length) {
+        html += '<ul>' + care.reasons.map(r => '<li>' + escapeHtml(r) + '</li>').join('') + '</ul>';
+      }
+      html += '<table><tr><th>累计 DMS 事件</th><th>近 ' +
+        (p.recent_window_hours || 72) + ' 小时疲劳提示</th><th>连续高风险班次</th><th>最近事件时间</th></tr>' +
+        '<tr><td>' + (p.total_dms_events || 0) + '</td><td>' + (p.recent_fatigue_event_count || 0) +
+        '</td><td>' + (p.consecutive_high_risk_shifts || 0) + '</td><td>' + fmtTs(p.last_event_at) +
+        '</td></tr></table>';
+      if (p.by_risk_level && Object.keys(p.by_risk_level).length) {
+        html += '<p class="small muted">等级分布：' + Object.entries(p.by_risk_level)
+          .map(([k, v]) => escapeHtml(LEVEL_CN[k] || k) + ' ' + v).join('；') + '</p>';
+      }
+      html += '<p class="small muted">' + escapeHtml(safety.review_note || '') + '</p>';
+      document.getElementById('care-box').innerHTML = html;
+      document.getElementById('driver-meta').textContent =
+        '司机 #' + p.driver_id + (p.registered ? '（已注册）' : '（未在册，仅按事件 ID 统计）');
+    }
+
+    function renderTrendAndPeriod(items) {
+      /* 近 7 天趋势 */
+      const days = [];
+      const today = new Date();
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(today); d.setDate(d.getDate() - i);
+        days.push(d.toISOString().slice(0, 10));
+      }
+      const byDay = {}; days.forEach(d => { byDay[d] = { total: 0, high: 0 }; });
+      items.forEach(ev => {
+        const day = String(ev.timestamp || '').slice(0, 10);
+        if (byDay[day]) {
+          byDay[day].total++;
+          if (ev.level === 'HIGH') byDay[day].high++;
+        }
+      });
+      renderBars(document.getElementById('trend'), days.map(d => ({
+        label: d.slice(5), value: byDay[d].total, high: byDay[d].high > 0,
+      })));
+
+      /* 高风险时段（凌晨/上午/下午/晚间，与后端 PERIOD_BUCKETS 一致） */
+      const periods = ['凌晨', '上午', '下午', '晚间'];
+      const cnt = { 凌晨: 0, 上午: 0, 下午: 0, 晚间: 0 };
+      const highCnt = { 凌晨: 0, 上午: 0, 下午: 0, 晚间: 0 };
+      items.forEach(ev => {
+        const m = /T(\d{2}):/.exec(String(ev.timestamp || ''));
+        if (!m) return;
+        const name = periodOfHour(Number(m[1]));
+        cnt[name]++;
+        if (ev.level === 'HIGH' || ev.level === 'WARNING') highCnt[name]++;
+      });
+      renderBars(document.getElementById('period'), periods.map(name => ({
+        label: name, value: cnt[name], high: highCnt[name] > 0,
+      })));
+      const max = periods.reduce((a, b) => cnt[a] >= cnt[b] ? a : b);
+      document.getElementById('period-note').textContent = items.length
+        ? ('共统计 ' + items.length + ' 条 DMS 事件，相对集中时段：' + max +
+           '（红色柱表示含预警/高风险事件；样本较少时仅供参考）')
+        : '暂无该司机的 DMS 事件数据。';
+    }
+
+    async function loadShiftRisk() {
+      const box = document.getElementById('shift-box');
+      const id = Number(document.getElementById('shift-id-input').value);
+      if (!id) { box.innerHTML = '<span class="muted">请输入班次 ID</span>'; return; }
+      box.innerHTML = '<span class="loading">评估中…</span>';
+      try {
+        const d = await apiGet('/api/v1/shifts/' + id + '/risk');
+        let html = '<p>排班风险等级：<span class="badge ' + d.schedule_risk_level + '">' +
+          escapeHtml(LEVEL_CN[d.schedule_risk_level] || d.schedule_risk_level) + '</span>　' +
+          '排班建议：<span class="badge ' + (d.recommendation === 'NORMAL' ? 'NORMAL' : 'WARNING') + '">' +
+          escapeHtml(RECO_CN[d.recommendation] || d.recommendation) + '</span></p>' +
+          '<p>' + escapeHtml(d.message || '') + '</p>';
+        if (d.reasons && d.reasons.length) {
+          html += '<ul>' + d.reasons.map(r => '<li>' + escapeHtml(r) + '</li>').join('') + '</ul>';
+        }
+        html += '<p class="small muted">历史疲劳事件数：' + d.historical_fatigue_event_count +
+          '（排班引擎阈值为仅工程初始值，需实车标定）</p>';
+        box.innerHTML = html;
+      } catch (e) {
+        showError(box, e);
+      }
+    }
+
+    document.getElementById('load-btn').onclick = () => {
+      const manual = document.getElementById('driver-manual');
+      const id = manual.style.display === 'none'
+        ? Number(document.getElementById('driver-select').value)
+        : Number(document.getElementById('driver-id-input').value);
+      if (id) loadDriver(id);
+    };
+    document.getElementById('shift-btn').onclick = loadShiftRisk;
+
+    initDriverPicker();
+  </script>
+</body>
+</html>

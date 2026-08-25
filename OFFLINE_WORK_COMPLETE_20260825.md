@@ -51,30 +51,53 @@
 `server/`（FastAPI 0.124.4 + SQLite，py3.8 兼容，`server/.venv` 已建好）：
 
 - 10 张表（drivers/vehicles/routes/shifts/dms_events/vehicle_motion_events/bus_safety_events/comfort_trips/risk_daily_summary/schedule_risk_summary），ID 全部可空，无 penalty 类字段
-- 全部 11 个规定端点 + 注册辅助端点 + 日汇总刷新端点
+- 全部规定端点 + 注册辅助端点 + 基础数据列表端点（drivers/vehicles/routes/shifts GET）+ 日汇总刷新端点
 - 排班风险引擎 + 司机关怀引擎（输出 REST_RECOMMENDED/SCHEDULE_REVIEW，文案为关怀建议风格）
-- **测试：36/36 pytest PASS**（ASGI transport，不起真实端口）
+- **测试：38/38 pytest PASS**（ASGI transport，不起真实端口）
 - `server/README.md`（启动/API/JSON schema）、`server/requirements.txt`（已 freeze）
 
-### 1.5 文档与部署包（TASK J/K/L/M）✅
+### 1.5 Web 管理平台原型（TASK F）✅
+
+`web/`：5 个页面（HTML+CSS+Vanilla JS，零构建零 CDN），经 FastAPI 静态挂载在 `/web/`：
+
+| 页面 | 内容 |
+|------|------|
+| `index.html` 公交安全总览 | 车辆 NORMAL/WARNING/HIGH 计数卡片、今日疲劳高风险/运动事件数、平均舒适度，30s 自动刷新 |
+| `driver_care.html` 驾驶员关怀 | 司机选择、关怀建议（REST_RECOMMENDED/SCHEDULE_REVIEW/NORMAL）、7 天疲劳趋势、高风险时段、班次风险；**无处罚类措辞** |
+| `comfort.html` 乘客舒适度 | Comfort Index、急刹/急加速/急转弯/颠簸计数、jerk 指标，按线路/车辆/班次过滤 |
+| `route_risk.html` 线路风险 | 风险等级、CSS 色块路段热区（显著标注 mock）、急刹高发时段、疲劳高发时间 |
+| `timeline.html` 事件时间线 | 三类事件时间倒序、融合事件高亮；顶部固定横幅"AI 风险提示，不代表最终责任认定，需人工复核" |
+
+**验证**：临时服务实测 6 个路径全部 200、关键标题逐个命中；server pytest 36→38（新增 /web/ 挂载用例 + 列表端点用例）。
+
+### 1.6 系统模拟器（TASK I）✅
+
+`simulator/run_bus_simulation.py`：10 司机、5 车、3 线路、多班次，虚拟时钟 8 小时运营（`--seed` 可复现，`--offline-jsonl` 无服务器模式）。
+
+**真实端到端验证**（临时 DB + 本地 uvicorn 8099，已清理）：8 小时模拟 POST 进库 **40 条事件（dms=20 motion=17 bus=3）+ 230 条舒适度采样**，本地计数与服务器 `/api/v1/events` 完全一致；CASE A/B/C 逐条核对：
+
+- CASE A：NORMAL + 单次 HARD_BRAKE → `attribution=UNKNOWN`（不归责）✅
+- CASE B：HEAD_DOWN 后 0.8s HARD_BRAKE → `ATTENTION_RELATED_BRAKE_SUSPECTED`，文案含 SUSPECTED + 需人工复核 ✅
+- CASE C：连续驾驶 320 分钟 + 重复 LONG_EYE_CLOSED + 多次 YAWN → HIGH 疲劳 + 建议休息/检查排班 ✅
+
+同 seed 两次运行输出逐字节一致。
+
+### 1.7 文档与部署包（TASK J/K/L/M）✅
 
 - `docs/DATA_PRIVACY_AND_ETHICS.md`、`docs/SYSTEM_INTERFACES.md`（四接口契约，含经 CRC 核算的真实示例帧）、`docs/BUS_DMS_SYSTEM_ARCHITECTURE.md`
 - `deploy/`：requirements.txt、.env.example、systemd 单元模板（MemoryMax=300M、1 worker）、backup_db.sh、logrotate 配置、README_SERVER_DEPLOY.md（显著警示 xiaozhi 占用 8000/8003，**未启动任何服务**）
 - 发现并记录上游文档勘误（07 协议文档最小/最大帧 13/45 应为 15/47），正确值写入 SYSTEM_INTERFACES.md
 
-### 1.6 自动测试与回归工具（TASK N/O）✅
+### 1.8 自动测试与回归工具（TASK N/O）✅
 
-- **`./run_all_offline_tests.sh` 一条命令全绿**：risk_manager 24 + mcu_protocol 42 + product_bridge 28 + 协议 10000 包压力 + vehicle_mcu 118 + fusion 50 + server pytest 36
+- **`./run_all_offline_tests.sh` 一条命令全绿**：risk_manager 24 + mcu_protocol 42 + product_bridge 28 + 协议 10000 包压力 + vehicle_mcu 118 + fusion 50 + server pytest 38
 - 回归工具三件套：`tools/replay_dms_csv.py`、`tools/replay_vehicle_imu.py`（含 --demo 仿真）、`tools/replay_bus_events.py`——真实 CSV 进来直接跑，无需改代码
 
 ---
 
-## 2. 未完成（本次按指示只收尾已开工部分）
+## 2. 全部离线任务状态
 
-| 项 | 状态 | 说明 |
-|----|------|------|
-| TASK F：Web 5 页面原型 | **未开工** | 列入下次会话；接口以 `server/README.md` 为准 |
-| TASK I：simulator 8 小时运营模拟 | **未开工** | 列入下次会话；CASE A/B/C 已由 fusion 单测覆盖等效逻辑 |
+TASK A~P 全部完成，无遗留"半成品"。唯一不在本期范围的是实机/实车验证（见第 3 节）。
 
 ---
 
@@ -92,8 +115,9 @@
 
 ## 4. 已知不一致（下次开工先处理）
 
-- `server` 的 vehicle `confidence` 为 **0.0~1.0**，`docs/SYSTEM_INTERFACES.md` 契约写 0~100 —— 以 `server/app/schemas.py` 为准，或下次统一改契约文档（记录在 `docs/README.md` 假设清单与 `server/README.md`）。
-- fusion 输出的事件类型字符串与 server `bus_safety_events` 表的 `event_type` 字段对接，需在模拟器/Integration 时对齐。
+- `server` 的 vehicle `confidence` 为 **0.0~1.0**，`docs/SYSTEM_INTERFACES.md` I3 契约写 0~100 —— 以实现（`server/app/schemas.py`）为准；I4 已加"实现状态说明"块列明契约与实现的全部差异（category/source 参数名、attribution 枚举演进方向、整型主键、分类 GET 列表未实现）。
+- fusion 输出的事件类型字符串与 server `bus_safety_events` 表的 `event_type` 字段对接，需在 Integration 时对齐（模拟器当前用 description 文案承载融合结论）。
+- Web 页面仅在 curl/静态检查层面验证，未做真实浏览器渲染回归——下次有浏览器时打开 `http://127.0.0.1:8099/web/` 目检一遍。
 
 ## 5. 产品红线自查
 
@@ -101,4 +125,4 @@
 
 ---
 
-> 快速验证：`./run_all_offline_tests.sh`（全绿即为准）。下次会话建议顺序：TASK I 模拟器 → TASK F Web → Integration V1 上板。
+> 快速验证：`./run_all_offline_tests.sh`（全绿即为准）；端到端演示：`cd server && .venv/bin/python -m uvicorn app.main:app --port 8099 &` 然后 `server/.venv/bin/python simulator/run_bus_simulation.py --hours 8 --seed 42`，浏览器开 `http://127.0.0.1:8099/web/`。下一步：Integration V1 上板（胶水层接线 + UART 联调）。

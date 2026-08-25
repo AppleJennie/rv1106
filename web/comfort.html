@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>乘客舒适度 - 公交安全与舒适度平台</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <div id="nav" class="nav"></div>
+  <div class="container">
+    <h1>乘客舒适度</h1>
+    <p class="muted small">舒适度指数 0~100，越高越舒适；运动事件统计用于定位影响乘坐体验的驾驶工况。</p>
+
+    <div class="panel">
+      <div class="filters">
+        <label>线路 ID：<input id="f-route" type="number" min="1" style="width:90px"></label>
+        <label>车辆 ID：<input id="f-vehicle" type="number" min="1" style="width:90px"></label>
+        <label>班次 ID：<input id="f-shift" type="number" min="1" style="width:90px"></label>
+        <label>开始日期：<input id="f-start" type="date"></label>
+        <label>结束日期：<input id="f-end" type="date"></label>
+        <button id="apply-btn">查询</button>
+      </div>
+      <div class="muted small">
+        说明：舒适度指数为后端聚合值（线路维度取 routes/{id}/risk，车辆维度取 vehicles/{id}/health，
+        未指定维度时取 dashboard/overview 的今日均值）；运动事件由 /api/v1/events?category=motion
+        拉取后按线路/车辆/班次在前端过滤（原型假设，详见 web/README.md）。
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card level-bg-INFO"><div class="label">舒适度指数 Comfort Index</div><div class="num" id="comfort-index">—</div></div>
+      <div class="card"><div class="label">急刹车</div><div class="num" id="c-brake">0</div></div>
+      <div class="card"><div class="label">急加速</div><div class="num" id="c-accel">0</div></div>
+      <div class="card"><div class="label">急转弯</div><div class="num" id="c-turn">0</div></div>
+      <div class="card"><div class="label">颠簸</div><div class="num" id="c-bump">0</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>冲击（jerk）指标</h2>
+      <div class="cards">
+        <div class="card"><div class="label">纵向冲击偏高事件（HIGH_LONG_JERK）</div><div class="num" id="c-jerk-long">0</div></div>
+        <div class="card"><div class="label">横向冲击偏高事件（HIGH_LAT_JERK）</div><div class="num" id="c-jerk-lat">0</div></div>
+      </div>
+      <div class="muted small">当前 API 未提供 jerk 数值列表端点，原型以 jerk 类事件计数代替（详见 web/README.md 假设）。</div>
+    </div>
+
+    <div class="panel">
+      <h2>事件明细（按时间倒序，最多 200 条）</h2>
+      <div id="detail"><span class="muted">点击“查询”加载</span></div>
+    </div>
+
+    <p class="footer-note">数据来源：GET /api/v1/events?category=motion、/api/v1/dashboard/overview、/api/v1/routes/{id}/risk、/api/v1/vehicles/{id}/health。</p>
+  </div>
+
+  <script src="api.js"></script>
+  <script>
+    renderNav('comfort');
+
+    function filters() {
+      return {
+        route: Number(document.getElementById('f-route').value) || null,
+        vehicle: Number(document.getElementById('f-vehicle').value) || null,
+        shift: Number(document.getElementById('f-shift').value) || null,
+        start: document.getElementById('f-start').value || null,
+        end: document.getElementById('f-end').value || null,
+      };
+    }
+
+    async function loadComfortIndex(f) {
+      const el = document.getElementById('comfort-index');
+      try {
+        if (f.route) {
+          const d = await apiGet('/api/v1/routes/' + f.route + '/risk');
+          el.textContent = fmtScore(d.avg_comfort_score);
+        } else if (f.vehicle) {
+          const d = await apiGet('/api/v1/vehicles/' + f.vehicle + '/health');
+          el.textContent = fmtScore(d.avg_comfort_score_today);
+        } else {
+          const d = await apiGet('/api/v1/dashboard/overview');
+          el.textContent = fmtScore(d.avg_comfort_score);
+        }
+      } catch (e) {
+        el.textContent = '—';
+        showError(document.getElementById('detail'), e);
+      }
+    }
+
+    async function loadEvents() {
+      const f = filters();
+      const detail = document.getElementById('detail');
+      detail.innerHTML = '<span class="loading">加载中…</span>';
+      loadComfortIndex(f);
+      try {
+        const d = await apiGet('/api/v1/events', {
+          category: 'motion', page_size: 200, start: f.start, end: f.end,
+        });
+        /* /api/v1/events 暂不支持 vehicle/route/shift 过滤参数，前端按 ID 过滤 */
+        const items = d.items.filter(ev =>
+          (!f.route || ev.route_id === f.route) &&
+          (!f.vehicle || ev.vehicle_id === f.vehicle) &&
+          (!f.shift || ev.shift_id === f.shift));
+
+        const count = t => items.filter(ev => ev.event_type === t).length;
+        document.getElementById('c-brake').textContent = count('HARD_BRAKE');
+        document.getElementById('c-accel').textContent = count('HARD_ACCEL');
+        document.getElementById('c-turn').textContent =
+          count('HARD_TURN_LEFT') + count('HARD_TURN_RIGHT');
+        document.getElementById('c-bump').textContent = count('BUMP');
+        document.getElementById('c-jerk-long').textContent = count('HIGH_LONG_JERK');
+        document.getElementById('c-jerk-lat').textContent = count('HIGH_LAT_JERK');
+
+        if (!items.length) {
+          detail.innerHTML = '<span class="muted">该过滤条件下暂无车辆运动事件。</span>';
+          return;
+        }
+        detail.innerHTML = '<table><tr><th>时间</th><th>类型</th><th>关联对象</th></tr>' +
+          items.map(ev =>
+            '<tr><td>' + fmtTs(ev.timestamp) + '</td><td>' +
+            escapeHtml(MOTION_TYPE_CN[ev.event_type] || ev.event_type || '—') +
+            '</td><td>' + escapeHtml(fmtIds(ev)) + '</td></tr>').join('') +
+          '</table>';
+      } catch (e) {
+        showError(detail, e);
+      }
+    }
+
+    document.getElementById('apply-btn').onclick = loadEvents;
+    loadEvents();
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>线路风险 - 公交安全与舒适度平台</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <div id="nav" class="nav"></div>
+  <div class="container">
+    <h1>线路风险</h1>
+
+    <div class="panel">
+      <div class="filters">
+        <span id="route-picker">
+          <label for="route-select">选择线路：</label>
+          <select id="route-select"></select>
+        </span>
+        <span id="route-manual" style="display:none">
+          <label for="route-id-input">线路 ID：</label>
+          <input id="route-id-input" type="number" min="1" placeholder="输入线路 ID" style="width:110px">
+        </span>
+        <button id="load-btn">查询</button>
+      </div>
+      <div id="route-meta" class="muted small"></div>
+    </div>
+
+    <div class="panel">
+      <h2>线路风险等级</h2>
+      <div id="risk-box"><span class="muted">请先选择线路</span></div>
+    </div>
+
+    <div class="panel">
+      <h2>路段风险热区示意</h2>
+      <div id="heat" class="heat"></div>
+      <div class="muted small">
+        ⚠️ 当前无真实 GPS 数据，以下路段划分为<b>前端模拟数据（mock）</b>，仅作页面布局示意；
+        接入真实定位后替换为实际路段。绿色=正常，黄色=注意，红色=高风险路段。
+      </div>
+      <div id="high-segs" style="margin-top:8px"></div>
+    </div>
+
+    <div class="panel">
+      <h2>急刹车高发时段（该线路 HARD_BRAKE 事件按小时分布）</h2>
+      <div id="brake-hours" class="bars"></div>
+      <div id="brake-note" class="muted small"></div>
+    </div>
+
+    <div class="panel">
+      <h2>疲劳高发时间（该线路 DMS 事件按时段分布）</h2>
+      <div id="dms-period" class="bars"></div>
+      <div id="dms-note" class="muted small"></div>
+    </div>
+
+    <p class="footer-note">
+      数据来源：GET /api/v1/routes/{id}/risk、GET /api/v1/events（前端按线路过滤）。
+      线路风险阈值为仅工程初始值，需实车标定。风险提示不作归责。
+    </p>
+  </div>
+
+  <script src="api.js"></script>
+  <script>
+    renderNav('route_risk');
+
+    /* 线路下拉：优先尝试 GET /api/v1/routes 列表；
+     * 当前后端版本未提供该列表端点（405）时，降级为手动输入线路 ID。 */
+    async function initRoutePicker() {
+      const sel = document.getElementById('route-select');
+      try {
+        const list = await apiGet('/api/v1/routes');
+        const items = Array.isArray(list) ? list : (list.items || []);
+        if (!items.length) throw new Error('empty');
+        sel.innerHTML = items.map(r =>
+          '<option value="' + r.route_id + '">' +
+          escapeHtml(r.route_name || ('线路#' + r.route_id)) + '</option>').join('');
+        sel.onchange = () => loadRoute(Number(sel.value));
+        loadRoute(Number(sel.value));
+      } catch (e) {
+        document.getElementById('route-picker').style.display = 'none';
+        document.getElementById('route-manual').style.display = '';
+        document.getElementById('route-meta').textContent =
+          '提示：当前后端未提供线路列表端点，请手动输入线路 ID。';
+      }
+    }
+
+    async function loadRoute(routeId) {
+      document.getElementById('risk-box').innerHTML = '<span class="loading">加载中…</span>';
+      try {
+        const [risk, motion, dms] = await Promise.all([
+          apiGet('/api/v1/routes/' + routeId + '/risk'),
+          apiGet('/api/v1/events', { category: 'motion', event_type: 'HARD_BRAKE', page_size: 200 }),
+          apiGet('/api/v1/events', { category: 'dms', page_size: 200 }),
+        ]);
+        renderRisk(risk);
+        renderHeat(routeId, risk);
+        renderBrakeHours(motion.items.filter(ev => ev.route_id === routeId));
+        renderDmsPeriod(dms.items.filter(ev => ev.route_id === routeId));
+      } catch (e) {
+        showError(document.getElementById('risk-box'), e);
+      }
+    }
+
+    function renderRisk(d) {
+      const html = '<p>线路 #' + d.route_id + (d.registered ? '（已注册）' : '（未在册）') +
+        '　风险等级：<span class="badge ' + d.route_risk_level + '">' +
+        escapeHtml(LEVEL_CN[d.route_risk_level] || d.route_risk_level) + '</span></p>' +
+        '<p>' + escapeHtml(d.message || '') + '</p>' +
+        '<table><tr><th>DMS 事件数</th><th>高风险事件数</th><th>运动事件数</th><th>平均舒适度</th></tr>' +
+        '<tr><td>' + d.dms_event_count + '</td><td>' + d.high_risk_event_count +
+        '</td><td>' + d.motion_event_count + '</td><td>' + fmtScore(d.avg_comfort_score) +
+        '</td></tr></table>';
+      document.getElementById('risk-box').innerHTML = html;
+    }
+
+    /* mock 路段：8 段，等级由线路 ID 与真实统计量确定性生成（可复现的伪随机），仅示意 */
+    function renderHeat(routeId, risk) {
+      const base = risk.route_risk_level === 'HIGH' ? 1 : 0;
+      const segs = [];
+      for (let i = 0; i < 8; i++) {
+        const seed = (routeId * 31 + i * 17) % 10;
+        let lv = seed >= 8 ? 2 : (seed >= 6 ? 1 : 0);
+        if (base === 1 && lv === 0 && seed >= 4) lv = 1; // 高风险线路整体上调一档示意
+        segs.push({ name: '路段 ' + (i + 1), lv });
+      }
+      const LV_TXT = ['正常', '注意', '高风险'];
+      document.getElementById('heat').innerHTML = segs.map(s =>
+        '<div class="seg lv' + s.lv + '">' + s.name + '<br>' + LV_TXT[s.lv] + '</div>').join('');
+      const high = segs.filter(s => s.lv === 2).map(s => s.name);
+      document.getElementById('high-segs').innerHTML = high.length
+        ? '高风险路段（模拟）：<span class="badge HIGH">' + high.join('</span> <span class="badge HIGH">') + '</span>'
+        : '<span class="muted">模拟数据中暂无高风险路段。</span>';
+    }
+
+    function renderBrakeHours(items) {
+      const hours = new Array(24).fill(0);
+      items.forEach(ev => {
+        const m = /T(\d{2}):/.exec(String(ev.timestamp || ''));
+        if (m) hours[Number(m[1])]++;
+      });
+      const data = hours.map((v, h) => ({ label: h + '时', value: v, high: v >= 2 }));
+      renderBars(document.getElementById('brake-hours'), data.filter((_, h) => h >= 5 && h <= 23));
+      const maxV = Math.max(...hours);
+      const maxH = hours.indexOf(maxV);
+      document.getElementById('brake-note').textContent = items.length
+        ? ('共 ' + items.length + ' 条急刹车事件；最高发小时：' + maxH + ' 时（' + maxV + ' 条）')
+        : '该线路暂无急刹车事件。';
+    }
+
+    function renderDmsPeriod(items) {
+      const periods = ['凌晨', '上午', '下午', '晚间'];
+      const cnt = { 凌晨: 0, 上午: 0, 下午: 0, 晚间: 0 };
+      const highCnt = { 凌晨: 0, 上午: 0, 下午: 0, 晚间: 0 };
+      items.forEach(ev => {
+        const m = /T(\d{2}):/.exec(String(ev.timestamp || ''));
+        if (!m) return;
+        const name = periodOfHour(Number(m[1]));
+        cnt[name]++;
+        if (ev.level === 'HIGH' || ev.level === 'WARNING') highCnt[name]++;
+      });
+      renderBars(document.getElementById('dms-period'), periods.map(name => ({
+        label: name, value: cnt[name], high: highCnt[name] > 0,
+      })));
+      const max = periods.reduce((a, b) => cnt[a] >= cnt[b] ? a : b);
+      document.getElementById('dms-note').textContent = items.length
+        ? ('共 ' + items.length + ' 条 DMS 事件；疲劳相对高发时间：' + max)
+        : '该线路暂无 DMS 疲劳事件。';
+    }
+
+    document.getElementById('load-btn').onclick = () => {
+      const manual = document.getElementById('route-manual');
+      const id = manual.style.display === 'none'
+        ? Number(document.getElementById('route-select').value)
+        : Number(document.getElementById('route-id-input').value);
+      if (id) loadRoute(id);
+    };
+
+    initRoutePicker();
+  </script>
+</body>
+</html>

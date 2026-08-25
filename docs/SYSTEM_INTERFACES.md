@@ -293,6 +293,18 @@ AA 55 01 11 02 5A 05 DC 6A 8C DB 00 00 E4 E1
 | GET | `/api/v1/vehicles/{id}/health` | 车辆/设备健康 | — |
 | GET | `/api/v1/shifts/{id}/risk` | 班次风险 + 排班复核建议 | — |
 | GET | `/api/v1/events` | 统一事件流（全类型，Timeline 页用） | `source`（`dms`/`vehicle`/`bus`） |
+| GET | `/api/v1/drivers` `/vehicles` `/routes` `/shifts` | 基础数据列表（Web 下拉框用，只读） | `limit`（≤1000） |
+
+> **实现状态说明（2026-08-25）**：本节 I4 为目标契约；当前已实现版本以
+> `server/README.md` + `server/app/schemas.py` 为准，与本文档的已知差异：
+> ① 实现中 `GET /api/v1/events` 的过滤参数名为 `category`（`dms`/`motion`/`bus`），
+> 分页参数 `page`/`page_size`；② 实现中 attribution 枚举为
+> `UNKNOWN/PEDESTRIAN_AVOIDANCE/TRAFFIC/DRIVER_ATTENTION/ROAD_CONDITION/VEHICLE`，
+> 尚无 `SUSPECTED_*`/`CONFIRMED_*`/`review_status` 字段（预留演进方向）；
+> ③ 实现中各资源主键为整型 `driver_id` 等；④ DMS/运动/舒适度/融合事件当前
+> 只有 POST + 统一 `/events` 查询，分类 GET 列表端点尚未实现；
+> ⑤ vehicle `confidence` 实现为 0.0~1.0（本文档 I3 写 0~100，以实现为准）。
+> 差异收敛记录见 `docs/README.md`。
 
 ### I4.2 端点响应要点
 

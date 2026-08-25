@@ -26,13 +26,13 @@
 - [x] TASK 13/14: `passenger_comfort.c/.h` 舒适度引擎（smoothness×3 + 事件计数 + trip_comfort_index）
 - [x] TASK C: `bus_event_fusion/` 30s 时间线事件融合（SUSPECTED 措辞，时序方向敏感）
 - [x] TASK D/E: `server/` FastAPI+SQLite+pytest（10 张表、API 全集、开发用 SQLite）
-- [ ] TASK F: Web 5 页面【未开工：本次按用户指示只收尾已开工部分，列入下次会话】（总览/Driver Care/Comfort/Route Risk/Timeline）
+- [x] TASK F: Web 5 页面（web/ 5 页 + server /web/ 静态挂载，curl 全 200）（总览/Driver Care/Comfort/Route Risk/Timeline）
 - [x] TASK G/H: 排班风险 rule engine + Driver Care 建议引擎（mock 数据测试）
-- [ ] TASK I: `simulator/`【未开工：列入下次会话】 10司机5车3线路 8 小时模拟 + CASE A/B/C + POST 到 FastAPI
+- [x] TASK I: `simulator/` 10司机5车3线路 8 小时模拟 + CASE A/B/C + POST 到 FastAPI（40 事件进库实测）
 - [x] TASK J: `docs/DATA_PRIVACY_AND_ETHICS.md`
 - [x] TASK K: `deploy/` 部署包（只准备不部署；不动 xiaozhi；不占 8000/8003）
 - [x] TASK L: `docs/SYSTEM_INTERFACES.md`
 - [x] TASK M: `docs/BUS_DMS_SYSTEM_ARCHITECTURE.md`
 - [x] TASK N: `run_all_offline_tests.sh` 一条命令全绿
 - [x] TASK O: `tools/replay_dms_csv.py` / `replay_vehicle_imu.py` / `replay_bus_events.py`
-- [ ] TASK P: `OFFLINE_WORK_COMPLETE_20260825.md`（OFFLINE DONE / REQUIRES HARDWARE 分明）
+- [x] TASK P: `OFFLINE_WORK_COMPLETE_20260825.md`（OFFLINE DONE / REQUIRES HARDWARE 分明）

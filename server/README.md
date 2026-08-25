@@ -29,6 +29,7 @@ bash server/run_tests.sh        # 36 passed（ASGI transport，不起真实端�
 |------|------|------|
 | GET  | `/health` | 健康检查 |
 | POST | `/api/v1/drivers` `/vehicles` `/routes` `/shifts` | 注册辅助（Demo 用，返回 id） |
+| GET  | `/api/v1/drivers` `/vehicles` `/routes` `/shifts` | 列表查询（`?limit=`，只读，Web 下拉框用） |
 | POST | `/api/v1/dms/events` | DMS 疲劳事件上报 |
 | POST | `/api/v1/vehicle/events` | 车辆运动事件上报 |
 | POST | `/api/v1/comfort/samples` | 舒适度采样上报 |

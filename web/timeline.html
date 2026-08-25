@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>事件时间线 - 公交安全与舒适度平台</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body>
+  <div id="nav" class="nav"></div>
+  <div class="container">
+    <h1>事件时间线</h1>
+    <div class="banner-warn">AI 风险提示，不代表最终责任认定，需人工复核</div>
+
+    <div class="panel">
+      <div class="filters">
+        <label for="cat-select">事件类别：</label>
+        <select id="cat-select">
+          <option value="">全部</option>
+          <option value="dms">DMS 疲劳</option>
+          <option value="motion">车辆运动</option>
+          <option value="bus">融合事件</option>
+        </select>
+        <label>开始日期：<input id="f-start" type="date"></label>
+        <label>结束日期：<input id="f-end" type="date"></label>
+        <button id="apply-btn">查询</button>
+      </div>
+      <div id="list"></div>
+      <div class="pager">
+        <button id="prev-btn">上一页</button>
+        <span id="page-info" class="muted">第 1 页</span>
+        <button id="next-btn">下一页</button>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      数据来源：GET /api/v1/events（按时间倒序）。紫色高亮为融合安全事件；
+      融合事件的责任归因中，司机相关推断仅为 SUSPECTED（疑似），需人工复核。
+    </p>
+  </div>
+
+  <script src="api.js"></script>
+  <script>
+    renderNav('timeline');
+
+    let page = 1;
+    let total = 0;
+    const PAGE_SIZE = 20;
+
+    function currentFilters() {
+      return {
+        category: document.getElementById('cat-select').value || null,
+        start: document.getElementById('f-start').value || null,
+        end: document.getElementById('f-end').value || null,
+      };
+    }
+
+    function eventTitle(ev) {
+      if (ev.category === 'dms') {
+        return (DMS_TYPE_CN[ev.event_type] || ev.event_type || 'DMS 事件') +
+          (ev.level ? '（' + (LEVEL_CN[ev.level] || ev.level) + '）' : '');
+      }
+      if (ev.category === 'motion') {
+        return MOTION_TYPE_CN[ev.event_type] || ev.event_type || '车辆运动事件';
+      }
+      return '融合安全事件（归因：' + (ATTR_CN[ev.attribution] || ev.attribution || 'UNKNOWN') + '）';
+    }
+
+    async function loadEvents() {
+      const list = document.getElementById('list');
+      list.innerHTML = '<span class="loading">加载中…</span>';
+      const f = currentFilters();
+      try {
+        const d = await apiGet('/api/v1/events', {
+          category: f.category, start: f.start, end: f.end,
+          page: page, page_size: PAGE_SIZE,
+        });
+        total = d.total;
+        const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+        document.getElementById('page-info').textContent =
+          '第 ' + d.page + ' / ' + pages + ' 页，共 ' + total + ' 条';
+        if (!d.items.length) {
+          list.innerHTML = '<span class="muted">暂无事件。</span>';
+          return;
+        }
+        list.innerHTML = d.items.map(ev => {
+          let badge = '<span class="badge cat-' + ev.category + '">' + CAT_CN[ev.category] + '</span>';
+          if (ev.category === 'bus') badge += ' <span class="badge HIGH">高亮关注</span>';
+          if (ev.category === 'dms' && ev.level) {
+            badge += ' <span class="badge ' + ev.level + '">' + (LEVEL_CN[ev.level] || ev.level) + '</span>';
+          }
+          return '<div class="timeline-item cat-' + ev.category + '">' +
+            '<span class="ts">' + fmtTs(ev.timestamp) + '</span>' + badge +
+            '<div class="desc">' + escapeHtml(eventTitle(ev)) +
+            '　<span class="muted small">' + escapeHtml(fmtIds(ev)) + '</span></div>' +
+            '</div>';
+        }).join('');
+      } catch (e) {
+        showError(list, e);
+      }
+    }
+
+    document.getElementById('apply-btn').onclick = () => { page = 1; loadEvents(); };
+    document.getElementById('prev-btn').onclick = () => { if (page > 1) { page--; loadEvents(); } };
+    document.getElementById('next-btn').onclick = () => {
+      if (page * PAGE_SIZE < total) { page++; loadEvents(); }
+    };
+
+    loadEvents();
+  </script>
+</body>
+</html>

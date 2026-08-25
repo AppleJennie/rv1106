@@ -11,9 +11,11 @@
 import json
 import os
 from datetime import date, datetime, timedelta
+from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
 
 from . import db
 from .config import CARE_WINDOW, DASHBOARD, ROUTE_RISK, VEHICLE_HEALTH
@@ -124,6 +126,32 @@ def create_app(db_path: Optional[str] = None) -> FastAPI:
                 "created_at": db.now_iso(),
             })
         return {"shift_id": rid}
+
+    # ---------------- 列表查询（Web 下拉框/选择器用，只读） ----------------
+
+    @app.get("/api/v1/drivers")
+    def list_drivers(limit: int = Query(200, ge=1, le=1000)):
+        with db.session() as conn:
+            cur = conn.execute("SELECT * FROM drivers ORDER BY driver_id LIMIT ?", (limit,))
+            return {"data": db.rows_to_dicts(cur)}
+
+    @app.get("/api/v1/vehicles")
+    def list_vehicles(limit: int = Query(200, ge=1, le=1000)):
+        with db.session() as conn:
+            cur = conn.execute("SELECT * FROM vehicles ORDER BY vehicle_id LIMIT ?", (limit,))
+            return {"data": db.rows_to_dicts(cur)}
+
+    @app.get("/api/v1/routes")
+    def list_routes(limit: int = Query(200, ge=1, le=1000)):
+        with db.session() as conn:
+            cur = conn.execute("SELECT * FROM routes ORDER BY route_id LIMIT ?", (limit,))
+            return {"data": db.rows_to_dicts(cur)}
+
+    @app.get("/api/v1/shifts")
+    def list_shifts(limit: int = Query(200, ge=1, le=1000)):
+        with db.session() as conn:
+            cur = conn.execute("SELECT * FROM shifts ORDER BY shift_id LIMIT ?", (limit,))
+            return {"data": db.rows_to_dicts(cur)}
 
     # ---------------- 事件上报 ----------------
 
@@ -490,6 +518,13 @@ def create_app(db_path: Optional[str] = None) -> FastAPI:
         target = day or _today()
         row = db.refresh_risk_daily_summary(target)
         return row
+
+    # ---------------- 前端原型静态页（web/） ----------------
+    # web 目录 = 项目根/web（相对 server/ 的上级推导）；仅当目录存在时挂载，
+    # 挂载不影响既有 API 端点（路径前缀 /web 互不冲突）。
+    web_dir = Path(__file__).resolve().parents[2] / "web"
+    if web_dir.is_dir():
+        app.mount("/web", StaticFiles(directory=str(web_dir), html=True), name="web")
 
     return app
 

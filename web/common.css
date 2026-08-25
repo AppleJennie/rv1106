@@ -1,0 +1,182 @@
+/* 公交驾驶员安全与乘客舒适度智能系统 —— Web 管理平台原型共用样式
+ * 零构建、零外部 CDN。定位：安全提示与关怀，不作归责。
+ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: #f2f4f8;
+  color: #22303f;
+  font-size: 14px;
+}
+
+/* 顶部导航条 */
+.nav {
+  background: #1f3a5f;
+  color: #fff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav .brand {
+  font-weight: 700;
+  padding: 12px 18px 12px 0;
+  white-space: nowrap;
+}
+.nav a {
+  color: #c8d6e8;
+  text-decoration: none;
+  padding: 12px 14px;
+  display: inline-block;
+}
+.nav a:hover { color: #fff; }
+.nav a.active {
+  color: #fff;
+  border-bottom: 3px solid #4da3ff;
+  padding-bottom: 9px;
+}
+
+.container { max-width: 1080px; margin: 18px auto; padding: 0 14px; }
+
+h1 { font-size: 20px; margin: 4px 0 12px; }
+h2 { font-size: 16px; margin: 0 0 10px; }
+.muted { color: #6b7a8d; }
+.small { font-size: 12px; }
+
+/* 卡片 */
+.cards { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 3px rgba(31, 58, 95, 0.12);
+  flex: 1 1 150px;
+  min-width: 140px;
+}
+.card .num { font-size: 28px; font-weight: 700; margin-top: 6px; }
+.card .label { color: #6b7a8d; }
+
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(31, 58, 95, 0.12);
+  margin-bottom: 16px;
+}
+
+/* 等级配色（绿=正常 / 黄=注意 / 红=高风险） */
+.level-NORMAL, .badge.NORMAL { color: #1a7f37; }
+.level-ATTENTION, .badge.ATTENTION { color: #9a6a00; }
+.level-WARNING, .badge.WARNING { color: #b3541e; }
+.level-HIGH, .badge.HIGH { color: #c02c2c; }
+.card.level-bg-NORMAL { border-left: 5px solid #2da44e; }
+.card.level-bg-WARNING { border-left: 5px solid #d4a017; }
+.card.level-bg-HIGH { border-left: 5px solid #c02c2c; }
+.card.level-bg-INFO { border-left: 5px solid #2f6fb2; }
+
+.badge {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 1px 9px;
+  font-size: 12px;
+  background: #e8edf3;
+  color: #33475e;
+  white-space: nowrap;
+}
+.badge.NORMAL { background: #d9f2e2; }
+.badge.ATTENTION, .badge.WARNING { background: #f7e8bf; }
+.badge.HIGH { background: #f6d5d5; }
+.badge.cat-dms { background: #d7e6f8; color: #20517e; }
+.badge.cat-motion { background: #f8e4cf; color: #8a5216; }
+.badge.cat-bus { background: #e5dbf5; color: #5b3d99; }
+
+/* 表单 */
+label { margin-right: 6px; color: #44546a; }
+input, select, button {
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid #c3ccd8;
+  border-radius: 5px;
+  background: #fff;
+}
+button {
+  background: #1f3a5f;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 7px 16px;
+}
+button:hover { background: #2a4f7e; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+
+/* 表格 */
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e3e8ee; }
+th { background: #eef2f7; color: #44546a; font-weight: 600; }
+
+/* 简单 CSS 柱状图 */
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 140px; padding-top: 8px; }
+.bars .bar-wrap { flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.bars .bar { background: #4da3ff; border-radius: 3px 3px 0 0; min-height: 2px; margin: 0 4px; position: relative; }
+.bars .bar.high { background: #c02c2c; }
+.bars .bar .v { position: absolute; top: -18px; left: 0; right: 0; font-size: 12px; color: #44546a; }
+.bars .x { font-size: 12px; color: #6b7a8d; padding-top: 4px; }
+
+/* 热区色块（route_risk 模拟路段） */
+.heat { display: flex; gap: 6px; flex-wrap: wrap; }
+.heat .seg {
+  flex: 1 1 100px;
+  min-width: 90px;
+  border-radius: 6px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+.heat .seg.lv0 { background: #2da44e; }
+.heat .seg.lv1 { background: #d4a017; }
+.heat .seg.lv2 { background: #c02c2c; }
+
+/* 固定警示横幅（时间线页） */
+.banner-warn {
+  background: #fff6e0;
+  border: 1px solid #e5c05b;
+  color: #7a5a00;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* 时间线 */
+.timeline-item {
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #c3ccd8;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(31, 58, 95, 0.08);
+}
+.timeline-item.cat-dms { border-left-color: #2f6fb2; }
+.timeline-item.cat-motion { border-left-color: #d97b29; }
+.timeline-item.cat-bus {
+  border-left-color: #7a4fc9;
+  background: #f7f2fd;
+  box-shadow: 0 0 0 1px #d9c8f2;
+}
+.timeline-item .ts { font-weight: 600; margin-right: 8px; }
+.timeline-item .desc { margin-top: 4px; color: #44546a; }
+
+.loading { color: #6b7a8d; padding: 8px 0; }
+.error-box {
+  background: #fdecea;
+  border: 1px solid #f0b8b2;
+  color: #8c2626;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+.footer-note { color: #6b7a8d; font-size: 12px; margin: 18px 0 30px; }
+.pager { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
