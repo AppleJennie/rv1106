@@ -1,0 +1,12 @@
+# Bus DMS Server 日志轮转配置
+# 安装：sudo cp logrotate.dms-bus /etc/logrotate.d/dms-bus
+/opt/dms-bus/server/logs/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    maxsize 50M
+    copytruncate
+}

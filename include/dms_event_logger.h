@@ -49,6 +49,12 @@ typedef struct {
 bool dms_event_logger_init(void);
 
 /*
+ * 指定目录初始化（PC 离线测试 / replay 用）。
+ * 板端正常调用 dms_event_logger_init() 即可（等价于传入默认 SD 卡路径）。
+ */
+bool dms_event_logger_init_with_dir(const char *dir);
+
+/*
  * 写入一条事件记录到 CSV。
  * risk_level 为 DMS_RISK_NORMAL 时直接忽略（不记录）。
  */

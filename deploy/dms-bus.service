@@ -1,0 +1,32 @@
+# ============================================================
+# Bus DMS Server —— systemd 单元模板
+# 安装：sudo cp dms-bus.service /etc/systemd/system/dms-bus.service
+#       sudo systemctl daemon-reload && sudo systemctl enable --now dms-bus
+# ⚠️ 本阶段只准备模板，严禁现在 enable/start（见 README_SERVER_DEPLOY.md 顶部警示）
+# ============================================================
+[Unit]
+Description=Bus DMS Server (FastAPI + SQLite)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 建议创建独立低权限用户：sudo useradd -r -s /usr/sbin/nologin dmsbus
+User=dmsbus
+Group=dmsbus
+WorkingDirectory=/opt/dms-bus/server
+EnvironmentFile=/opt/dms-bus/deploy/.env
+# SQLite 单写者模型：固定 1 worker，内存目标 <300MB（由 MemoryMax 强制兜底）
+ExecStart=/opt/dms-bus/venv/bin/uvicorn app.main:app --host ${DMS_BUS_HOST} --port ${DMS_BUS_PORT} --workers ${DMS_BUS_WORKERS}
+Restart=on-failure
+RestartSec=5
+# 内存硬上限：超过 300MB 由 systemd OOM 处理并触发 Restart
+MemoryMax=300M
+# 基础加固
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/dms-bus/server/data /opt/dms-bus/server/backup /opt/dms-bus/server/logs
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target

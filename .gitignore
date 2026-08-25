@@ -9,7 +9,20 @@ build_verify_on/
 beep_warn/beep_warn
 tests/test_dms_mcu_protocol
 tests/test_dms_risk_manager
+tests/test_dms_product_bridge
 mcu/tests/test_dms_protocol_stress
+tools/bridge_replay
+tools/fusion_replay
+tools/imu_replay
+vehicle_mcu/tests/test_vehicle_imu
+vehicle_mcu/tests/test_vehicle_can
+vehicle_mcu/tests/test_vehicle_motion
+vehicle_mcu/tests/test_passenger_comfort
+
+# ===== 离线总装：服务器环境/运行时产物 =====
+server/.venv/
+server/.pytest_cache/
+server/data/
 
 # ===== 大体积第三方 SDK / 环境（可重新下载安装，不进仓库）=====
 # opencv-mobile SDK（60MB，opencv-mobile 官方 release 可下载）

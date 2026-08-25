@@ -58,6 +58,7 @@ add_executable(hand_capture_right
     src/dms/dms_event_logger.c
     src/dms/dms_mcu_protocol.c
     src/dms/dms_alarm_policy.c
+    src/dms/dms_product_bridge.c
     src/hal/hal_gpio.cpp
     src/hal/hal_led.c
     src/hal/hal_encoder.c

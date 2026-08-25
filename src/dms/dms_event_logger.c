@@ -15,6 +15,7 @@
 static FILE *s_csv_fp = NULL;
 static bool  s_initialized = false;
 static char  s_csv_path[MAX_PATH_LEN];
+static char  s_log_dir[MAX_PATH_LEN] = EVENT_LOG_DIR;
 
 /* ==================== 内部辅助函数 ==================== */
 
@@ -55,16 +56,24 @@ static bool file_is_empty(const char *path)
 
 bool dms_event_logger_init(void)
 {
+    return dms_event_logger_init_with_dir(EVENT_LOG_DIR);
+}
+
+bool dms_event_logger_init_with_dir(const char *dir)
+{
     if (s_initialized) return true;
+    if (!dir || dir[0] == '\0') return false;
+
+    snprintf(s_log_dir, sizeof(s_log_dir), "%s", dir);
 
     /* 创建事件目录 */
-    if (!ensure_dir(EVENT_LOG_DIR)) {
-        log_error("[EventLogger] failed to create dir: %s", EVENT_LOG_DIR);
+    if (!ensure_dir(s_log_dir)) {
+        log_error("[EventLogger] failed to create dir: %s", s_log_dir);
         return false;
     }
 
     /* 拼接 CSV 路径 */
-    snprintf(s_csv_path, sizeof(s_csv_path), "%s/%s", EVENT_LOG_DIR, EVENT_CSV_FILENAME);
+    snprintf(s_csv_path, sizeof(s_csv_path), "%.400s/%s", s_log_dir, EVENT_CSV_FILENAME);
 
     /* 检查是否需要写 header */
     bool need_header = file_is_empty(s_csv_path);
@@ -139,15 +148,15 @@ bool dms_event_logger_save_snapshot(const char *event_type,
 
     if (tm_info) {
         snprintf(filename, sizeof(filename),
-                 "%s/%04d%02d%02d_%02d%02d%02d_%s.jpg",
-                 EVENT_LOG_DIR,
+                 "%.400s/%04d%02d%02d_%02d%02d%02d_%.32s.jpg",
+                 s_log_dir,
                  tm_info->tm_year + 1900, tm_info->tm_mon + 1, tm_info->tm_mday,
                  tm_info->tm_hour, tm_info->tm_min, tm_info->tm_sec,
                  event_type);
     } else {
         snprintf(filename, sizeof(filename),
-                 "%s/%llu_%s.jpg",
-                 EVENT_LOG_DIR,
+                 "%.400s/%llu_%.32s.jpg",
+                 s_log_dir,
                  (unsigned long long)now,
                  event_type);
     }
